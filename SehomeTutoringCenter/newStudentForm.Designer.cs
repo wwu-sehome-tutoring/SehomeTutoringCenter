@@ -148,6 +148,7 @@
             this.FreshmanLabel.TabStop = true;
             this.FreshmanLabel.Text = "Freshman";
             this.FreshmanLabel.UseVisualStyleBackColor = true;
+          
             // 
             // SophomoreLabel
             // 
