@@ -38,12 +38,9 @@
             this.adminTab = new System.Windows.Forms.Button();
             this.studentNames = new System.Windows.Forms.ListBox();
             this.newStudentBtn = new System.Windows.Forms.Button();
-            this.courseListComboBox = new System.Windows.Forms.ComboBox();
             this.courseSelectBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
-            this.courseSelectBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkIn
@@ -82,7 +79,6 @@
             this.sehomeLogo.Size = new System.Drawing.Size(97, 153);
             this.sehomeLogo.TabIndex = 2;
             this.sehomeLogo.TabStop = false;
-           
             // 
             // loginBackdrop
             // 
@@ -103,11 +99,10 @@
             this.coursesDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.coursesDropDown.Location = new System.Drawing.Point(734, 432);
             this.coursesDropDown.Name = "coursesDropDown";
-            this.coursesDropDown.Size = new System.Drawing.Size(526, 55);
+            this.coursesDropDown.Size = new System.Drawing.Size(525, 55);
             this.coursesDropDown.TabIndex = 4;
             this.coursesDropDown.Text = "Students Subjects";
             this.coursesDropDown.UseVisualStyleBackColor = true;
-            this.coursesDropDown.Click += new System.EventHandler(this.coursesDropDown_Click);
             // 
             // studentsTab
             // 
@@ -178,50 +173,27 @@
             this.newStudentBtn.UseVisualStyleBackColor = true;
             this.newStudentBtn.Click += new System.EventHandler(this.newStudentBtn_Click);
             // 
-            // courseListComboBox
-            // 
-            this.courseListComboBox.FormattingEnabled = true;
-            this.courseListComboBox.Items.AddRange(new object[] {
-            "Algebra 1",
-            "Biology 100",
-            "Calculus 2"});
-            this.courseListComboBox.Location = new System.Drawing.Point(148, 88);
-            this.courseListComboBox.Name = "courseListComboBox";
-            this.courseListComboBox.Size = new System.Drawing.Size(233, 21);
-            this.courseListComboBox.TabIndex = 0;
-            this.courseListComboBox.SelectedIndexChanged += new System.EventHandler(this.courseListComboBox_SelectedIndexChanged);
-            // 
             // courseSelectBox
             // 
             this.courseSelectBox.BackColor = System.Drawing.Color.White;
-            this.courseSelectBox.Controls.Add(this.courseListComboBox);
-            this.courseSelectBox.Controls.Add(this.label1);
-            this.courseSelectBox.Location = new System.Drawing.Point(733, 581);
+            this.courseSelectBox.Location = new System.Drawing.Point(733, 529);
             this.courseSelectBox.Name = "courseSelectBox";
-            this.courseSelectBox.Size = new System.Drawing.Size(526, 157);
+            this.courseSelectBox.Size = new System.Drawing.Size(526, 303);
             this.courseSelectBox.TabIndex = 11;
             this.courseSelectBox.TabStop = false;
             this.courseSelectBox.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(145, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Select the class you are going to study";
-            // 
             // CancelButton
             // 
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(1303, 683);
+            this.CancelButton.Location = new System.Drawing.Point(1283, 432);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(113, 55);
             this.CancelButton.TabIndex = 12;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Visible = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // studentLoginForm
             // 
@@ -243,10 +215,7 @@
             this.Name = "studentLoginForm";
             this.Text = "SLC Attendence System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).EndInit();
-            this.courseSelectBox.ResumeLayout(false);
-            this.courseSelectBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -262,9 +231,7 @@
         private System.Windows.Forms.Button centerTab;
         private System.Windows.Forms.Button adminTab;
         private System.Windows.Forms.Button newStudentBtn;
-        private System.Windows.Forms.ComboBox courseListComboBox;
         private System.Windows.Forms.GroupBox courseSelectBox;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ListBox studentNames;
         private System.Windows.Forms.Button CancelButton;
     }
