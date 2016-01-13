@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SehomeTutoringCenter
@@ -18,19 +12,20 @@ namespace SehomeTutoringCenter
 
         }
 
-        // Event handling for the main window.
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
         // Event handling for the Check In button
         private void checkIn_Click(object sender, EventArgs e)
         {
-            courseSelectBox.Location = new Point(468, 377);
-            coursesDropDown.Location = new Point(468, 503);
+            courseSelectBox.Location = new Point(734, 429);
             courseSelectBox.Visible = true;
+
+            coursesDropDown.Location = new Point(734, 731);
+            coursesDropDown.Width = 406;
             coursesDropDown.Text = "Check In";
             coursesDropDown.Enabled = false;
+
+            CancelButton.Location = new Point(1146, 731);
+            CancelButton.Visible = true;
+
             studentNames.Enabled = false;
         }
         // Event handling for the Check Out button
@@ -38,20 +33,7 @@ namespace SehomeTutoringCenter
         {
 
         }
-        // Event handling for the courses drop down button
-        private void coursesDropDown_Click(object sender, EventArgs e)
-        {
-            String s = coursesDropDown.Text.ToString();
 
-            if (s.Equals("Check In"))
-            {
-                coursesDropDown.Location = new Point(469, 387);
-                courseSelectBox.Visible = false;
-                studentNames.ClearSelected();
-                studentNames.Enabled = true;
-            }
-            
-        }
         // Event handling for student tab button
         private void studentsTab_Click(object sender, EventArgs e)
         {
@@ -86,6 +68,26 @@ namespace SehomeTutoringCenter
         private void courseListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             coursesDropDown.Enabled = true;
+        }
+        // Event handling for the cancel button
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            resetPositions();
+        }
+
+        // Function to reset the positions of some of the UI elements
+        private void resetPositions()
+        {
+            coursesDropDown.Location = new Point(734, 432);
+            coursesDropDown.Text = "Students Subjects";
+            coursesDropDown.Width = 526;
+            coursesDropDown.Enabled = true;
+
+            courseSelectBox.Visible = false;
+
+            CancelButton.Visible = false;
+            
+            studentNames.Enabled = true;      
         }
     }
 }
