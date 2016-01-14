@@ -42,7 +42,9 @@ namespace SehomeTutoringCenter
         // Event handling for the center tab button
         private void centerTab_Click(object sender, EventArgs e)
         {
+            CenterStatsForm center = new CenterStatsForm();
 
+            center.Show();
         }
         // Event handling for the admin tab button
         private void adminTab_Click(object sender, EventArgs e)
