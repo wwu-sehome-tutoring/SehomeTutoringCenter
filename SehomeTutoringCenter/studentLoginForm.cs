@@ -9,9 +9,22 @@ namespace SehomeTutoringCenter
         public studentLoginForm()
         {
             InitializeComponent();
+            PopulateStudentNames();
 
         }
 
+        // At program start up, fill in the ListBox of the student names that
+        // are already in the database, if there are any.
+        private void PopulateStudentNames()
+        {
+            var context = new SehomeContext();
+
+            foreach(var v in context.Students)
+            {
+                var FullName = v.FirstName + " " + v.LastName;
+                studentNames.Items.Add(FullName);
+            }
+        }
         // Event handling for the Check In button
         private void checkIn_Click(object sender, EventArgs e)
         {

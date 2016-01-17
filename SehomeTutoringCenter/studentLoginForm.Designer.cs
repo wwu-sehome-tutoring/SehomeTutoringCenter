@@ -149,13 +149,6 @@
             this.studentNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.studentNames.FormattingEnabled = true;
             this.studentNames.ItemHeight = 29;
-            this.studentNames.Items.AddRange(new object[] {
-            "Andrew Feely",
-            "Nathan Shive",
-            "JJ Small",
-            "Tucker Robot Man",
-            "Patrick Patrickson",
-            "Elvis Presley"});
             this.studentNames.Location = new System.Drawing.Point(3, 57);
             this.studentNames.Name = "studentNames";
             this.studentNames.Size = new System.Drawing.Size(236, 816);

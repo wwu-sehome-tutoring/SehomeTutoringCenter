@@ -29,33 +29,47 @@
         private void InitializeComponent()
         {
             this.firstNameLabel = new System.Windows.Forms.Label();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.FirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.LastNameTextBox = new System.Windows.Forms.TextBox();
             this.lastNameLabel = new System.Windows.Forms.Label();
-            this.addStudentButton = new System.Windows.Forms.Button();
+            this.AddStudentButton = new System.Windows.Forms.Button();
             this.studentDataGroupBox = new System.Windows.Forms.GroupBox();
-            this.gradeLevel = new System.Windows.Forms.Label();
+            this.RadioBtnPanel = new System.Windows.Forms.Panel();
             this.FreshmanLabel = new System.Windows.Forms.RadioButton();
+            this.SeniorLabel = new System.Windows.Forms.RadioButton();
             this.SophomoreLabel = new System.Windows.Forms.RadioButton();
             this.JuniorLabel = new System.Windows.Forms.RadioButton();
-            this.SeniorLabel = new System.Windows.Forms.RadioButton();
+            this.gradeLevel = new System.Windows.Forms.Label();
             this.ClassGroupBox = new System.Windows.Forms.GroupBox();
-            this.ClassLabel = new System.Windows.Forms.Label();
+            this.Panel1 = new System.Windows.Forms.Panel();
+            this.Class1 = new System.Windows.Forms.TextBox();
+            this.Teacher1 = new System.Windows.Forms.TextBox();
             this.TeacherNameLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.ClassLabel = new System.Windows.Forms.Label();
+            this.Panel2 = new System.Windows.Forms.Panel();
+            this.Class2 = new System.Windows.Forms.TextBox();
+            this.Teacher2 = new System.Windows.Forms.TextBox();
+            this.Panel3 = new System.Windows.Forms.Panel();
+            this.Class3 = new System.Windows.Forms.TextBox();
+            this.Teacher3 = new System.Windows.Forms.TextBox();
+            this.Panel4 = new System.Windows.Forms.Panel();
+            this.Class4 = new System.Windows.Forms.TextBox();
+            this.Teacher4 = new System.Windows.Forms.TextBox();
+            this.Panel5 = new System.Windows.Forms.Panel();
+            this.Class5 = new System.Windows.Forms.TextBox();
+            this.Teacher5 = new System.Windows.Forms.TextBox();
+            this.Panel6 = new System.Windows.Forms.Panel();
+            this.Class6 = new System.Windows.Forms.TextBox();
+            this.Teacher6 = new System.Windows.Forms.TextBox();
             this.studentDataGroupBox.SuspendLayout();
+            this.RadioBtnPanel.SuspendLayout();
             this.ClassGroupBox.SuspendLayout();
+            this.Panel1.SuspendLayout();
+            this.Panel2.SuspendLayout();
+            this.Panel3.SuspendLayout();
+            this.Panel4.SuspendLayout();
+            this.Panel5.SuspendLayout();
+            this.Panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // firstNameLabel
@@ -68,20 +82,19 @@
             this.firstNameLabel.TabIndex = 0;
             this.firstNameLabel.Text = "First Name";
             // 
-            // firstNameTextBox
+            // FirstNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(108, 46);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(173, 26);
-            this.firstNameTextBox.TabIndex = 1;
+            this.FirstNameTextBox.Location = new System.Drawing.Point(108, 46);
+            this.FirstNameTextBox.Name = "FirstNameTextBox";
+            this.FirstNameTextBox.Size = new System.Drawing.Size(173, 26);
+            this.FirstNameTextBox.TabIndex = 1;
             // 
-            // lastNameTextBox
+            // LastNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(108, 88);
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(173, 26);
-            this.lastNameTextBox.TabIndex = 3;
-            this.lastNameTextBox.TextChanged += new System.EventHandler(this.lastNameTextBox_TextChanged);
+            this.LastNameTextBox.Location = new System.Drawing.Point(108, 88);
+            this.LastNameTextBox.Name = "LastNameTextBox";
+            this.LastNameTextBox.Size = new System.Drawing.Size(173, 26);
+            this.LastNameTextBox.TabIndex = 3;
             // 
             // lastNameLabel
             // 
@@ -93,31 +106,27 @@
             this.lastNameLabel.TabIndex = 2;
             this.lastNameLabel.Text = "Last Name";
             // 
-            // addStudentButton
+            // AddStudentButton
             // 
-            this.addStudentButton.BackColor = System.Drawing.Color.Green;
-            this.addStudentButton.Enabled = false;
-            this.addStudentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addStudentButton.ForeColor = System.Drawing.Color.White;
-            this.addStudentButton.Location = new System.Drawing.Point(103, 264);
-            this.addStudentButton.Name = "addStudentButton";
-            this.addStudentButton.Size = new System.Drawing.Size(124, 37);
-            this.addStudentButton.TabIndex = 4;
-            this.addStudentButton.Text = "Add Student";
-            this.addStudentButton.UseVisualStyleBackColor = false;
-            this.addStudentButton.Click += new System.EventHandler(this.addStudentButton_Click);
+            this.AddStudentButton.BackColor = System.Drawing.Color.Green;
+            this.AddStudentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddStudentButton.ForeColor = System.Drawing.Color.White;
+            this.AddStudentButton.Location = new System.Drawing.Point(103, 264);
+            this.AddStudentButton.Name = "AddStudentButton";
+            this.AddStudentButton.Size = new System.Drawing.Size(124, 37);
+            this.AddStudentButton.TabIndex = 4;
+            this.AddStudentButton.Text = "Add Student";
+            this.AddStudentButton.UseVisualStyleBackColor = false;
+            this.AddStudentButton.Click += new System.EventHandler(this.addStudentButton_Click);
             // 
             // studentDataGroupBox
             // 
-            this.studentDataGroupBox.Controls.Add(this.SeniorLabel);
-            this.studentDataGroupBox.Controls.Add(this.JuniorLabel);
-            this.studentDataGroupBox.Controls.Add(this.SophomoreLabel);
-            this.studentDataGroupBox.Controls.Add(this.FreshmanLabel);
+            this.studentDataGroupBox.Controls.Add(this.RadioBtnPanel);
             this.studentDataGroupBox.Controls.Add(this.gradeLevel);
             this.studentDataGroupBox.Controls.Add(this.firstNameLabel);
-            this.studentDataGroupBox.Controls.Add(this.addStudentButton);
-            this.studentDataGroupBox.Controls.Add(this.firstNameTextBox);
-            this.studentDataGroupBox.Controls.Add(this.lastNameTextBox);
+            this.studentDataGroupBox.Controls.Add(this.AddStudentButton);
+            this.studentDataGroupBox.Controls.Add(this.FirstNameTextBox);
+            this.studentDataGroupBox.Controls.Add(this.LastNameTextBox);
             this.studentDataGroupBox.Controls.Add(this.lastNameLabel);
             this.studentDataGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.studentDataGroupBox.Location = new System.Drawing.Point(12, 23);
@@ -127,6 +136,61 @@
             this.studentDataGroupBox.TabIndex = 5;
             this.studentDataGroupBox.TabStop = false;
             this.studentDataGroupBox.Text = "Student Information";
+            // 
+            // RadioBtnPanel
+            // 
+            this.RadioBtnPanel.Controls.Add(this.FreshmanLabel);
+            this.RadioBtnPanel.Controls.Add(this.SeniorLabel);
+            this.RadioBtnPanel.Controls.Add(this.SophomoreLabel);
+            this.RadioBtnPanel.Controls.Add(this.JuniorLabel);
+            this.RadioBtnPanel.Location = new System.Drawing.Point(91, 128);
+            this.RadioBtnPanel.Name = "RadioBtnPanel";
+            this.RadioBtnPanel.Size = new System.Drawing.Size(145, 124);
+            this.RadioBtnPanel.TabIndex = 10;
+            // 
+            // FreshmanLabel
+            // 
+            this.FreshmanLabel.AutoSize = true;
+            this.FreshmanLabel.Location = new System.Drawing.Point(20, 3);
+            this.FreshmanLabel.Name = "FreshmanLabel";
+            this.FreshmanLabel.Size = new System.Drawing.Size(99, 24);
+            this.FreshmanLabel.TabIndex = 6;
+            this.FreshmanLabel.TabStop = true;
+            this.FreshmanLabel.Text = "Freshman";
+            this.FreshmanLabel.UseVisualStyleBackColor = true;
+            // 
+            // SeniorLabel
+            // 
+            this.SeniorLabel.AutoSize = true;
+            this.SeniorLabel.Location = new System.Drawing.Point(20, 93);
+            this.SeniorLabel.Name = "SeniorLabel";
+            this.SeniorLabel.Size = new System.Drawing.Size(73, 24);
+            this.SeniorLabel.TabIndex = 9;
+            this.SeniorLabel.TabStop = true;
+            this.SeniorLabel.Text = "Senior";
+            this.SeniorLabel.UseVisualStyleBackColor = true;
+            // 
+            // SophomoreLabel
+            // 
+            this.SophomoreLabel.AutoSize = true;
+            this.SophomoreLabel.Location = new System.Drawing.Point(20, 33);
+            this.SophomoreLabel.Name = "SophomoreLabel";
+            this.SophomoreLabel.Size = new System.Drawing.Size(110, 24);
+            this.SophomoreLabel.TabIndex = 7;
+            this.SophomoreLabel.TabStop = true;
+            this.SophomoreLabel.Text = "Sophomore";
+            this.SophomoreLabel.UseVisualStyleBackColor = true;
+            // 
+            // JuniorLabel
+            // 
+            this.JuniorLabel.AutoSize = true;
+            this.JuniorLabel.Location = new System.Drawing.Point(20, 63);
+            this.JuniorLabel.Name = "JuniorLabel";
+            this.JuniorLabel.Size = new System.Drawing.Size(70, 24);
+            this.JuniorLabel.TabIndex = 8;
+            this.JuniorLabel.TabStop = true;
+            this.JuniorLabel.Text = "Junior";
+            this.JuniorLabel.UseVisualStyleBackColor = true;
             // 
             // gradeLevel
             // 
@@ -138,65 +202,14 @@
             this.gradeLevel.TabIndex = 5;
             this.gradeLevel.Text = "Grade";
             // 
-            // FreshmanLabel
-            // 
-            this.FreshmanLabel.AutoSize = true;
-            this.FreshmanLabel.Location = new System.Drawing.Point(108, 128);
-            this.FreshmanLabel.Name = "FreshmanLabel";
-            this.FreshmanLabel.Size = new System.Drawing.Size(99, 24);
-            this.FreshmanLabel.TabIndex = 6;
-            this.FreshmanLabel.TabStop = true;
-            this.FreshmanLabel.Text = "Freshman";
-            this.FreshmanLabel.UseVisualStyleBackColor = true;
-          
-            // 
-            // SophomoreLabel
-            // 
-            this.SophomoreLabel.AutoSize = true;
-            this.SophomoreLabel.Location = new System.Drawing.Point(108, 158);
-            this.SophomoreLabel.Name = "SophomoreLabel";
-            this.SophomoreLabel.Size = new System.Drawing.Size(110, 24);
-            this.SophomoreLabel.TabIndex = 7;
-            this.SophomoreLabel.TabStop = true;
-            this.SophomoreLabel.Text = "Sophomore";
-            this.SophomoreLabel.UseVisualStyleBackColor = true;
-            // 
-            // JuniorLabel
-            // 
-            this.JuniorLabel.AutoSize = true;
-            this.JuniorLabel.Location = new System.Drawing.Point(108, 188);
-            this.JuniorLabel.Name = "JuniorLabel";
-            this.JuniorLabel.Size = new System.Drawing.Size(70, 24);
-            this.JuniorLabel.TabIndex = 8;
-            this.JuniorLabel.TabStop = true;
-            this.JuniorLabel.Text = "Junior";
-            this.JuniorLabel.UseVisualStyleBackColor = true;
-            // 
-            // SeniorLabel
-            // 
-            this.SeniorLabel.AutoSize = true;
-            this.SeniorLabel.Location = new System.Drawing.Point(108, 218);
-            this.SeniorLabel.Name = "SeniorLabel";
-            this.SeniorLabel.Size = new System.Drawing.Size(73, 24);
-            this.SeniorLabel.TabIndex = 9;
-            this.SeniorLabel.TabStop = true;
-            this.SeniorLabel.Text = "Senior";
-            this.SeniorLabel.UseVisualStyleBackColor = true;
-            // 
             // ClassGroupBox
             // 
-            this.ClassGroupBox.Controls.Add(this.textBox11);
-            this.ClassGroupBox.Controls.Add(this.textBox12);
-            this.ClassGroupBox.Controls.Add(this.textBox9);
-            this.ClassGroupBox.Controls.Add(this.textBox10);
-            this.ClassGroupBox.Controls.Add(this.textBox7);
-            this.ClassGroupBox.Controls.Add(this.textBox8);
-            this.ClassGroupBox.Controls.Add(this.textBox5);
-            this.ClassGroupBox.Controls.Add(this.textBox6);
-            this.ClassGroupBox.Controls.Add(this.textBox3);
-            this.ClassGroupBox.Controls.Add(this.textBox4);
-            this.ClassGroupBox.Controls.Add(this.textBox2);
-            this.ClassGroupBox.Controls.Add(this.textBox1);
+            this.ClassGroupBox.Controls.Add(this.Panel6);
+            this.ClassGroupBox.Controls.Add(this.Panel5);
+            this.ClassGroupBox.Controls.Add(this.Panel4);
+            this.ClassGroupBox.Controls.Add(this.Panel3);
+            this.ClassGroupBox.Controls.Add(this.Panel2);
+            this.ClassGroupBox.Controls.Add(this.Panel1);
             this.ClassGroupBox.Controls.Add(this.TeacherNameLabel);
             this.ClassGroupBox.Controls.Add(this.ClassLabel);
             this.ClassGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -207,14 +220,28 @@
             this.ClassGroupBox.TabStop = false;
             this.ClassGroupBox.Text = "Class List";
             // 
-            // ClassLabel
+            // Panel1
             // 
-            this.ClassLabel.AutoSize = true;
-            this.ClassLabel.Location = new System.Drawing.Point(19, 34);
-            this.ClassLabel.Name = "ClassLabel";
-            this.ClassLabel.Size = new System.Drawing.Size(48, 20);
-            this.ClassLabel.TabIndex = 0;
-            this.ClassLabel.Text = "Class";
+            this.Panel1.Controls.Add(this.Class1);
+            this.Panel1.Controls.Add(this.Teacher1);
+            this.Panel1.Location = new System.Drawing.Point(23, 57);
+            this.Panel1.Name = "Panel1";
+            this.Panel1.Size = new System.Drawing.Size(367, 26);
+            this.Panel1.TabIndex = 14;
+            // 
+            // Class1
+            // 
+            this.Class1.Location = new System.Drawing.Point(0, 0);
+            this.Class1.Name = "Class1";
+            this.Class1.Size = new System.Drawing.Size(175, 26);
+            this.Class1.TabIndex = 2;
+            // 
+            // Teacher1
+            // 
+            this.Teacher1.Location = new System.Drawing.Point(192, 0);
+            this.Teacher1.Name = "Teacher1";
+            this.Teacher1.Size = new System.Drawing.Size(175, 26);
+            this.Teacher1.TabIndex = 3;
             // 
             // TeacherNameLabel
             // 
@@ -225,89 +252,129 @@
             this.TeacherNameLabel.TabIndex = 1;
             this.TeacherNameLabel.Text = "Teacher";
             // 
-            // textBox1
+            // ClassLabel
             // 
-            this.textBox1.Location = new System.Drawing.Point(23, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 26);
-            this.textBox1.TabIndex = 2;
+            this.ClassLabel.AutoSize = true;
+            this.ClassLabel.Location = new System.Drawing.Point(19, 34);
+            this.ClassLabel.Name = "ClassLabel";
+            this.ClassLabel.Size = new System.Drawing.Size(48, 20);
+            this.ClassLabel.TabIndex = 0;
+            this.ClassLabel.Text = "Class";
             // 
-            // textBox2
+            // Panel2
             // 
-            this.textBox2.Location = new System.Drawing.Point(215, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(175, 26);
-            this.textBox2.TabIndex = 3;
+            this.Panel2.Controls.Add(this.Class2);
+            this.Panel2.Controls.Add(this.Teacher2);
+            this.Panel2.Location = new System.Drawing.Point(23, 99);
+            this.Panel2.Name = "Panel2";
+            this.Panel2.Size = new System.Drawing.Size(367, 26);
+            this.Panel2.TabIndex = 15;
             // 
-            // textBox3
+            // Class2
             // 
-            this.textBox3.Location = new System.Drawing.Point(215, 98);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(175, 26);
-            this.textBox3.TabIndex = 5;
+            this.Class2.Location = new System.Drawing.Point(0, 0);
+            this.Class2.Name = "Class2";
+            this.Class2.Size = new System.Drawing.Size(175, 26);
+            this.Class2.TabIndex = 2;
             // 
-            // textBox4
+            // Teacher2
             // 
-            this.textBox4.Location = new System.Drawing.Point(23, 98);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(175, 26);
-            this.textBox4.TabIndex = 4;
+            this.Teacher2.Location = new System.Drawing.Point(192, 0);
+            this.Teacher2.Name = "Teacher2";
+            this.Teacher2.Size = new System.Drawing.Size(175, 26);
+            this.Teacher2.TabIndex = 3;
             // 
-            // textBox5
+            // Panel3
             // 
-            this.textBox5.Location = new System.Drawing.Point(215, 142);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(175, 26);
-            this.textBox5.TabIndex = 7;
+            this.Panel3.Controls.Add(this.Class3);
+            this.Panel3.Controls.Add(this.Teacher3);
+            this.Panel3.Location = new System.Drawing.Point(23, 142);
+            this.Panel3.Name = "Panel3";
+            this.Panel3.Size = new System.Drawing.Size(367, 26);
+            this.Panel3.TabIndex = 15;
             // 
-            // textBox6
+            // Class3
             // 
-            this.textBox6.Location = new System.Drawing.Point(23, 142);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(175, 26);
-            this.textBox6.TabIndex = 6;
+            this.Class3.Location = new System.Drawing.Point(0, 0);
+            this.Class3.Name = "Class3";
+            this.Class3.Size = new System.Drawing.Size(175, 26);
+            this.Class3.TabIndex = 2;
             // 
-            // textBox7
+            // Teacher3
             // 
-            this.textBox7.Location = new System.Drawing.Point(215, 186);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(175, 26);
-            this.textBox7.TabIndex = 9;
+            this.Teacher3.Location = new System.Drawing.Point(192, 0);
+            this.Teacher3.Name = "Teacher3";
+            this.Teacher3.Size = new System.Drawing.Size(175, 26);
+            this.Teacher3.TabIndex = 3;
             // 
-            // textBox8
+            // Panel4
             // 
-            this.textBox8.Location = new System.Drawing.Point(23, 186);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(175, 26);
-            this.textBox8.TabIndex = 8;
+            this.Panel4.Controls.Add(this.Class4);
+            this.Panel4.Controls.Add(this.Teacher4);
+            this.Panel4.Location = new System.Drawing.Point(23, 189);
+            this.Panel4.Name = "Panel4";
+            this.Panel4.Size = new System.Drawing.Size(367, 26);
+            this.Panel4.TabIndex = 15;
             // 
-            // textBox9
+            // Class4
             // 
-            this.textBox9.Location = new System.Drawing.Point(215, 230);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(175, 26);
-            this.textBox9.TabIndex = 11;
+            this.Class4.Location = new System.Drawing.Point(0, 0);
+            this.Class4.Name = "Class4";
+            this.Class4.Size = new System.Drawing.Size(175, 26);
+            this.Class4.TabIndex = 2;
             // 
-            // textBox10
+            // Teacher4
             // 
-            this.textBox10.Location = new System.Drawing.Point(23, 230);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(175, 26);
-            this.textBox10.TabIndex = 10;
+            this.Teacher4.Location = new System.Drawing.Point(192, 0);
+            this.Teacher4.Name = "Teacher4";
+            this.Teacher4.Size = new System.Drawing.Size(175, 26);
+            this.Teacher4.TabIndex = 3;
             // 
-            // textBox11
+            // Panel5
             // 
-            this.textBox11.Location = new System.Drawing.Point(215, 275);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(175, 26);
-            this.textBox11.TabIndex = 13;
+            this.Panel5.Controls.Add(this.Class5);
+            this.Panel5.Controls.Add(this.Teacher5);
+            this.Panel5.Location = new System.Drawing.Point(23, 235);
+            this.Panel5.Name = "Panel5";
+            this.Panel5.Size = new System.Drawing.Size(367, 26);
+            this.Panel5.TabIndex = 15;
             // 
-            // textBox12
+            // Class5
             // 
-            this.textBox12.Location = new System.Drawing.Point(23, 275);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(175, 26);
-            this.textBox12.TabIndex = 12;
+            this.Class5.Location = new System.Drawing.Point(0, 0);
+            this.Class5.Name = "Class5";
+            this.Class5.Size = new System.Drawing.Size(175, 26);
+            this.Class5.TabIndex = 2;
+            // 
+            // Teacher5
+            // 
+            this.Teacher5.Location = new System.Drawing.Point(192, 0);
+            this.Teacher5.Name = "Teacher5";
+            this.Teacher5.Size = new System.Drawing.Size(175, 26);
+            this.Teacher5.TabIndex = 3;
+            // 
+            // Panel6
+            // 
+            this.Panel6.Controls.Add(this.Class6);
+            this.Panel6.Controls.Add(this.Teacher6);
+            this.Panel6.Location = new System.Drawing.Point(23, 275);
+            this.Panel6.Name = "Panel6";
+            this.Panel6.Size = new System.Drawing.Size(367, 26);
+            this.Panel6.TabIndex = 15;
+            // 
+            // Class6
+            // 
+            this.Class6.Location = new System.Drawing.Point(0, 0);
+            this.Class6.Name = "Class6";
+            this.Class6.Size = new System.Drawing.Size(175, 26);
+            this.Class6.TabIndex = 2;
+            // 
+            // Teacher6
+            // 
+            this.Teacher6.Location = new System.Drawing.Point(192, 0);
+            this.Teacher6.Name = "Teacher6";
+            this.Teacher6.Size = new System.Drawing.Size(175, 26);
+            this.Teacher6.TabIndex = 3;
             // 
             // newStudentForm
             // 
@@ -323,8 +390,22 @@
             this.Text = "Add New Student";
             this.studentDataGroupBox.ResumeLayout(false);
             this.studentDataGroupBox.PerformLayout();
+            this.RadioBtnPanel.ResumeLayout(false);
+            this.RadioBtnPanel.PerformLayout();
             this.ClassGroupBox.ResumeLayout(false);
             this.ClassGroupBox.PerformLayout();
+            this.Panel1.ResumeLayout(false);
+            this.Panel1.PerformLayout();
+            this.Panel2.ResumeLayout(false);
+            this.Panel2.PerformLayout();
+            this.Panel3.ResumeLayout(false);
+            this.Panel3.PerformLayout();
+            this.Panel4.ResumeLayout(false);
+            this.Panel4.PerformLayout();
+            this.Panel5.ResumeLayout(false);
+            this.Panel5.PerformLayout();
+            this.Panel6.ResumeLayout(false);
+            this.Panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -333,9 +414,9 @@
 
         private System.Windows.Forms.Label firstNameLabel;
         private System.Windows.Forms.Label lastNameLabel;
-        private System.Windows.Forms.Button addStudentButton;
-        public System.Windows.Forms.TextBox firstNameTextBox;
-        public System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.Button AddStudentButton;
+        public System.Windows.Forms.TextBox FirstNameTextBox;
+        public System.Windows.Forms.TextBox LastNameTextBox;
         private System.Windows.Forms.GroupBox studentDataGroupBox;
         private System.Windows.Forms.RadioButton SeniorLabel;
         private System.Windows.Forms.RadioButton JuniorLabel;
@@ -345,17 +426,24 @@
         private System.Windows.Forms.GroupBox ClassGroupBox;
         private System.Windows.Forms.Label TeacherNameLabel;
         private System.Windows.Forms.Label ClassLabel;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Teacher1;
+        private System.Windows.Forms.TextBox Class1;
+        private System.Windows.Forms.Panel RadioBtnPanel;
+        private System.Windows.Forms.Panel Panel1;
+        private System.Windows.Forms.Panel Panel6;
+        private System.Windows.Forms.TextBox Class6;
+        private System.Windows.Forms.TextBox Teacher6;
+        private System.Windows.Forms.Panel Panel5;
+        private System.Windows.Forms.TextBox Class5;
+        private System.Windows.Forms.TextBox Teacher5;
+        private System.Windows.Forms.Panel Panel4;
+        private System.Windows.Forms.TextBox Class4;
+        private System.Windows.Forms.TextBox Teacher4;
+        private System.Windows.Forms.Panel Panel3;
+        private System.Windows.Forms.TextBox Class3;
+        private System.Windows.Forms.TextBox Teacher3;
+        private System.Windows.Forms.Panel Panel2;
+        private System.Windows.Forms.TextBox Class2;
+        private System.Windows.Forms.TextBox Teacher2;
     }
 }
