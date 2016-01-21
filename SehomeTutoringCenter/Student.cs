@@ -22,6 +22,9 @@ namespace SehomeTutoringCenter
         [Column("last_name")]
         public string LastName { get; set; }
 
+        [Column("grade")]
+        public string Grade { get; set; }
+
         public virtual ICollection<Visit> Visits { get; set; }
     }
 }

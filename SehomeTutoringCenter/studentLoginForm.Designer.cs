@@ -38,7 +38,7 @@
             this.adminTab = new System.Windows.Forms.Button();
             this.studentNames = new System.Windows.Forms.ListBox();
             this.newStudentBtn = new System.Windows.Forms.Button();
-            this.courseSelectBox = new System.Windows.Forms.GroupBox();
+            this.CourseSelectBox = new System.Windows.Forms.GroupBox();
             this.CancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
             this.SuspendLayout();
@@ -166,15 +166,15 @@
             this.newStudentBtn.UseVisualStyleBackColor = true;
             this.newStudentBtn.Click += new System.EventHandler(this.newStudentBtn_Click);
             // 
-            // courseSelectBox
+            // CourseSelectBox
             // 
-            this.courseSelectBox.BackColor = System.Drawing.Color.White;
-            this.courseSelectBox.Location = new System.Drawing.Point(733, 529);
-            this.courseSelectBox.Name = "courseSelectBox";
-            this.courseSelectBox.Size = new System.Drawing.Size(526, 303);
-            this.courseSelectBox.TabIndex = 11;
-            this.courseSelectBox.TabStop = false;
-            this.courseSelectBox.Visible = false;
+            this.CourseSelectBox.BackColor = System.Drawing.Color.White;
+            this.CourseSelectBox.Location = new System.Drawing.Point(733, 529);
+            this.CourseSelectBox.Name = "CourseSelectBox";
+            this.CourseSelectBox.Size = new System.Drawing.Size(526, 303);
+            this.CourseSelectBox.TabIndex = 11;
+            this.CourseSelectBox.TabStop = false;
+            this.CourseSelectBox.Visible = false;
             // 
             // CancelButton
             // 
@@ -204,7 +204,7 @@
             this.Controls.Add(this.loginBackdrop);
             this.Controls.Add(this.newStudentBtn);
             this.Controls.Add(this.coursesDropDown);
-            this.Controls.Add(this.courseSelectBox);
+            this.Controls.Add(this.CourseSelectBox);
             this.Name = "studentLoginForm";
             this.Text = "SLC Attendence System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -224,7 +224,7 @@
         private System.Windows.Forms.Button centerTab;
         private System.Windows.Forms.Button adminTab;
         private System.Windows.Forms.Button newStudentBtn;
-        private System.Windows.Forms.GroupBox courseSelectBox;
+        private System.Windows.Forms.GroupBox CourseSelectBox;
         public System.Windows.Forms.ListBox studentNames;
         private System.Windows.Forms.Button CancelButton;
     }

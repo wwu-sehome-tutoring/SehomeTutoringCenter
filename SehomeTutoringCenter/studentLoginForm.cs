@@ -28,8 +28,10 @@ namespace SehomeTutoringCenter
         // Event handling for the Check In button
         private void checkIn_Click(object sender, EventArgs e)
         {
-            courseSelectBox.Location = new Point(734, 429);
-            courseSelectBox.Visible = true;
+            // The chunk of code below will make the class select items pop up
+            // and also show the cancel button
+            CourseSelectBox.Location = new Point(734, 429);
+            CourseSelectBox.Visible = true;
 
             coursesDropDown.Location = new Point(734, 731);
             coursesDropDown.Width = 406;
@@ -40,6 +42,11 @@ namespace SehomeTutoringCenter
             CancelButton.Visible = true;
 
             studentNames.Enabled = false;
+
+            // Now populate the check in area with all of the classes and teacher 
+            // names of the selected students
+            var context = new SehomeContext();
+            
         }
         // Event handling for the Check Out button
         private void checkOut_Click(object sender, EventArgs e)
@@ -76,7 +83,7 @@ namespace SehomeTutoringCenter
         private void newStudentBtn_Click(object sender, EventArgs e)
         {
             newStudentForm newStudent = new newStudentForm(this);
-            
+
             newStudent.Show();
         }
         // Event handling for when a course gets selected from the login page
@@ -98,7 +105,7 @@ namespace SehomeTutoringCenter
             coursesDropDown.Width = 526;
             coursesDropDown.Enabled = true;
 
-            courseSelectBox.Visible = false;
+            CourseSelectBox.Visible = false;
 
             CancelButton.Visible = false;
             
