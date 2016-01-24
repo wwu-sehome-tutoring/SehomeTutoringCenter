@@ -23,6 +23,7 @@ namespace SehomeTutoringCenter
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
