@@ -150,8 +150,17 @@ namespace SehomeTutoringCenter
                 Subject = computerProgramming
             };
 
+            // Create a visit with no TimeIn or TimeOut fields.
+            // TimeIn will default to DateTime.Now, TimeOut remains null.
+            var visit2 = new Visit
+            {
+                Student = JJ,
+                Subject = woodworking
+            };
+
             // Add the visit to the database.
             context.Visits.Add(visit);
+            context.Visits.Add(visit2);
             context.SaveChanges();
 
             // List all the courses JJ is registered for.
