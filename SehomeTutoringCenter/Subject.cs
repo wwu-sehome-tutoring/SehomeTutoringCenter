@@ -23,5 +23,6 @@ namespace SehomeTutoringCenter
         public string TeacherName { get; set; }
 
         public virtual ICollection<Visit> Visits { get; set; }
+        public virtual ICollection<Registration> Registrations { get; set; }
     }
 }
