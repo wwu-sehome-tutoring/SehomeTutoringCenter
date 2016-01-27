@@ -16,11 +16,23 @@ namespace SehomeTutoringCenter
         [Column("id")]
         public long Id { get; set; }
 
+        private DateTime? timeIn = null;
+
         [Column("time_in")]
-        public DateTime TimeIn { get; set; }
+        public DateTime? TimeIn
+        {
+            get
+            {
+                return this.timeIn.HasValue
+                    ? this.timeIn.Value
+                    : DateTime.Now;
+            }
+
+            set { this.timeIn = value; }
+        }
 
         [Column("time_out")]
-        public DateTime TimeOut { get; set; }
+        public DateTime? TimeOut { get; set; }
 
         [Column("student_id")]
         public long StudentId { get; set; }
