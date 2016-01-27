@@ -47,7 +47,8 @@ namespace SehomeTutoringCenter
         // Event handling for the admin tab button
         private void adminTab_Click(object sender, EventArgs e)
         {
-
+            adminForm admin = new adminForm();
+            admin.Show();
         }
         // Event handling for the student name select on the login page
         private void studentNames_SelectedIndexChanged(object sender, EventArgs e)
