@@ -41,8 +41,21 @@
             this.JuniorLabel = new System.Windows.Forms.RadioButton();
             this.gradeLevel = new System.Windows.Forms.Label();
             this.ClassGroupBox = new System.Windows.Forms.GroupBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.studentDataGroupBox.SuspendLayout();
             this.RadioBtnPanel.SuspendLayout();
+            this.ClassGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // firstNameLabel
@@ -90,7 +103,7 @@
             this.AddStudentButton.TabIndex = 4;
             this.AddStudentButton.Text = "Add Student";
             this.AddStudentButton.UseVisualStyleBackColor = false;
-            this.AddStudentButton.Click += new System.EventHandler(this.addStudentButton_Click);
+            this.AddStudentButton.Click += new System.EventHandler(this.AddStudentButton_Click);
             // 
             // studentDataGroupBox
             // 
@@ -177,6 +190,18 @@
             // 
             // ClassGroupBox
             // 
+            this.ClassGroupBox.Controls.Add(this.comboBox6);
+            this.ClassGroupBox.Controls.Add(this.label6);
+            this.ClassGroupBox.Controls.Add(this.comboBox5);
+            this.ClassGroupBox.Controls.Add(this.label5);
+            this.ClassGroupBox.Controls.Add(this.comboBox4);
+            this.ClassGroupBox.Controls.Add(this.label4);
+            this.ClassGroupBox.Controls.Add(this.comboBox3);
+            this.ClassGroupBox.Controls.Add(this.label3);
+            this.ClassGroupBox.Controls.Add(this.comboBox2);
+            this.ClassGroupBox.Controls.Add(this.label2);
+            this.ClassGroupBox.Controls.Add(this.comboBox1);
+            this.ClassGroupBox.Controls.Add(this.label1);
             this.ClassGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClassGroupBox.Location = new System.Drawing.Point(353, 23);
             this.ClassGroupBox.Name = "ClassGroupBox";
@@ -184,6 +209,108 @@
             this.ClassGroupBox.TabIndex = 6;
             this.ClassGroupBox.TabStop = false;
             this.ClassGroupBox.Text = "Class List";
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(83, 273);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(309, 28);
+            this.comboBox6.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 276);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 20);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Class 6";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(83, 221);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(309, 28);
+            this.comboBox5.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 224);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Class 5";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(83, 171);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(309, 28);
+            this.comboBox4.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 174);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Class 4";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(83, 124);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(309, 28);
+            this.comboBox3.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Class 3";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(83, 77);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(309, 28);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Class 2";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(83, 30);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(309, 28);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Class 1";
             // 
             // newStudentForm
             // 
@@ -201,6 +328,8 @@
             this.studentDataGroupBox.PerformLayout();
             this.RadioBtnPanel.ResumeLayout(false);
             this.RadioBtnPanel.PerformLayout();
+            this.ClassGroupBox.ResumeLayout(false);
+            this.ClassGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -220,5 +349,17 @@
         private System.Windows.Forms.Label gradeLevel;
         private System.Windows.Forms.GroupBox ClassGroupBox;
         private System.Windows.Forms.Panel RadioBtnPanel;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

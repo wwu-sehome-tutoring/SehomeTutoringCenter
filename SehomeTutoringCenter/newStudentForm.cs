@@ -10,72 +10,93 @@ namespace SehomeTutoringCenter
     {
         public newStudentForm(studentLoginForm temp)
         {
+            PopulateClassLists();
             InitializeComponent();
         }
 
-        // The Add Student buttonc an only be clicked if the appropriate forms are filled out.
-        // This includes all of the student information and at least one class.
-        private void addStudentButton_Click(object sender, EventArgs e)
+        // Populate each combox box of the class list groupbox to contain all of the
+        // subjects that are in the database.
+        private void PopulateClassLists()
         {
-            using (SehomeContext context = new SehomeContext())
+            using (var context = new SehomeContext())
             {
-                if (ValidInput())
+                foreach (ComboBox c in ClassGroupBox.Controls)
                 {
+                    foreach (var v in context.Subjects)
+                    {
+                        c.Items.Add(v.Name);
+                    }
+                }
+            }
+        }
+
+        private void AddStudentButton_Click(object sender, EventArgs e)
+        {
+            if (ValidInput())
+            {
+                using (var context = new SehomeContext())
+                {
+                    // Grab the text of which radio button is selected
                     string CheckedButton = RadioBtnPanel.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
 
-                    // Using the student information, add the student to the database
-                    Student Stud = new Student
+                    // Create a new Student object and add it to the database
+                    Student stud = new Student
                     {
                         FirstName = FirstNameTextBox.Text,
                         LastName = LastNameTextBox.Text,
                         Grade = CheckedButton
                     };
-                    context.Students.Add(Stud);
+                    context.Students.Add(stud);
+                    context.SaveChanges();
 
-                    // Using the class list information, add classes and teacher names to the database
-                    foreach (Control c in ClassGroupBox.Controls)
+                    // Create registrations for this student based off of the classes picked
+                    foreach(ComboBox c in ClassGroupBox.Controls)
                     {
-                        if (c is Panel)
+                        if(!c.SelectedText.Equals(""))
                         {
-                            var names = c.Controls.Cast<Control>();
-                            if (names.ElementAt(0).Text.Length > 0 && names.ElementAt(1).Text.Length > 0)
+                            var subject = from s in context.Subjects
+                                          where s.Name == c.Text
+                                          select s;
+
+                            var reg = new Registration
                             {
-                                Subject sub = new Subject
-                                {
-                                    Name = names.ElementAt(0).Text,
-                                    TeacherName = names.ElementAt(1).Text
-                                };
-                                context.Subjects.Add(sub);
-                            }
+                                Student = stud,
+                                Subject = subject.First()
+                            };
+                            context.Registrations.Add(reg);
                         }
                     }
                     context.SaveChanges();
-
-                    foreach (var v in context.Students)
-                    {
-                        MessageBox.Show(v.Grade);
-                    }
-
-                    this.Close();
                 }
-                else
-                {
-                    MessageBox.Show("Please enter all Student Information and at least 1 class/teacher pair.");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all Student Information and at least 1 class");
             }
         }
 
+        // Returns true if the user has entered all of the necessary input, otherwise false.
         private bool ValidInput()
         {
-            bool Valid = false;
+            bool IsValid = false;
+            bool RadioChecked = false;
 
-            if(!FirstNameTextBox.Text.Equals("") && !LastNameTextBox.Text.Equals(""))
+            foreach(RadioButton c in RadioBtnPanel.Controls)
             {
-                Valid = true;
+                if (c.Checked)
+                {
+                    RadioChecked = true;
+                }
             }
 
-            return Valid;
-        }
+            if(!FirstNameTextBox.Text.Equals("") &&
+                !LastNameTextBox.Text.Equals("") &&
+                RadioChecked)
+            {
+                IsValid = true;
+            }
 
+            return IsValid;
+        }
     }
 }

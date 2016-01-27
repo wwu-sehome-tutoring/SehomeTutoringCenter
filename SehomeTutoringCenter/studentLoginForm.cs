@@ -6,11 +6,12 @@ namespace SehomeTutoringCenter
 {
     public partial class studentLoginForm : Form
     {
+        string SelectedStudentName;
+
         public studentLoginForm()
         {
-            InitializeComponent();
             PopulateStudentNames();
-
+            InitializeComponent();
         }
 
         // At program start up, fill in the ListBox of the student names that
@@ -45,7 +46,24 @@ namespace SehomeTutoringCenter
 
             // Now populate the check in area with all of the classes and teacher 
             // names of the selected students
-            var context = new SehomeContext();
+            using (var context = new SehomeContext())
+            {
+                // Grab the names of each class for that student
+                string[] names = SelectedStudentName.Split(' ');
+                var student = from s in context.Students
+                              where s.FirstName == names[0]
+                              where s.LastName == names[1]
+                              select s;
+
+                string[] classes;
+                foreach(var r in student.Registrations)
+                {
+
+                }
+                 
+                // Update the radio buttons
+
+            }
             
         }
         // Event handling for the Check Out button
@@ -74,6 +92,8 @@ namespace SehomeTutoringCenter
         // Event handling for the student name select on the login page
         private void studentNames_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SelectedStudentName = this.Text;
+           
             checkIn.Enabled = true;
             // Have to have the student class working for this
             // if(studentNameWhatever.loggedIn = TRUE...
