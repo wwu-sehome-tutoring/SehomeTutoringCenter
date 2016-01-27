@@ -41,35 +41,8 @@
             this.JuniorLabel = new System.Windows.Forms.RadioButton();
             this.gradeLevel = new System.Windows.Forms.Label();
             this.ClassGroupBox = new System.Windows.Forms.GroupBox();
-            this.Panel1 = new System.Windows.Forms.Panel();
-            this.Class1 = new System.Windows.Forms.TextBox();
-            this.Teacher1 = new System.Windows.Forms.TextBox();
-            this.TeacherNameLabel = new System.Windows.Forms.Label();
-            this.ClassLabel = new System.Windows.Forms.Label();
-            this.Panel2 = new System.Windows.Forms.Panel();
-            this.Class2 = new System.Windows.Forms.TextBox();
-            this.Teacher2 = new System.Windows.Forms.TextBox();
-            this.Panel3 = new System.Windows.Forms.Panel();
-            this.Class3 = new System.Windows.Forms.TextBox();
-            this.Teacher3 = new System.Windows.Forms.TextBox();
-            this.Panel4 = new System.Windows.Forms.Panel();
-            this.Class4 = new System.Windows.Forms.TextBox();
-            this.Teacher4 = new System.Windows.Forms.TextBox();
-            this.Panel5 = new System.Windows.Forms.Panel();
-            this.Class5 = new System.Windows.Forms.TextBox();
-            this.Teacher5 = new System.Windows.Forms.TextBox();
-            this.Panel6 = new System.Windows.Forms.Panel();
-            this.Class6 = new System.Windows.Forms.TextBox();
-            this.Teacher6 = new System.Windows.Forms.TextBox();
             this.studentDataGroupBox.SuspendLayout();
             this.RadioBtnPanel.SuspendLayout();
-            this.ClassGroupBox.SuspendLayout();
-            this.Panel1.SuspendLayout();
-            this.Panel2.SuspendLayout();
-            this.Panel3.SuspendLayout();
-            this.Panel4.SuspendLayout();
-            this.Panel5.SuspendLayout();
-            this.Panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // firstNameLabel
@@ -204,14 +177,6 @@
             // 
             // ClassGroupBox
             // 
-            this.ClassGroupBox.Controls.Add(this.Panel6);
-            this.ClassGroupBox.Controls.Add(this.Panel5);
-            this.ClassGroupBox.Controls.Add(this.Panel4);
-            this.ClassGroupBox.Controls.Add(this.Panel3);
-            this.ClassGroupBox.Controls.Add(this.Panel2);
-            this.ClassGroupBox.Controls.Add(this.Panel1);
-            this.ClassGroupBox.Controls.Add(this.TeacherNameLabel);
-            this.ClassGroupBox.Controls.Add(this.ClassLabel);
             this.ClassGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClassGroupBox.Location = new System.Drawing.Point(353, 23);
             this.ClassGroupBox.Name = "ClassGroupBox";
@@ -219,162 +184,6 @@
             this.ClassGroupBox.TabIndex = 6;
             this.ClassGroupBox.TabStop = false;
             this.ClassGroupBox.Text = "Class List";
-            // 
-            // Panel1
-            // 
-            this.Panel1.Controls.Add(this.Class1);
-            this.Panel1.Controls.Add(this.Teacher1);
-            this.Panel1.Location = new System.Drawing.Point(23, 57);
-            this.Panel1.Name = "Panel1";
-            this.Panel1.Size = new System.Drawing.Size(367, 26);
-            this.Panel1.TabIndex = 14;
-            // 
-            // Class1
-            // 
-            this.Class1.Location = new System.Drawing.Point(0, 0);
-            this.Class1.Name = "Class1";
-            this.Class1.Size = new System.Drawing.Size(175, 26);
-            this.Class1.TabIndex = 2;
-            // 
-            // Teacher1
-            // 
-            this.Teacher1.Location = new System.Drawing.Point(192, 0);
-            this.Teacher1.Name = "Teacher1";
-            this.Teacher1.Size = new System.Drawing.Size(175, 26);
-            this.Teacher1.TabIndex = 3;
-            // 
-            // TeacherNameLabel
-            // 
-            this.TeacherNameLabel.AutoSize = true;
-            this.TeacherNameLabel.Location = new System.Drawing.Point(211, 34);
-            this.TeacherNameLabel.Name = "TeacherNameLabel";
-            this.TeacherNameLabel.Size = new System.Drawing.Size(67, 20);
-            this.TeacherNameLabel.TabIndex = 1;
-            this.TeacherNameLabel.Text = "Teacher";
-            // 
-            // ClassLabel
-            // 
-            this.ClassLabel.AutoSize = true;
-            this.ClassLabel.Location = new System.Drawing.Point(19, 34);
-            this.ClassLabel.Name = "ClassLabel";
-            this.ClassLabel.Size = new System.Drawing.Size(48, 20);
-            this.ClassLabel.TabIndex = 0;
-            this.ClassLabel.Text = "Class";
-            // 
-            // Panel2
-            // 
-            this.Panel2.Controls.Add(this.Class2);
-            this.Panel2.Controls.Add(this.Teacher2);
-            this.Panel2.Location = new System.Drawing.Point(23, 99);
-            this.Panel2.Name = "Panel2";
-            this.Panel2.Size = new System.Drawing.Size(367, 26);
-            this.Panel2.TabIndex = 15;
-            // 
-            // Class2
-            // 
-            this.Class2.Location = new System.Drawing.Point(0, 0);
-            this.Class2.Name = "Class2";
-            this.Class2.Size = new System.Drawing.Size(175, 26);
-            this.Class2.TabIndex = 2;
-            // 
-            // Teacher2
-            // 
-            this.Teacher2.Location = new System.Drawing.Point(192, 0);
-            this.Teacher2.Name = "Teacher2";
-            this.Teacher2.Size = new System.Drawing.Size(175, 26);
-            this.Teacher2.TabIndex = 3;
-            // 
-            // Panel3
-            // 
-            this.Panel3.Controls.Add(this.Class3);
-            this.Panel3.Controls.Add(this.Teacher3);
-            this.Panel3.Location = new System.Drawing.Point(23, 142);
-            this.Panel3.Name = "Panel3";
-            this.Panel3.Size = new System.Drawing.Size(367, 26);
-            this.Panel3.TabIndex = 15;
-            // 
-            // Class3
-            // 
-            this.Class3.Location = new System.Drawing.Point(0, 0);
-            this.Class3.Name = "Class3";
-            this.Class3.Size = new System.Drawing.Size(175, 26);
-            this.Class3.TabIndex = 2;
-            // 
-            // Teacher3
-            // 
-            this.Teacher3.Location = new System.Drawing.Point(192, 0);
-            this.Teacher3.Name = "Teacher3";
-            this.Teacher3.Size = new System.Drawing.Size(175, 26);
-            this.Teacher3.TabIndex = 3;
-            // 
-            // Panel4
-            // 
-            this.Panel4.Controls.Add(this.Class4);
-            this.Panel4.Controls.Add(this.Teacher4);
-            this.Panel4.Location = new System.Drawing.Point(23, 189);
-            this.Panel4.Name = "Panel4";
-            this.Panel4.Size = new System.Drawing.Size(367, 26);
-            this.Panel4.TabIndex = 15;
-            // 
-            // Class4
-            // 
-            this.Class4.Location = new System.Drawing.Point(0, 0);
-            this.Class4.Name = "Class4";
-            this.Class4.Size = new System.Drawing.Size(175, 26);
-            this.Class4.TabIndex = 2;
-            // 
-            // Teacher4
-            // 
-            this.Teacher4.Location = new System.Drawing.Point(192, 0);
-            this.Teacher4.Name = "Teacher4";
-            this.Teacher4.Size = new System.Drawing.Size(175, 26);
-            this.Teacher4.TabIndex = 3;
-            // 
-            // Panel5
-            // 
-            this.Panel5.Controls.Add(this.Class5);
-            this.Panel5.Controls.Add(this.Teacher5);
-            this.Panel5.Location = new System.Drawing.Point(23, 235);
-            this.Panel5.Name = "Panel5";
-            this.Panel5.Size = new System.Drawing.Size(367, 26);
-            this.Panel5.TabIndex = 15;
-            // 
-            // Class5
-            // 
-            this.Class5.Location = new System.Drawing.Point(0, 0);
-            this.Class5.Name = "Class5";
-            this.Class5.Size = new System.Drawing.Size(175, 26);
-            this.Class5.TabIndex = 2;
-            // 
-            // Teacher5
-            // 
-            this.Teacher5.Location = new System.Drawing.Point(192, 0);
-            this.Teacher5.Name = "Teacher5";
-            this.Teacher5.Size = new System.Drawing.Size(175, 26);
-            this.Teacher5.TabIndex = 3;
-            // 
-            // Panel6
-            // 
-            this.Panel6.Controls.Add(this.Class6);
-            this.Panel6.Controls.Add(this.Teacher6);
-            this.Panel6.Location = new System.Drawing.Point(23, 275);
-            this.Panel6.Name = "Panel6";
-            this.Panel6.Size = new System.Drawing.Size(367, 26);
-            this.Panel6.TabIndex = 15;
-            // 
-            // Class6
-            // 
-            this.Class6.Location = new System.Drawing.Point(0, 0);
-            this.Class6.Name = "Class6";
-            this.Class6.Size = new System.Drawing.Size(175, 26);
-            this.Class6.TabIndex = 2;
-            // 
-            // Teacher6
-            // 
-            this.Teacher6.Location = new System.Drawing.Point(192, 0);
-            this.Teacher6.Name = "Teacher6";
-            this.Teacher6.Size = new System.Drawing.Size(175, 26);
-            this.Teacher6.TabIndex = 3;
             // 
             // newStudentForm
             // 
@@ -392,20 +201,6 @@
             this.studentDataGroupBox.PerformLayout();
             this.RadioBtnPanel.ResumeLayout(false);
             this.RadioBtnPanel.PerformLayout();
-            this.ClassGroupBox.ResumeLayout(false);
-            this.ClassGroupBox.PerformLayout();
-            this.Panel1.ResumeLayout(false);
-            this.Panel1.PerformLayout();
-            this.Panel2.ResumeLayout(false);
-            this.Panel2.PerformLayout();
-            this.Panel3.ResumeLayout(false);
-            this.Panel3.PerformLayout();
-            this.Panel4.ResumeLayout(false);
-            this.Panel4.PerformLayout();
-            this.Panel5.ResumeLayout(false);
-            this.Panel5.PerformLayout();
-            this.Panel6.ResumeLayout(false);
-            this.Panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -424,26 +219,6 @@
         private System.Windows.Forms.RadioButton FreshmanLabel;
         private System.Windows.Forms.Label gradeLevel;
         private System.Windows.Forms.GroupBox ClassGroupBox;
-        private System.Windows.Forms.Label TeacherNameLabel;
-        private System.Windows.Forms.Label ClassLabel;
-        private System.Windows.Forms.TextBox Teacher1;
-        private System.Windows.Forms.TextBox Class1;
         private System.Windows.Forms.Panel RadioBtnPanel;
-        private System.Windows.Forms.Panel Panel1;
-        private System.Windows.Forms.Panel Panel6;
-        private System.Windows.Forms.TextBox Class6;
-        private System.Windows.Forms.TextBox Teacher6;
-        private System.Windows.Forms.Panel Panel5;
-        private System.Windows.Forms.TextBox Class5;
-        private System.Windows.Forms.TextBox Teacher5;
-        private System.Windows.Forms.Panel Panel4;
-        private System.Windows.Forms.TextBox Class4;
-        private System.Windows.Forms.TextBox Teacher4;
-        private System.Windows.Forms.Panel Panel3;
-        private System.Windows.Forms.TextBox Class3;
-        private System.Windows.Forms.TextBox Teacher3;
-        private System.Windows.Forms.Panel Panel2;
-        private System.Windows.Forms.TextBox Class2;
-        private System.Windows.Forms.TextBox Teacher2;
     }
 }
