@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.adminTab = new System.Windows.Forms.Button();
             this.studentTab = new System.Windows.Forms.Button();
             this.loginTab = new System.Windows.Forms.Button();
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.subjectGroupBox = new System.Windows.Forms.GroupBox();
-            this.startDateComboBox = new System.Windows.Forms.ComboBox();
             this.startDateGroupBox = new System.Windows.Forms.GroupBox();
-            this.endDateComboBox = new System.Windows.Forms.ComboBox();
             this.endDateGroupBox = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dailyPrizeGroupBox = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.randomStudentListbox = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.centerStatsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CenterStatsTable = new System.Windows.Forms.TableLayoutPanel();
+            this.StartDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.subjectGroupBox.SuspendLayout();
             this.startDateGroupBox.SuspendLayout();
             this.endDateGroupBox.SuspendLayout();
@@ -117,19 +117,9 @@
             this.subjectGroupBox.TabStop = false;
             this.subjectGroupBox.Text = "Subject";
             // 
-            // startDateComboBox
-            // 
-            this.startDateComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startDateComboBox.FormattingEnabled = true;
-            this.startDateComboBox.Location = new System.Drawing.Point(29, 34);
-            this.startDateComboBox.Name = "startDateComboBox";
-            this.startDateComboBox.Size = new System.Drawing.Size(203, 32);
-            this.startDateComboBox.TabIndex = 11;
-            this.startDateComboBox.SelectedIndexChanged += new System.EventHandler(this.startDateComboBox_SelectedIndexChanged);
-            // 
             // startDateGroupBox
             // 
-            this.startDateGroupBox.Controls.Add(this.startDateComboBox);
+            this.startDateGroupBox.Controls.Add(this.StartDatePicker);
             this.startDateGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startDateGroupBox.Location = new System.Drawing.Point(28, 212);
             this.startDateGroupBox.Name = "startDateGroupBox";
@@ -138,19 +128,9 @@
             this.startDateGroupBox.TabStop = false;
             this.startDateGroupBox.Text = "Start Date";
             // 
-            // endDateComboBox
-            // 
-            this.endDateComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endDateComboBox.FormattingEnabled = true;
-            this.endDateComboBox.Location = new System.Drawing.Point(29, 34);
-            this.endDateComboBox.Name = "endDateComboBox";
-            this.endDateComboBox.Size = new System.Drawing.Size(203, 32);
-            this.endDateComboBox.TabIndex = 11;
-            this.endDateComboBox.SelectedIndexChanged += new System.EventHandler(this.endDateComboBox_SelectedIndexChanged);
-            // 
             // endDateGroupBox
             // 
-            this.endDateGroupBox.Controls.Add(this.endDateComboBox);
+            this.endDateGroupBox.Controls.Add(this.dateTimePicker1);
             this.endDateGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endDateGroupBox.Location = new System.Drawing.Point(28, 387);
             this.endDateGroupBox.Name = "endDateGroupBox";
@@ -202,6 +182,17 @@
             this.dailyPrizeGroupBox.TabStop = false;
             this.dailyPrizeGroupBox.Text = "Daily Prize";
             // 
+            // randomStudentListbox
+            // 
+            this.randomStudentListbox.FormattingEnabled = true;
+            this.randomStudentListbox.ItemHeight = 29;
+            this.randomStudentListbox.Items.AddRange(new object[] {
+            "Student name..."});
+            this.randomStudentListbox.Location = new System.Drawing.Point(43, 126);
+            this.randomStudentListbox.Name = "randomStudentListbox";
+            this.randomStudentListbox.Size = new System.Drawing.Size(172, 33);
+            this.randomStudentListbox.TabIndex = 19;
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Teal;
@@ -215,37 +206,26 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // randomStudentListbox
-            // 
-            this.randomStudentListbox.FormattingEnabled = true;
-            this.randomStudentListbox.ItemHeight = 29;
-            this.randomStudentListbox.Items.AddRange(new object[] {
-            "Student name..."});
-            this.randomStudentListbox.Location = new System.Drawing.Point(43, 126);
-            this.randomStudentListbox.Name = "randomStudentListbox";
-            this.randomStudentListbox.Size = new System.Drawing.Size(172, 33);
-            this.randomStudentListbox.TabIndex = 19;
-            // 
             // centerStatsChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.centerStatsChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.centerStatsChart.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.centerStatsChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.centerStatsChart.Legends.Add(legend2);
             this.centerStatsChart.Location = new System.Drawing.Point(516, 60);
             this.centerStatsChart.Name = "centerStatsChart";
             this.centerStatsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.centerStatsChart.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.centerStatsChart.Series.Add(series2);
             this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
             this.centerStatsChart.TabIndex = 18;
             this.centerStatsChart.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Center Information";
-            title3.Text = "Center Information";
-            this.centerStatsChart.Titles.Add(title3);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Center Information";
+            title2.Text = "Center Information";
+            this.centerStatsChart.Titles.Add(title2);
             // 
             // CenterStatsTable
             // 
@@ -264,6 +244,24 @@
             this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.CenterStatsTable.Size = new System.Drawing.Size(669, 286);
             this.CenterStatsTable.TabIndex = 19;
+            // 
+            // StartDatePicker
+            // 
+            this.StartDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartDatePicker.Location = new System.Drawing.Point(29, 34);
+            this.StartDatePicker.Name = "StartDatePicker";
+            this.StartDatePicker.Size = new System.Drawing.Size(200, 29);
+            this.StartDatePicker.TabIndex = 0;
+            this.StartDatePicker.ValueChanged += new System.EventHandler(this.StartDatePicker_ValueChanged);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(29, 34);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // CenterStatsForm
             // 
@@ -303,9 +301,7 @@
         private System.Windows.Forms.Button loginTab;
         private System.Windows.Forms.ComboBox subjectComboBox;
         private System.Windows.Forms.GroupBox subjectGroupBox;
-        private System.Windows.Forms.ComboBox startDateComboBox;
         private System.Windows.Forms.GroupBox startDateGroupBox;
-        private System.Windows.Forms.ComboBox endDateComboBox;
         private System.Windows.Forms.GroupBox endDateGroupBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -315,5 +311,7 @@
         private System.Windows.Forms.ListBox randomStudentListbox;
         private System.Windows.Forms.DataVisualization.Charting.Chart centerStatsChart;
         private System.Windows.Forms.TableLayoutPanel CenterStatsTable;
+        private System.Windows.Forms.DateTimePicker StartDatePicker;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

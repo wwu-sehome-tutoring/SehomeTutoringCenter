@@ -61,5 +61,10 @@ namespace SehomeTutoringCenter
         {
 
         }
+
+        private void StartDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

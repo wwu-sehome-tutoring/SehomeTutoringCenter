@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -34,10 +35,10 @@ namespace SehomeTutoringCenter
             CourseSelectBox.Location = new Point(734, 429);
             CourseSelectBox.Visible = true;
 
-            coursesDropDown.Location = new Point(734, 731);
-            coursesDropDown.Width = 406;
-            coursesDropDown.Text = "Check In";
-            coursesDropDown.Enabled = false;
+            CheckInVisitButton.Location = new Point(734, 731);
+            CheckInVisitButton.Width = 406;
+            CheckInVisitButton.Text = "Check In";
+            CheckInVisitButton.Enabled = false;
 
             CancelButton.Location = new Point(1146, 731);
             CancelButton.Visible = true;
@@ -55,13 +56,19 @@ namespace SehomeTutoringCenter
                               where s.LastName == names[1]
                               select s;
 
-                string[] classes;
-                foreach(var r in student.Registrations)
+                ArrayList classes = new ArrayList();
+                foreach (var r in student.Registrations)
                 {
-
+                    classes.Add(r.Subject.Name);
                 }
-                 
+
                 // Update the radio buttons
+                int i = 0;
+                foreach (RadioButton c in CourseSelectBox.Controls)
+                {
+                    c.Text = classes[i].ToString();
+                    i++;
+                }
 
             }
             
@@ -95,8 +102,6 @@ namespace SehomeTutoringCenter
             SelectedStudentName = this.Text;
            
             checkIn.Enabled = true;
-            // Have to have the student class working for this
-            // if(studentNameWhatever.loggedIn = TRUE...
             checkOut.Enabled = true;
         }
         // Event handling for the new student button
@@ -109,7 +114,7 @@ namespace SehomeTutoringCenter
         // Event handling for when a course gets selected from the login page
         private void courseListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            coursesDropDown.Enabled = true;
+            CheckInVisitButton.Enabled = true;
         }
         // Event handling for the cancel button
         private void CancelButton_Click(object sender, EventArgs e)
@@ -120,16 +125,21 @@ namespace SehomeTutoringCenter
         // Function to reset the positions of some of the UI elements
         private void resetPositions()
         {
-            coursesDropDown.Location = new Point(734, 432);
-            coursesDropDown.Text = "Students Subjects";
-            coursesDropDown.Width = 526;
-            coursesDropDown.Enabled = true;
+            CheckInVisitButton.Location = new Point(734, 432);
+            CheckInVisitButton.Text = "Students Subjects";
+            CheckInVisitButton.Width = 526;
+            CheckInVisitButton.Enabled = true;
 
             CourseSelectBox.Visible = false;
 
             CancelButton.Visible = false;
             
             studentNames.Enabled = true;      
+        }
+
+        private void CheckInVisitButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
