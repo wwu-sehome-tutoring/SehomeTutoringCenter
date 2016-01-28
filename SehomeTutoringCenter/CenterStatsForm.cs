@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,18 @@ namespace SehomeTutoringCenter
         public CenterStatsForm()
         {
             InitializeComponent();
+            PopulateSubjectNames();
+        }
+
+        private void PopulateSubjectNames()
+        {
+            using (var context = new SehomeContext())
+            {
+                foreach (var s in context.Subjects)
+                {
+                    subjectComboBox.Items.Add(s.Name);
+                }
+            }
         }
 
         private void loginTab_Click(object sender, EventArgs e)
@@ -42,22 +55,7 @@ namespace SehomeTutoringCenter
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void startDateComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void endDateComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -65,6 +63,29 @@ namespace SehomeTutoringCenter
         private void StartDatePicker_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        // Select a random student that has a current visit object in the system
+        static Random rnd = new Random();
+        private void PrizeButton_Click(object sender, EventArgs e)
+        {
+            // Grab the list of student name
+            using (var context = new SehomeContext())
+            {
+                ArrayList names = new ArrayList();
+                foreach (var s in context.Students)
+                {
+                    string FullName = s.FirstName + " " + s.LastName;
+                    names.Add(FullName);
+                }
+                // Now select a random name from the list
+                int r = rnd.Next(names.Count);
+                RandomNameTextbox.Text = (string)names[r];
+            }
         }
     }
 }

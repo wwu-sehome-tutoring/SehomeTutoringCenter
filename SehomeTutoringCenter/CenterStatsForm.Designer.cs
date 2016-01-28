@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.adminTab = new System.Windows.Forms.Button();
             this.studentTab = new System.Windows.Forms.Button();
             this.loginTab = new System.Windows.Forms.Button();
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.subjectGroupBox = new System.Windows.Forms.GroupBox();
             this.startDateGroupBox = new System.Windows.Forms.GroupBox();
+            this.StartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateGroupBox = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dailyPrizeGroupBox = new System.Windows.Forms.GroupBox();
-            this.randomStudentListbox = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.PrizeButton = new System.Windows.Forms.Button();
             this.centerStatsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CenterStatsTable = new System.Windows.Forms.TableLayoutPanel();
-            this.StartDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.RandomNameTextbox = new System.Windows.Forms.TextBox();
             this.subjectGroupBox.SuspendLayout();
             this.startDateGroupBox.SuspendLayout();
             this.endDateGroupBox.SuspendLayout();
@@ -128,6 +128,15 @@
             this.startDateGroupBox.TabStop = false;
             this.startDateGroupBox.Text = "Start Date";
             // 
+            // StartDatePicker
+            // 
+            this.StartDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartDatePicker.Location = new System.Drawing.Point(29, 34);
+            this.StartDatePicker.Name = "StartDatePicker";
+            this.StartDatePicker.Size = new System.Drawing.Size(200, 29);
+            this.StartDatePicker.TabIndex = 0;
+            this.StartDatePicker.ValueChanged += new System.EventHandler(this.StartDatePicker_ValueChanged);
+            // 
             // endDateGroupBox
             // 
             this.endDateGroupBox.Controls.Add(this.dateTimePicker1);
@@ -138,6 +147,16 @@
             this.endDateGroupBox.TabIndex = 14;
             this.endDateGroupBox.TabStop = false;
             this.endDateGroupBox.Text = "End Date";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(29, 34);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // button1
             // 
@@ -172,8 +191,8 @@
             // 
             // dailyPrizeGroupBox
             // 
-            this.dailyPrizeGroupBox.Controls.Add(this.randomStudentListbox);
-            this.dailyPrizeGroupBox.Controls.Add(this.button2);
+            this.dailyPrizeGroupBox.Controls.Add(this.RandomNameTextbox);
+            this.dailyPrizeGroupBox.Controls.Add(this.PrizeButton);
             this.dailyPrizeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dailyPrizeGroupBox.Location = new System.Drawing.Point(28, 728);
             this.dailyPrizeGroupBox.Name = "dailyPrizeGroupBox";
@@ -182,50 +201,39 @@
             this.dailyPrizeGroupBox.TabStop = false;
             this.dailyPrizeGroupBox.Text = "Daily Prize";
             // 
-            // randomStudentListbox
+            // PrizeButton
             // 
-            this.randomStudentListbox.FormattingEnabled = true;
-            this.randomStudentListbox.ItemHeight = 29;
-            this.randomStudentListbox.Items.AddRange(new object[] {
-            "Student name..."});
-            this.randomStudentListbox.Location = new System.Drawing.Point(43, 126);
-            this.randomStudentListbox.Name = "randomStudentListbox";
-            this.randomStudentListbox.Size = new System.Drawing.Size(172, 33);
-            this.randomStudentListbox.TabIndex = 19;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Teal;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button2.Location = new System.Drawing.Point(43, 46);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(172, 48);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Click Me!";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.PrizeButton.BackColor = System.Drawing.Color.Teal;
+            this.PrizeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.PrizeButton.Location = new System.Drawing.Point(43, 46);
+            this.PrizeButton.Name = "PrizeButton";
+            this.PrizeButton.Size = new System.Drawing.Size(172, 48);
+            this.PrizeButton.TabIndex = 18;
+            this.PrizeButton.Text = "Click Me!";
+            this.PrizeButton.UseVisualStyleBackColor = false;
+            this.PrizeButton.Click += new System.EventHandler(this.PrizeButton_Click);
             // 
             // centerStatsChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.centerStatsChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.centerStatsChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.centerStatsChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.centerStatsChart.Legends.Add(legend1);
             this.centerStatsChart.Location = new System.Drawing.Point(516, 60);
             this.centerStatsChart.Name = "centerStatsChart";
             this.centerStatsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.centerStatsChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.centerStatsChart.Series.Add(series1);
             this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
             this.centerStatsChart.TabIndex = 18;
             this.centerStatsChart.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Center Information";
-            title2.Text = "Center Information";
-            this.centerStatsChart.Titles.Add(title2);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Center Information";
+            title1.Text = "Center Information";
+            this.centerStatsChart.Titles.Add(title1);
             // 
             // CenterStatsTable
             // 
@@ -245,23 +253,12 @@
             this.CenterStatsTable.Size = new System.Drawing.Size(669, 286);
             this.CenterStatsTable.TabIndex = 19;
             // 
-            // StartDatePicker
+            // RandomNameTextbox
             // 
-            this.StartDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartDatePicker.Location = new System.Drawing.Point(29, 34);
-            this.StartDatePicker.Name = "StartDatePicker";
-            this.StartDatePicker.Size = new System.Drawing.Size(200, 29);
-            this.StartDatePicker.TabIndex = 0;
-            this.StartDatePicker.ValueChanged += new System.EventHandler(this.StartDatePicker_ValueChanged);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(29, 34);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
-            this.dateTimePicker1.TabIndex = 0;
+            this.RandomNameTextbox.Location = new System.Drawing.Point(43, 128);
+            this.RandomNameTextbox.Name = "RandomNameTextbox";
+            this.RandomNameTextbox.Size = new System.Drawing.Size(172, 35);
+            this.RandomNameTextbox.TabIndex = 19;
             // 
             // CenterStatsForm
             // 
@@ -289,6 +286,7 @@
             this.startDateGroupBox.ResumeLayout(false);
             this.endDateGroupBox.ResumeLayout(false);
             this.dailyPrizeGroupBox.ResumeLayout(false);
+            this.dailyPrizeGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerStatsChart)).EndInit();
             this.ResumeLayout(false);
 
@@ -307,11 +305,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox dailyPrizeGroupBox;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListBox randomStudentListbox;
+        private System.Windows.Forms.Button PrizeButton;
         private System.Windows.Forms.DataVisualization.Charting.Chart centerStatsChart;
         private System.Windows.Forms.TableLayoutPanel CenterStatsTable;
         private System.Windows.Forms.DateTimePicker StartDatePicker;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox RandomNameTextbox;
     }
 }

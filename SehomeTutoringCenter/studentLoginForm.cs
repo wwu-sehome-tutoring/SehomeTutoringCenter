@@ -11,8 +11,9 @@ namespace SehomeTutoringCenter
 
         public studentLoginForm()
         {
-            PopulateStudentNames();
+            
             InitializeComponent();
+            PopulateStudentNames();
         }
 
         // At program start up, fill in the ListBox of the student names that
@@ -47,30 +48,30 @@ namespace SehomeTutoringCenter
 
             // Now populate the check in area with all of the classes and teacher 
             // names of the selected students
-            using (var context = new SehomeContext())
-            {
-                // Grab the names of each class for that student
-                string[] names = SelectedStudentName.Split(' ');
-                var student = from s in context.Students
-                              where s.FirstName == names[0]
-                              where s.LastName == names[1]
-                              select s;
+            //using (var context = new SehomeContext())
+            //{
+            //     Grab the names of each class for that student
+            //    string[] names = SelectedStudentName.Split(' ');
+            //    var student = from s in context.Students
+            //                  where s.FirstName == names[0]
+            //                  where s.LastName == names[1]
+            //                  select s;
 
-                ArrayList classes = new ArrayList();
-                foreach (var r in student.Registrations)
-                {
-                    classes.Add(r.Subject.Name);
-                }
+            //    ArrayList classes = new ArrayList();
+            //    foreach (var r in student.Registrations)
+            //    {
+            //        classes.Add(r.Subject.Name);
+            //    }
 
-                // Update the radio buttons
-                int i = 0;
-                foreach (RadioButton c in CourseSelectBox.Controls)
-                {
-                    c.Text = classes[i].ToString();
-                    i++;
-                }
+            //     Update the radio buttons
+            //    int i = 0;
+            //    foreach (RadioButton c in CourseSelectBox.Controls)
+            //    {
+            //        c.Text = classes[i].ToString();
+            //        i++;
+            //    }
 
-            }
+            //}
             
         }
         // Event handling for the Check Out button

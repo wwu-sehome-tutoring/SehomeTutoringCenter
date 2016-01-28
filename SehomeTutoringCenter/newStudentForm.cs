@@ -10,8 +10,9 @@ namespace SehomeTutoringCenter
     {
         public newStudentForm(studentLoginForm temp)
         {
-            PopulateClassLists();
+            
             InitializeComponent();
+            PopulateClassLists();
         }
 
         // Populate each combox box of the class list groupbox to contain all of the
