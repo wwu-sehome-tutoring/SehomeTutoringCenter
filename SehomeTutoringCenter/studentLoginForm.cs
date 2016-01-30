@@ -62,10 +62,8 @@ namespace SehomeTutoringCenter
 
                 // Get the first student whose name begins with "JJ".
                 var student = StudentQuery.First();
-
                 SelectedStudentObject = student;
-                MessageBox.Show(student.FirstName + " " + student.LastName + " " + student.Grade + context.Registrations.Count().ToString());
-               
+   
                 // Grab the names of the selected students classes
                 ArrayList classes = new ArrayList();
                 foreach (var r in context.Subjects)

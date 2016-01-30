@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SehomeTutoringCenter
 {
@@ -39,6 +40,60 @@ namespace SehomeTutoringCenter
         private void DefaultData()
         {
             centerStatsChart.Titles.Add("Students Per Day");
+            var VisitCounts = new Dictionary<String, int>();
+            int TotalStudents = 0;
+            double TotalTime = 0.0;
+
+            // Iterate through all visits and keep track of the count of each date
+            using (var context = new SehomeContext())
+            {
+                // first grab the total number of students
+                TotalStudents = context.Students.Count();
+                // then go grab all of the unique visit dates and their counts
+                foreach(var v in context.Visits)
+                {
+                    string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
+                    // Now calculate the time spent for this visit
+                    DateTime start = (DateTime)v.TimeIn;
+                    DateTime end;
+                    if(v.TimeOut == null)
+                    {
+                        end = DateTime.Now;
+                    } else
+                    {
+                        end = (DateTime)v.TimeOut;
+                    }
+
+                    TimeSpan time = end - start;
+                    TotalTime += time.TotalHours;
+
+                    // Add the date and count to the dictionary
+                    if(VisitCounts.ContainsKey(DateOnly))
+                    {
+                        VisitCounts[DateOnly]++;
+                    } else
+                    {
+                        VisitCounts.Add(DateOnly, 1);
+                    }
+                }
+
+                // Create data arrays to add to a Series later on
+                string[] dates = VisitCounts.Keys.ToArray();
+                int[] points = VisitCounts.Values.ToArray();
+
+                // Create a series which will fill in the chart of dates and their counts
+                for(int i = 0; i < dates.Length; i++)
+                {
+                    Series series = centerStatsChart.Series.Add(dates[i]);
+                    series.Points.Add(points[i]);
+                }
+
+                // Update the table of center stats information
+                TotalStudentsValue.Text = TotalStudents.ToString();
+                TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
+                StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
+                AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
+            }
         }
 
         private void loginTab_Click(object sender, EventArgs e)
@@ -58,16 +113,6 @@ namespace SehomeTutoringCenter
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CenterStatsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -79,6 +124,10 @@ namespace SehomeTutoringCenter
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
 
         }
