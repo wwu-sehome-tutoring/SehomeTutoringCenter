@@ -16,9 +16,13 @@ namespace SehomeTutoringCenter
         public CenterStatsForm()
         {
             InitializeComponent();
+            // Initialze some parts of the form
             PopulateSubjectNames();
+            DefaultData();
         }
 
+        // After the form is created, fill in the subject combobox with the names
+        // of all subjects in the database
         private void PopulateSubjectNames()
         {
             using (var context = new SehomeContext())
@@ -30,9 +34,18 @@ namespace SehomeTutoringCenter
             }
         }
 
+        // The default view of this form contains information about how many students
+        // per day went to the tutoring center for each day of the current semester
+        private void DefaultData()
+        {
+            centerStatsChart.Titles.Add("Students Per Day");
+        }
+
         private void loginTab_Click(object sender, EventArgs e)
         {
+            studentLoginForm s = new studentLoginForm();
 
+            s.Show();
         }
 
         private void studentTab_Click(object sender, EventArgs e)

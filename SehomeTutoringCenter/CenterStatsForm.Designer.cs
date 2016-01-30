@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.adminTab = new System.Windows.Forms.Button();
             this.studentTab = new System.Windows.Forms.Button();
             this.loginTab = new System.Windows.Forms.Button();
@@ -45,10 +44,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dailyPrizeGroupBox = new System.Windows.Forms.GroupBox();
+            this.RandomNameTextbox = new System.Windows.Forms.TextBox();
             this.PrizeButton = new System.Windows.Forms.Button();
             this.centerStatsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CenterStatsTable = new System.Windows.Forms.TableLayoutPanel();
-            this.RandomNameTextbox = new System.Windows.Forms.TextBox();
             this.subjectGroupBox.SuspendLayout();
             this.startDateGroupBox.SuspendLayout();
             this.endDateGroupBox.SuspendLayout();
@@ -201,6 +200,13 @@
             this.dailyPrizeGroupBox.TabStop = false;
             this.dailyPrizeGroupBox.Text = "Daily Prize";
             // 
+            // RandomNameTextbox
+            // 
+            this.RandomNameTextbox.Location = new System.Drawing.Point(43, 128);
+            this.RandomNameTextbox.Name = "RandomNameTextbox";
+            this.RandomNameTextbox.Size = new System.Drawing.Size(172, 35);
+            this.RandomNameTextbox.TabIndex = 19;
+            // 
             // PrizeButton
             // 
             this.PrizeButton.BackColor = System.Drawing.Color.Teal;
@@ -216,24 +222,20 @@
             // 
             // centerStatsChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.centerStatsChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.centerStatsChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.centerStatsChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.centerStatsChart.Legends.Add(legend2);
             this.centerStatsChart.Location = new System.Drawing.Point(516, 60);
             this.centerStatsChart.Name = "centerStatsChart";
             this.centerStatsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.centerStatsChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.centerStatsChart.Series.Add(series2);
             this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
             this.centerStatsChart.TabIndex = 18;
             this.centerStatsChart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Center Information";
-            title1.Text = "Center Information";
-            this.centerStatsChart.Titles.Add(title1);
             // 
             // CenterStatsTable
             // 
@@ -252,13 +254,6 @@
             this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.CenterStatsTable.Size = new System.Drawing.Size(669, 286);
             this.CenterStatsTable.TabIndex = 19;
-            // 
-            // RandomNameTextbox
-            // 
-            this.RandomNameTextbox.Location = new System.Drawing.Point(43, 128);
-            this.RandomNameTextbox.Name = "RandomNameTextbox";
-            this.RandomNameTextbox.Size = new System.Drawing.Size(172, 35);
-            this.RandomNameTextbox.TabIndex = 19;
             // 
             // CenterStatsForm
             // 

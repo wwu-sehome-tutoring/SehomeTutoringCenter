@@ -16,6 +16,11 @@ namespace SehomeTutoringCenter
         [STAThread]
         static void Main()
         {
+            using (var context = new SehomeContext())
+            {
+                //InsertDummyStudents(context);
+                InsertDummySubjects(context);
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new studentLoginForm());

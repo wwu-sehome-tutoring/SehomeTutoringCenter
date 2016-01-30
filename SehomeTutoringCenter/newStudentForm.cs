@@ -21,16 +21,22 @@ namespace SehomeTutoringCenter
         {
             using (var context = new SehomeContext())
             {
-                foreach (ComboBox c in ClassGroupBox.Controls)
+                foreach (Control c in ClassGroupBox.Controls)
                 {
-                    foreach (var v in context.Subjects)
+                    if (c is ComboBox)
                     {
-                        c.Items.Add(v.Name);
+                        ComboBox temp = c as ComboBox;
+                        foreach (var v in context.Subjects)
+                        {
+                            temp.Items.Add(v.Name);
+                        }
                     }
                 }
             }
         }
 
+        // This giant function creates a student object and then add in the registrations
+        // and blah blah blah
         private void AddStudentButton_Click(object sender, EventArgs e)
         {
             if (ValidInput())
@@ -51,28 +57,33 @@ namespace SehomeTutoringCenter
                     context.SaveChanges();
 
                     // Create registrations for this student based off of the classes picked
-                    foreach(ComboBox c in ClassGroupBox.Controls)
+                    foreach (Control c in ClassGroupBox.Controls)
                     {
-                        if(!c.SelectedText.Equals(""))
+                        if (c is ComboBox)
                         {
-                            var subject = from s in context.Subjects
-                                          where s.Name == c.Text
-                                          select s;
+                            ComboBox temp = c as ComboBox;
+                            // Grab the class object matching the current class name
+                            var CurrentClass = context.Subjects
+                                .Where(s => s.Name == c.Text)
+                                .FirstOrDefault();
 
-                            var reg = new Registration
+                            // Create the registration
+                            var Reg = new Registration
                             {
                                 Student = stud,
-                                Subject = subject.First()
+                                Subject = CurrentClass
                             };
-                            context.Registrations.Add(reg);
+                            context.Registrations.Add(Reg);
+                            context.SaveChanges();
                         }
                     }
-                    context.SaveChanges();
+
                 }
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Please enter all Student Information and at least 1 class");
+                MessageBox.Show("Please enter all Student Information and select your classes");
             }
         }
 
@@ -81,7 +92,9 @@ namespace SehomeTutoringCenter
         {
             bool IsValid = false;
             bool RadioChecked = false;
+            bool SelectedAllClasses = true;
 
+            // Ensure the user has selected a grade
             foreach(RadioButton c in RadioBtnPanel.Controls)
             {
                 if (c.Checked)
@@ -89,10 +102,22 @@ namespace SehomeTutoringCenter
                     RadioChecked = true;
                 }
             }
+            // Ensure the user has selected all classes
+            foreach(Control c in ClassGroupBox.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox temp = c as ComboBox;
+                    if(temp.Text == "")
+                    {
+                        SelectedAllClasses = false;
+                    }
+                }
+            }
 
             if(!FirstNameTextBox.Text.Equals("") &&
                 !LastNameTextBox.Text.Equals("") &&
-                RadioChecked)
+                RadioChecked && SelectedAllClasses)
             {
                 IsValid = true;
             }
