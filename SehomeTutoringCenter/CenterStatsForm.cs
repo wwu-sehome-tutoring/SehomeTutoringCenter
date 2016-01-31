@@ -14,10 +14,14 @@ namespace SehomeTutoringCenter
 {
     public partial class CenterStatsForm : Form
     {
+        string SelectedClass;
+        string StartDate;
+        string EndDate;
+
         public CenterStatsForm()
         {
             InitializeComponent();
-            // Initialze some parts of the form
+            
             PopulateSubjectNames();
             DefaultData();
         }
@@ -56,13 +60,7 @@ namespace SehomeTutoringCenter
                     // Now calculate the time spent for this visit
                     DateTime start = (DateTime)v.TimeIn;
                     DateTime end;
-                    if(v.TimeOut == null)
-                    {
-                        end = DateTime.Now;
-                    } else
-                    {
-                        end = (DateTime)v.TimeOut;
-                    }
+                    end = (v.TimeOut == null? DateTime.Now: (DateTime)v.TimeOut);
 
                     TimeSpan time = end - start;
                     TotalTime += time.TotalHours;
@@ -113,23 +111,100 @@ namespace SehomeTutoringCenter
 
         }
 
+        // Grab the name of the class when selected
         private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            SelectedClass = (string)subjectComboBox.SelectedItem;
         }
 
+        // Grab the start date value when selected
         private void StartDatePicker_ValueChanged(object sender, EventArgs e)
         {
-
+            StartDate = StartDatePicker.Value.ToString();
         }
 
+        // Grab the end date value when selected
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            EndDate = dateTimePicker1.Value.ToString();
         }
+
+        // Helper function to check if a class has been selected and if two dates have been selected
+        private bool ValidInput()
+        {
+            bool IsValid = true;
+
+
+            return IsValid;
+        }
+
+        // Update the chart and table based off of what the user enters as input
         private void GenerateButton_Click(object sender, EventArgs e)
         {
+            if (ValidInput())
+            {
+                centerStatsChart.Titles.Add("Students Per Day");
+                var VisitCounts = new Dictionary<String, int>();
+                int TotalStudents = 0;
+                double TotalTime = 0.0;
 
+                using (var context = new SehomeContext())
+                {
+                    var selected = context.Subjects
+                            .Where(s => s.Name == SelectedClass)
+                            .FirstOrDefault();
+
+                    // Iterate through all visits that match the class name and date range that
+                    // the user entered as input.
+                    foreach (var v in context.Visits)
+                    {
+                        if (v.Subject.Name.Equals(selected.Name))
+                        {
+                            string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
+                                                                                 // Now calculate the time spent for this visit
+                            DateTime start = (DateTime)v.TimeIn;
+                            DateTime end;
+                            end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
+
+                            TimeSpan time = end - start;
+                            TotalTime += time.TotalHours;
+
+                            // Add the date and count to the dictionary
+                            if (VisitCounts.ContainsKey(DateOnly))
+                            {
+                                VisitCounts[DateOnly]++;
+                                TotalStudents++;
+                            }
+                            else
+                            {
+                                VisitCounts.Add(DateOnly, 1);
+                                TotalStudents++;
+                            }
+                        }
+                    }
+
+                    // Create data arrays to add to a Series later on
+                    string[] dates = VisitCounts.Keys.ToArray();
+                    int[] points = VisitCounts.Values.ToArray();
+
+                    // Create a series which will fill in the chart of dates and their counts
+                    for (int i = 0; i < dates.Length; i++)
+                    {
+                        Series series = centerStatsChart.Series.Add(dates[i]);
+                        series.Points.Add(points[i]);
+                    }
+
+                    // Update the table of center stats information
+                    TotalStudentsValue.Text = TotalStudents.ToString();
+                    TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
+                    StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
+                    AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
+
+                }
+            } else
+            {
+                MessageBox.Show("Please select a class and both dates");
+            }
         }
         // Select a random student that has a current visit object in the system
         static Random rnd = new Random();

@@ -39,6 +39,7 @@
             this.studentNames = new System.Windows.Forms.ListBox();
             this.newStudentBtn = new System.Windows.Forms.Button();
             this.CourseSelectBox = new System.Windows.Forms.GroupBox();
+            this.WelcomeLabel = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
@@ -46,7 +47,6 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.WelcomeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
             this.CourseSelectBox.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,6 @@
             // checkIn
             // 
             this.checkIn.BackColor = System.Drawing.Color.Green;
-            this.checkIn.Enabled = false;
             this.checkIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.checkIn.Location = new System.Drawing.Point(733, 261);
@@ -68,7 +67,6 @@
             // checkOut
             // 
             this.checkOut.BackColor = System.Drawing.Color.Green;
-            this.checkOut.Enabled = false;
             this.checkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.checkOut.Location = new System.Drawing.Point(1000, 261);
@@ -192,6 +190,16 @@
             this.CourseSelectBox.TabStop = false;
             this.CourseSelectBox.Visible = false;
             // 
+            // WelcomeLabel
+            // 
+            this.WelcomeLabel.AutoSize = true;
+            this.WelcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WelcomeLabel.Location = new System.Drawing.Point(34, 33);
+            this.WelcomeLabel.Name = "WelcomeLabel";
+            this.WelcomeLabel.Size = new System.Drawing.Size(455, 24);
+            this.WelcomeLabel.TabIndex = 6;
+            this.WelcomeLabel.Text = "Welcome (name), what are you going to study today?";
+            // 
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
@@ -281,16 +289,6 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Visible = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // WelcomeLabel
-            // 
-            this.WelcomeLabel.AutoSize = true;
-            this.WelcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WelcomeLabel.Location = new System.Drawing.Point(34, 33);
-            this.WelcomeLabel.Name = "WelcomeLabel";
-            this.WelcomeLabel.Size = new System.Drawing.Size(455, 24);
-            this.WelcomeLabel.TabIndex = 6;
-            this.WelcomeLabel.Text = "Welcome (name), what are you going to study today?";
             // 
             // studentLoginForm
             // 

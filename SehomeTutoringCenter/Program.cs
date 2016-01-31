@@ -19,7 +19,7 @@ namespace SehomeTutoringCenter
             using (var context = new SehomeContext())
             {
                 //InsertDummyStudents(context);
-                InsertDummySubjects(context);
+                //InsertDummySubjects(context);
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

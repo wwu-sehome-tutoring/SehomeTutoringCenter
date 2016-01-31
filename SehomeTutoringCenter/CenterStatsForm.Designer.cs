@@ -30,7 +30,6 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.adminTab = new System.Windows.Forms.Button();
             this.studentTab = new System.Windows.Forms.Button();
             this.loginTab = new System.Windows.Forms.Button();
@@ -48,15 +47,15 @@
             this.PrizeButton = new System.Windows.Forms.Button();
             this.centerStatsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CenterStatsTable = new System.Windows.Forms.TableLayoutPanel();
+            this.AverageTimeValue = new System.Windows.Forms.Label();
+            this.StudentAverageValue = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AverageStudentsLabel = new System.Windows.Forms.Label();
+            this.TotalTimeLabel = new System.Windows.Forms.Label();
             this.SummaryLabel = new System.Windows.Forms.Label();
             this.TotalStudentsLabel = new System.Windows.Forms.Label();
-            this.TotalTimeLabel = new System.Windows.Forms.Label();
-            this.AverageStudentsLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.TotalStudentsValue = new System.Windows.Forms.Label();
             this.TotalTimeValue = new System.Windows.Forms.Label();
-            this.StudentAverageValue = new System.Windows.Forms.Label();
-            this.AverageTimeValue = new System.Windows.Forms.Label();
             this.subjectGroupBox.SuspendLayout();
             this.startDateGroupBox.SuspendLayout();
             this.endDateGroupBox.SuspendLayout();
@@ -239,10 +238,6 @@
             this.centerStatsChart.Location = new System.Drawing.Point(516, 60);
             this.centerStatsChart.Name = "centerStatsChart";
             this.centerStatsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.centerStatsChart.Series.Add(series1);
             this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
             this.centerStatsChart.TabIndex = 18;
             this.centerStatsChart.Text = "chart1";
@@ -274,11 +269,61 @@
             this.CenterStatsTable.Size = new System.Drawing.Size(669, 286);
             this.CenterStatsTable.TabIndex = 19;
             // 
+            // AverageTimeValue
+            // 
+            this.AverageTimeValue.AutoSize = true;
+            this.AverageTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AverageTimeValue.Location = new System.Drawing.Point(504, 226);
+            this.AverageTimeValue.Name = "AverageTimeValue";
+            this.AverageTimeValue.Size = new System.Drawing.Size(137, 25);
+            this.AverageTimeValue.TabIndex = 20;
+            this.AverageTimeValue.Text = "time-average";
+            // 
+            // StudentAverageValue
+            // 
+            this.StudentAverageValue.AutoSize = true;
+            this.StudentAverageValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StudentAverageValue.Location = new System.Drawing.Point(504, 170);
+            this.StudentAverageValue.Name = "StudentAverageValue";
+            this.StudentAverageValue.Size = new System.Drawing.Size(156, 50);
+            this.StudentAverageValue.TabIndex = 20;
+            this.StudentAverageValue.Text = "student-average";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 226);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(343, 25);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Average Time per Student per Day";
+            // 
+            // AverageStudentsLabel
+            // 
+            this.AverageStudentsLabel.AutoSize = true;
+            this.AverageStudentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AverageStudentsLabel.Location = new System.Drawing.Point(5, 170);
+            this.AverageStudentsLabel.Name = "AverageStudentsLabel";
+            this.AverageStudentsLabel.Size = new System.Drawing.Size(264, 25);
+            this.AverageStudentsLabel.TabIndex = 20;
+            this.AverageStudentsLabel.Text = "Average Students per Day";
+            // 
+            // TotalTimeLabel
+            // 
+            this.TotalTimeLabel.AutoSize = true;
+            this.TotalTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTimeLabel.Location = new System.Drawing.Point(5, 114);
+            this.TotalTimeLabel.Name = "TotalTimeLabel";
+            this.TotalTimeLabel.Size = new System.Drawing.Size(175, 25);
+            this.TotalTimeLabel.TabIndex = 20;
+            this.TotalTimeLabel.Text = "Total Time Spent";
+            // 
             // SummaryLabel
             // 
             this.SummaryLabel.AutoSize = true;
             this.SummaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SummaryLabel.Location = new System.Drawing.Point(15, 14);
+            this.SummaryLabel.Location = new System.Drawing.Point(5, 2);
             this.SummaryLabel.Name = "SummaryLabel";
             this.SummaryLabel.Size = new System.Drawing.Size(129, 31);
             this.SummaryLabel.TabIndex = 0;
@@ -288,47 +333,17 @@
             // 
             this.TotalStudentsLabel.AutoSize = true;
             this.TotalStudentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalStudentsLabel.Location = new System.Drawing.Point(17, 72);
+            this.TotalStudentsLabel.Location = new System.Drawing.Point(5, 58);
             this.TotalStudentsLabel.Name = "TotalStudentsLabel";
             this.TotalStudentsLabel.Size = new System.Drawing.Size(151, 25);
             this.TotalStudentsLabel.TabIndex = 1;
             this.TotalStudentsLabel.Text = "Total Students";
             // 
-            // TotalTimeLabel
-            // 
-            this.TotalTimeLabel.AutoSize = true;
-            this.TotalTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalTimeLabel.Location = new System.Drawing.Point(17, 128);
-            this.TotalTimeLabel.Name = "TotalTimeLabel";
-            this.TotalTimeLabel.Size = new System.Drawing.Size(175, 25);
-            this.TotalTimeLabel.TabIndex = 20;
-            this.TotalTimeLabel.Text = "Total Time Spent";
-            // 
-            // AverageStudentsLabel
-            // 
-            this.AverageStudentsLabel.AutoSize = true;
-            this.AverageStudentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AverageStudentsLabel.Location = new System.Drawing.Point(20, 183);
-            this.AverageStudentsLabel.Name = "AverageStudentsLabel";
-            this.AverageStudentsLabel.Size = new System.Drawing.Size(264, 25);
-            this.AverageStudentsLabel.TabIndex = 20;
-            this.AverageStudentsLabel.Text = "Average Students per Day";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 241);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(343, 25);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Average Time per Student per Day";
-            // 
             // TotalStudentsValue
             // 
             this.TotalStudentsValue.AutoSize = true;
             this.TotalStudentsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalStudentsValue.Location = new System.Drawing.Point(510, 74);
+            this.TotalStudentsValue.Location = new System.Drawing.Point(504, 58);
             this.TotalStudentsValue.Name = "TotalStudentsValue";
             this.TotalStudentsValue.Size = new System.Drawing.Size(142, 25);
             this.TotalStudentsValue.TabIndex = 20;
@@ -338,31 +353,11 @@
             // 
             this.TotalTimeValue.AutoSize = true;
             this.TotalTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalTimeValue.Location = new System.Drawing.Point(520, 130);
+            this.TotalTimeValue.Location = new System.Drawing.Point(504, 114);
             this.TotalTimeValue.Name = "TotalTimeValue";
             this.TotalTimeValue.Size = new System.Drawing.Size(100, 25);
             this.TotalTimeValue.TabIndex = 20;
             this.TotalTimeValue.Text = "total-time";
-            // 
-            // StudentAverageValue
-            // 
-            this.StudentAverageValue.AutoSize = true;
-            this.StudentAverageValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StudentAverageValue.Location = new System.Drawing.Point(502, 185);
-            this.StudentAverageValue.Name = "StudentAverageValue";
-            this.StudentAverageValue.Size = new System.Drawing.Size(168, 25);
-            this.StudentAverageValue.TabIndex = 20;
-            this.StudentAverageValue.Text = "student-average";
-            // 
-            // AverageTimeValue
-            // 
-            this.AverageTimeValue.AutoSize = true;
-            this.AverageTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AverageTimeValue.Location = new System.Drawing.Point(512, 242);
-            this.AverageTimeValue.Name = "AverageTimeValue";
-            this.AverageTimeValue.Size = new System.Drawing.Size(137, 25);
-            this.AverageTimeValue.TabIndex = 20;
-            this.AverageTimeValue.Text = "time-average";
             // 
             // CenterStatsForm
             // 

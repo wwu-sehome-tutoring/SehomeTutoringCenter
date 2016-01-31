@@ -10,7 +10,6 @@ namespace SehomeTutoringCenter
     {
         public newStudentForm(studentLoginForm temp)
         {
-            
             InitializeComponent();
             PopulateClassLists();
         }
@@ -115,6 +114,7 @@ namespace SehomeTutoringCenter
                 }
             }
 
+            // Ensure that everything has been properly entered
             if(!FirstNameTextBox.Text.Equals("") &&
                 !LastNameTextBox.Text.Equals("") &&
                 RadioChecked && SelectedAllClasses)
