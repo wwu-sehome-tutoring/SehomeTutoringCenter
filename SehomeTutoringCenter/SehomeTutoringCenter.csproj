@@ -57,6 +57,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.99.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +74,12 @@
     </Compile>
     <Compile Include="CenterStatsForm.Designer.cs">
       <DependentUpon>CenterStatsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminForm.Designer.cs">
+      <DependentUpon>adminForm.cs</DependentUpon>
     </Compile>
     <Compile Include="newStudentForm.cs">
       <SubType>Form</SubType>
@@ -94,8 +101,17 @@
     <EmbeddedResource Include="CenterStatsForm.resx">
       <DependentUpon>CenterStatsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="studentStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="studentStats.Designer.cs">
+      <DependentUpon>studentStats.cs</DependentUpon>
+    </Compile>
     <Compile Include="Subject.cs" />
     <Compile Include="Visit.cs" />
+    <EmbeddedResource Include="adminForm.resx">
+      <DependentUpon>adminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="newStudentForm.resx">
       <DependentUpon>newStudentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +128,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="studentStats.resx">
+      <DependentUpon>studentStats.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
