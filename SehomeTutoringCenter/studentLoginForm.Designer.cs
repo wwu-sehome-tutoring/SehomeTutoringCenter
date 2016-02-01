@@ -32,21 +32,28 @@
             this.checkOut = new System.Windows.Forms.Button();
             this.sehomeLogo = new System.Windows.Forms.PictureBox();
             this.loginBackdrop = new System.Windows.Forms.RichTextBox();
-            this.coursesDropDown = new System.Windows.Forms.Button();
+            this.CheckInVisitButton = new System.Windows.Forms.Button();
             this.studentsTab = new System.Windows.Forms.Button();
             this.centerTab = new System.Windows.Forms.Button();
             this.adminTab = new System.Windows.Forms.Button();
             this.studentNames = new System.Windows.Forms.ListBox();
             this.newStudentBtn = new System.Windows.Forms.Button();
-            this.courseSelectBox = new System.Windows.Forms.GroupBox();
+            this.CourseSelectBox = new System.Windows.Forms.GroupBox();
+            this.WelcomeLabel = new System.Windows.Forms.Label();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.CancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
+            this.CourseSelectBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkIn
             // 
             this.checkIn.BackColor = System.Drawing.Color.Green;
-            this.checkIn.Enabled = false;
             this.checkIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.checkIn.Location = new System.Drawing.Point(733, 261);
@@ -60,7 +67,6 @@
             // checkOut
             // 
             this.checkOut.BackColor = System.Drawing.Color.Green;
-            this.checkOut.Enabled = false;
             this.checkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.checkOut.Location = new System.Drawing.Point(1000, 261);
@@ -94,15 +100,16 @@
             this.loginBackdrop.TabStop = false;
             this.loginBackdrop.Text = "";
             // 
-            // coursesDropDown
+            // CheckInVisitButton
             // 
-            this.coursesDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coursesDropDown.Location = new System.Drawing.Point(734, 432);
-            this.coursesDropDown.Name = "coursesDropDown";
-            this.coursesDropDown.Size = new System.Drawing.Size(525, 55);
-            this.coursesDropDown.TabIndex = 4;
-            this.coursesDropDown.Text = "Students Subjects";
-            this.coursesDropDown.UseVisualStyleBackColor = true;
+            this.CheckInVisitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckInVisitButton.Location = new System.Drawing.Point(734, 432);
+            this.CheckInVisitButton.Name = "CheckInVisitButton";
+            this.CheckInVisitButton.Size = new System.Drawing.Size(525, 55);
+            this.CheckInVisitButton.TabIndex = 4;
+            this.CheckInVisitButton.Text = "Students Subjects";
+            this.CheckInVisitButton.UseVisualStyleBackColor = true;
+            this.CheckInVisitButton.Click += new System.EventHandler(this.CheckInVisitButton_Click);
             // 
             // studentsTab
             // 
@@ -149,13 +156,6 @@
             this.studentNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.studentNames.FormattingEnabled = true;
             this.studentNames.ItemHeight = 29;
-            this.studentNames.Items.AddRange(new object[] {
-            "Andrew Feely",
-            "Nathan Shive",
-            "JJ Small",
-            "Tucker Robot Man",
-            "Patrick Patrickson",
-            "Elvis Presley"});
             this.studentNames.Location = new System.Drawing.Point(3, 57);
             this.studentNames.Name = "studentNames";
             this.studentNames.Size = new System.Drawing.Size(236, 816);
@@ -173,15 +173,110 @@
             this.newStudentBtn.UseVisualStyleBackColor = true;
             this.newStudentBtn.Click += new System.EventHandler(this.newStudentBtn_Click);
             // 
-            // courseSelectBox
+            // CourseSelectBox
             // 
-            this.courseSelectBox.BackColor = System.Drawing.Color.White;
-            this.courseSelectBox.Location = new System.Drawing.Point(733, 529);
-            this.courseSelectBox.Name = "courseSelectBox";
-            this.courseSelectBox.Size = new System.Drawing.Size(526, 303);
-            this.courseSelectBox.TabIndex = 11;
-            this.courseSelectBox.TabStop = false;
-            this.courseSelectBox.Visible = false;
+            this.CourseSelectBox.BackColor = System.Drawing.Color.White;
+            this.CourseSelectBox.Controls.Add(this.WelcomeLabel);
+            this.CourseSelectBox.Controls.Add(this.radioButton6);
+            this.CourseSelectBox.Controls.Add(this.radioButton5);
+            this.CourseSelectBox.Controls.Add(this.radioButton4);
+            this.CourseSelectBox.Controls.Add(this.radioButton3);
+            this.CourseSelectBox.Controls.Add(this.radioButton2);
+            this.CourseSelectBox.Controls.Add(this.radioButton1);
+            this.CourseSelectBox.Location = new System.Drawing.Point(733, 529);
+            this.CourseSelectBox.Name = "CourseSelectBox";
+            this.CourseSelectBox.Size = new System.Drawing.Size(526, 303);
+            this.CourseSelectBox.TabIndex = 11;
+            this.CourseSelectBox.TabStop = false;
+            this.CourseSelectBox.Visible = false;
+            // 
+            // WelcomeLabel
+            // 
+            this.WelcomeLabel.AutoSize = true;
+            this.WelcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WelcomeLabel.Location = new System.Drawing.Point(34, 33);
+            this.WelcomeLabel.Name = "WelcomeLabel";
+            this.WelcomeLabel.Size = new System.Drawing.Size(455, 24);
+            this.WelcomeLabel.TabIndex = 6;
+            this.WelcomeLabel.Text = "Welcome (name), what are you going to study today?";
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton6.Location = new System.Drawing.Point(305, 219);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(133, 28);
+            this.radioButton6.TabIndex = 5;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "radioButton6";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.Visible = false;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton5.Location = new System.Drawing.Point(305, 158);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(133, 28);
+            this.radioButton5.TabIndex = 4;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "radioButton5";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Visible = false;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton4.Location = new System.Drawing.Point(305, 94);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(133, 28);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "radioButton4";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Visible = false;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton3.Location = new System.Drawing.Point(60, 219);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(133, 28);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(60, 158);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(133, 28);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Visible = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(60, 94);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(133, 28);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Visible = false;
             // 
             // CancelButton
             // 
@@ -210,12 +305,14 @@
             this.Controls.Add(this.checkIn);
             this.Controls.Add(this.loginBackdrop);
             this.Controls.Add(this.newStudentBtn);
-            this.Controls.Add(this.coursesDropDown);
-            this.Controls.Add(this.courseSelectBox);
+            this.Controls.Add(this.CheckInVisitButton);
+            this.Controls.Add(this.CourseSelectBox);
             this.Name = "studentLoginForm";
             this.Text = "SLC Attendence System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).EndInit();
+            this.CourseSelectBox.ResumeLayout(false);
+            this.CourseSelectBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -226,14 +323,21 @@
         private System.Windows.Forms.Button checkOut;
         private System.Windows.Forms.PictureBox sehomeLogo;
         private System.Windows.Forms.RichTextBox loginBackdrop;
-        private System.Windows.Forms.Button coursesDropDown;
+        private System.Windows.Forms.Button CheckInVisitButton;
         private System.Windows.Forms.Button studentsTab;
         private System.Windows.Forms.Button centerTab;
         private System.Windows.Forms.Button adminTab;
         private System.Windows.Forms.Button newStudentBtn;
-        private System.Windows.Forms.GroupBox courseSelectBox;
+        private System.Windows.Forms.GroupBox CourseSelectBox;
         public System.Windows.Forms.ListBox studentNames;
         private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label WelcomeLabel;
     }
 }
 
