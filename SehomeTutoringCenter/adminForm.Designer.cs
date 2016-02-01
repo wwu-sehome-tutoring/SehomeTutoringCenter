@@ -133,6 +133,7 @@
             this.Controls.Add(this.currentStudents);
             this.Name = "adminForm";
             this.Text = "Administration";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
