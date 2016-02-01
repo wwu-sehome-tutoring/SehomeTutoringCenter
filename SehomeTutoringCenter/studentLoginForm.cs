@@ -37,7 +37,8 @@ namespace SehomeTutoringCenter
         // Event handling for student tab button
         private void studentsTab_Click(object sender, EventArgs e)
         {
-
+            studentStats studentStats = new studentStats();
+            studentStats.Show();
         }
         // Event handling for the center tab button
         private void centerTab_Click(object sender, EventArgs e)
