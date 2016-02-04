@@ -10,17 +10,19 @@ namespace SehomeTutoringCenter
     {
         // Some global variables - should probably do it better
         string SelectedStudentName;
+        string SelectedNewClassName;
         bool NameSelected = false;
 
         public studentLoginForm()
         {
             InitializeComponent();
-            PopulateStudentNames();
+            PopulateSomeData();
         }
 
         // At program start up, fill in the ListBox of the student names that
-        // are already in the database, if there are any.
-        private void PopulateStudentNames()
+        // are already in the database, if there are any.  And fill in the classes
+        // to the new class combo box
+        private void PopulateSomeData()
         {
             var context = new SehomeContext();
 
@@ -28,6 +30,11 @@ namespace SehomeTutoringCenter
             {
                 var FullName = v.FirstName + " " + v.LastName;
                 studentNames.Items.Add(FullName);
+            }
+
+            foreach (var s in context.Subjects)
+            {
+                NewClassComboBox.Items.Add(s.Name);
             }
         }
 
@@ -48,12 +55,15 @@ namespace SehomeTutoringCenter
                 CourseSelectBox.Location = new Point(734, 429);
                 CourseSelectBox.Visible = true;
 
-                CheckInVisitButton.Location = new Point(734, 731);
+                CheckInVisitButton.Location = new Point(734, 761);
                 CheckInVisitButton.Width = 406;
                 CheckInVisitButton.Text = "Check In";
 
-                CancelButton.Location = new Point(1146, 731);
+                CancelButton.Location = new Point(1146, 761);
                 CancelButton.Visible = true;
+
+                NewClassButton.Visible = true;
+                NewClassComboBox.Visible = true;
 
                 studentNames.Enabled = false;
 
@@ -72,20 +82,16 @@ namespace SehomeTutoringCenter
                                        select s;
 
                     var student = StudentQuery.FirstOrDefault();
-                    Console.WriteLine("Student id: {0}", student.Id);
 
                     // Grab the names of the selected students classes
                     ArrayList classes = new ArrayList();
-                    var classesTemp = from s in context.Registrations
-                                      where s.StudentId == student.Id
-                                      select s;
 
                     foreach (var r in context.Subjects)
                     {
                         classes.Add(r.Name);
                     }
 
-                    // Update the radio buttons
+                    // Update the radio buttons to show class names
                     int i = 0;
                     foreach (Control c in CourseSelectBox.Controls)
                     {
@@ -102,6 +108,45 @@ namespace SehomeTutoringCenter
             } else
             {
                 MessageBox.Show("Please select a name from the list of students");
+            }
+        }
+
+        // When a new class is selected, set the global variable to be its text value
+        private void NewClassComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedNewClassName = (string)NewClassComboBox.SelectedItem;
+            Console.WriteLine(SelectedNewClassName);
+        }
+
+        // Create a new Registration for the currently selected student
+        private void NewClassButton_Click(object sender, EventArgs e)
+        {
+            using (var context = new SehomeContext())
+            {
+                // grab the student object
+                string[] names = SelectedStudentName.Split(' ');
+                string TempFirst = names[0];
+                string TempLast = names[1];
+
+                var StudentQuery = from s in context.Students
+                                   where s.FirstName == TempFirst && s.LastName == TempLast
+                                   select s;
+
+                var student = StudentQuery.FirstOrDefault();
+
+                // grab the subject object
+                var CurrentClass = context.Subjects
+                                    .Where(s => s.Name == SelectedNewClassName)
+                                    .FirstOrDefault();
+
+                // Create the registration
+                var Reg = new Registration
+                {
+                    Student = student,
+                    Subject = CurrentClass
+                };
+                context.Registrations.Add(Reg);
+                context.SaveChanges();
             }
         }
 
@@ -143,6 +188,7 @@ namespace SehomeTutoringCenter
 
                     var student = StudentQuery.First();
 
+                    // Create the visit object
                     var vis = new Visit
                     {
                         TimeIn = DateTime.Now,
@@ -153,7 +199,6 @@ namespace SehomeTutoringCenter
                     context.Visits.Add(vis);
                     context.SaveChanges();
                     resetPositions();
-                    Console.WriteLine(context.Visits.Count().ToString());
                 }
                 else
                 {
@@ -181,6 +226,7 @@ namespace SehomeTutoringCenter
                     var student = StudentQuery.First();
 
                     string CurrentDate = DateTime.Now.ToString().Split(' ')[0];
+
                     // Find a visit matching the current student .... redo this ....
                     foreach (var v in context.Visits)
                     {
@@ -227,7 +273,6 @@ namespace SehomeTutoringCenter
         private void centerTab_Click(object sender, EventArgs e)
         {
             CenterStatsForm center = new CenterStatsForm();
-
             center.Show();
         }
 
@@ -242,11 +287,11 @@ namespace SehomeTutoringCenter
         private void newStudentBtn_Click(object sender, EventArgs e)
         {
             newStudentForm newStudent = new newStudentForm(this);
-
             newStudent.ShowDialog();
+
             // Re-populate the listbox with the new students name
             studentNames.Items.Clear();
-            PopulateStudentNames();
+            PopulateSomeData();
 
         }
 
@@ -270,6 +315,9 @@ namespace SehomeTutoringCenter
             studentNames.Enabled = true;
             studentNames.ClearSelected();
 
+            NewClassButton.Visible = true;
+            NewClassComboBox.Visible = true;
+
             NameSelected = false;
 
             foreach (Control c in CourseSelectBox.Controls)
@@ -280,5 +328,7 @@ namespace SehomeTutoringCenter
                 }
             }
         }
+
+
     }
 }

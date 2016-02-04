@@ -61,19 +61,21 @@ namespace SehomeTutoringCenter
                         if (c is ComboBox)
                         {
                             ComboBox temp = c as ComboBox;
-                            // Grab the class object matching the current class name
-                            var CurrentClass = context.Subjects
-                                .Where(s => s.Name == c.Text)
-                                .FirstOrDefault();
+                            if (temp.Text != "") {
+                                // Grab the class object matching the current class name
+                                var CurrentClass = context.Subjects
+                                    .Where(s => s.Name == c.Text)
+                                    .FirstOrDefault();
 
-                            // Create the registration
-                            var Reg = new Registration
-                            {
-                                Student = stud,
-                                Subject = CurrentClass
-                            };
-                            context.Registrations.Add(Reg);
-                            context.SaveChanges();
+                                // Create the registration
+                                var Reg = new Registration
+                                {
+                                    Student = stud,
+                                    Subject = CurrentClass
+                                };
+                                context.Registrations.Add(Reg);
+                                context.SaveChanges();
+                            }
                         }
                     }
 
@@ -82,7 +84,7 @@ namespace SehomeTutoringCenter
             }
             else
             {
-                MessageBox.Show("Please enter all Student Information and select your classes");
+                MessageBox.Show("Please enter all Student Information and select at least one clas");
             }
         }
 
@@ -91,7 +93,7 @@ namespace SehomeTutoringCenter
         {
             bool IsValid = false;
             bool RadioChecked = false;
-            bool SelectedAllClasses = true;
+            bool SelectedAClass = false;
 
             // Ensure the user has selected a grade
             foreach(RadioButton c in RadioBtnPanel.Controls)
@@ -107,9 +109,9 @@ namespace SehomeTutoringCenter
                 if (c is ComboBox)
                 {
                     ComboBox temp = c as ComboBox;
-                    if(temp.Text == "")
+                    if(temp.Text != "")
                     {
-                        SelectedAllClasses = false;
+                        SelectedAClass = true;
                     }
                 }
             }
@@ -117,7 +119,7 @@ namespace SehomeTutoringCenter
             // Ensure that everything has been properly entered
             if(!FirstNameTextBox.Text.Equals("") &&
                 !LastNameTextBox.Text.Equals("") &&
-                RadioChecked && SelectedAllClasses)
+                RadioChecked && SelectedAClass)
             {
                 IsValid = true;
             }
