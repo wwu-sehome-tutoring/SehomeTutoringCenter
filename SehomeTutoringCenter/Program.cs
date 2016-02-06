@@ -2,6 +2,8 @@
 /// maintain the application.
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,22 @@ namespace SehomeTutoringCenter
         [STAThread]
         static void Main()
         {
+            string CWD = Directory.GetCurrentDirectory();
+            string DBPath = CWD + "\\SehomeTutoringCenter.sqlite";
+            System.Diagnostics.Debug.WriteLine(DBPath);
+            if (!(System.IO.File.Exists(DBPath)))
+            {
+                System.Diagnostics.Debug.WriteLine("DataBase Doesn't Exist");
+                CreateDB();
+                //Application.Exit();
+                //CreateDB();
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Database already exists");
+            }
+            SQLiteConnection SehomeDB;
+            SehomeDB = new SQLiteConnection("Data Source=SehomeTutoringCenter.sqlite;");
             using (var context = new SehomeContext())
             {
                 //InsertDummyStudents(context);
@@ -24,6 +42,50 @@ namespace SehomeTutoringCenter
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new studentLoginForm());
+        }
+
+        static void CreateDB()
+        {
+            SQLiteConnection.CreateFile("SehomeTutoringCenter.sqlite");
+
+            SQLiteConnection SehomeDB;
+            SehomeDB = new SQLiteConnection("Data Source=SehomeTutoringCenter.sqlite;");
+            SehomeDB.Open();
+
+            string query = @"PRAGMA foreign_keys = ON;
+
+CREATE TABLE student(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    grade TEXT NOT NULL
+);
+
+CREATE TABLE subject(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    teacher_name TEXT NOT NULL
+);
+
+CREATE TABLE registration(
+    student_id INTEGER NOT NULL,
+    subject_id INTEGER NOT NULL,
+    FOREIGN KEY(student_id) REFERENCES student(id),
+    FOREIGN KEY(subject_id) REFERENCES subject(id),
+    PRIMARY KEY(student_id, subject_id)
+);
+
+CREATE TABLE visit(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_in TEXT DEFAULT CURRENT_TIMESTAMP,
+    time_out TEXT DEFAULT NULL,
+    student INTEGER NOT NULL,
+    subject INTEGER NOT NULL,
+    FOREIGN KEY(student) REFERENCES student(id),
+    FOREIGN KEY(subject) REFERENCES subject(id)
+);";
+            SQLiteCommand command = new SQLiteCommand(query, SehomeDB);
+            command.ExecuteNonQuery();
         }
 
         static void InsertDummyStudents(SehomeContext context)
