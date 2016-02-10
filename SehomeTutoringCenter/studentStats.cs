@@ -19,12 +19,32 @@ namespace SehomeTutoringCenter
             {
                 foreach (var s in context.Students)
                 {
-                    this.comboBox1.Items.Add(s.FirstName + " " + s.LastName);
+                    this.studentComboBox.Items.Add(s.FirstName + " " + s.LastName);
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void studentStats_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void subjectGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
             /*Notes:
             *   I am assuming that the IDs in the subject table start at 1 and are consecutive
@@ -35,27 +55,35 @@ namespace SehomeTutoringCenter
             *   other stuff
             */
 
-            dataGridView1.Rows.Clear();/*clear previous values from the datagridview*/
-            foreach (var series in chart1.Series)/*clear the pie chart*/
+            //First I clear old values from my pie chart, dataGridView and my currentStudent text.
+            studentGridView.Rows.Clear();                   //clear previous values from the datagridview
+            foreach (var series in studentPieChart.Series)  //clear the pie chart
             {
                 series.Points.Clear();
             }
-            /*  Grabing values from the selecting tools on the left side of the page*/
-            string studentName = comboBox1.Text.ToString();
-            DateTime startDate = dateTimePicker1.Value;
-            DateTime endDate = dateTimePicker1.Value;
-            string startDate1 = dateTimePicker1.Value.ToString("yyyy-MM-dd-0");
-            string endDate1 = dateTimePicker2.Value.ToString("yyyy-MM-dd");
-            //Console.WriteLine(student);
-            //Console.WriteLine(startDate);
-            //Console.WriteLine(endDate);
-            long studentID = -1;
+            currentStudentText.Clear();
+
+            //  Grabing values from the selecting tools on the left side of the page
+            string studentName = studentComboBox.Text.ToString();
+            long studentID = -1;                            //This is the student ID from the DB
+            currentStudentText.Text = studentName;
+            DateTime startDate = startDatePicker.Value;
+            DateTime endDate = endDatePicker.Value;
+            DateTime? timeInNullable;                               //Question mark means value in Null able
+            DateTime? timeOutNullable;
+            DateTime timeIn;
+            DateTime timeOut;
+            //string startDate1 = startDatePicker.Value.ToString("yyyy-MM-dd-0");
+            //string endDate1 = endDatePicker.Value.ToString("yyyy-MM-dd");
+
+            
             int classCount = 0;
             //long[] visitPerSubject;
             long[] subs;
             string[] subsNames;
-            /*need to change this*/
 
+
+            //Ill go through and clean this up as soon as the student.registration NULL error is fixed
             //My atempt at using student.Registraion.
             /*
             using (var context = new SehomeContext())
@@ -119,7 +147,7 @@ namespace SehomeTutoringCenter
             /// Current working code
             using (var context = new SehomeContext())
             {
-                //COunt number of different class/teacher pairs in Subjects table
+                //Count number of different class/teacher pairs in Subjects table
                 foreach (var sub in context.Subjects)
                 {
                     classCount++;
@@ -147,14 +175,35 @@ namespace SehomeTutoringCenter
                         //string timeIn = v.TimeIn.ToString();
                         //string timeOut = v.TimeOut.ToString();
 
-                        DateTime? timeIn = v.TimeIn;
-                        DateTime? timeOut = v.TimeOut;
-                        //if (startDate <= timeIn && timeIn<= endDate)
-
+                        timeInNullable = v.TimeIn;
+                        timeOutNullable = v.TimeOut;
+                       
+                        timeIn = (DateTime)timeInNullable;
+                        if(timeOutNullable != null)
+                        {
+                            timeOut = (DateTime)timeOutNullable;
+                            if (startDate <= timeIn && timeIn <= endDate)
+                            {
+                                long subject = v.SubjectId;
+                                subs[subject - 1] = subs[subject - 1] + 1;
+                                studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[unchecked((int)subject) - 1], timeIn.ToString("hh:mm:ss tt"), timeOut.ToString("hh:mm:ss tt"),timeOut.Subtract(timeIn));//.ToString("h m s tt")
+                            }
+                        }
+                        else
+                        {
+                            if (startDate <= timeIn && timeIn <= endDate)
+                            {
+                                long subject = v.SubjectId;
+                                subs[subject - 1] = subs[subject - 1] + 1;
+                                studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[unchecked((int)subject) - 1], timeIn.ToString("hh:mm:ss tt"), timeOutNullable);
+                            }
+                        }
+                        
+                        /*
                         long subject = v.SubjectId;
                         subs[subject - 1] = subs[subject - 1] + 1;
                         dataGridView1.Rows.Add(studentName, subsNames[unchecked((int)subject) - 1], timeIn, timeOut);
-
+                        */
 
                     }
                 }
@@ -165,22 +214,22 @@ namespace SehomeTutoringCenter
             for (int i = 0; i < classCount; i++)
             {
                 //this.chart1.Series["Subjects"].Points.AddXY(subsNames[i], visitPerSubject[i]);
-                this.chart1.Series["Subjects"].Points.AddXY(subsNames[i], subs[i]);
+                this.studentPieChart.Series["Subjects"].Points.AddXY(subsNames[i], subs[i]);
                 //Console.Write(i.ToString()+" "+ subs[i].ToString()+"\n");
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void StartDatePicker_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void chart1_Click(object sender, EventArgs e)
+        private void endDateGroupBox_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void studentStats_Load(object sender, EventArgs e)
+        private void startDateGroupBox_Enter(object sender, EventArgs e)
         {
 
         }
