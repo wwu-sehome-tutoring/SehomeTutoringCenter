@@ -227,7 +227,7 @@ namespace SehomeTutoringCenter
 
                     string CurrentDate = DateTime.Now.ToString().Split(' ')[0];
 
-                    // Find a visit matching the current student .... redo this ....
+                    // Find each visit for the current day
                     foreach (var v in context.Visits)
                     {
                         Console.WriteLine("visit check");
@@ -235,6 +235,7 @@ namespace SehomeTutoringCenter
                         if (CurrentDate.Equals(date))
                         {
                             try {
+                                // See if the student is logged in for the day
                                 if (v.Student.FirstName.Equals(TempFirst) && v.Student.LastName.Equals(TempLast))
                                 {
                                     v.TimeOut = DateTime.Now;
