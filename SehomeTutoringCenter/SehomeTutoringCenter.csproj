@@ -142,7 +142,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="SehomeTutoringCenter.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -152,9 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Sehome_color129x200-97x150.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="temp.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
