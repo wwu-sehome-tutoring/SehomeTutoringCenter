@@ -34,11 +34,10 @@ namespace SehomeTutoringCenter
             }
             SQLiteConnection SehomeDB;
             SehomeDB = new SQLiteConnection("Data Source=SehomeTutoringCenter.sqlite;");
-            using (var context = new SehomeContext())
-            {
-                //InsertDummyStudents(context);
-                //InsertDummySubjects(context);
-            }
+
+            // Generate Test Data
+            GenerateTestData();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new studentLoginForm());
@@ -88,78 +87,113 @@ CREATE TABLE visit(
             command.ExecuteNonQuery();
         }
 
-        static void InsertDummyStudents(SehomeContext context)
+        static void GenerateTestData()
         {
-            String[,] dummyNames = new String[10, 2];
-
-            dummyNames[0, 0] = "Patrick";
-            dummyNames[0, 1] = "Tolley";
-            dummyNames[1, 0] = "Tucker";
-            dummyNames[1, 1] = "Siemens";
-            dummyNames[2, 0] = "JJ";
-            dummyNames[2, 1] = "Small";
-            dummyNames[3, 0] = "Andrew";
-            dummyNames[3, 1] = "Feely";
-            dummyNames[4, 0] = "Nathan";
-            dummyNames[4, 1] = "Shive";
-            dummyNames[5, 0] = "Elvis";
-            dummyNames[5, 1] = "Presley";
-            dummyNames[6, 0] = "Aaron";
-            dummyNames[6, 1] = "Clausen";
-            dummyNames[7, 0] = "Brenda";
-            dummyNames[7, 1] = "Apt";
-            dummyNames[8, 0] = "Master";
-            dummyNames[8, 1] = "Chief";
-            dummyNames[9, 0] = "Tutor";
-            dummyNames[9, 1] = "User";
-
-            for (int i = 0; i < 10; i++)
+            using (var context = new SehomeContext())
             {
-                var Stud = new Student
+                // Generate test students
+                String[,] testStudents = new String[11, 2]
                 {
-                    FirstName = dummyNames[i, 0],
-                    LastName = dummyNames[i, 1],
-                    Grade = "Senior"
+                    { "Patrick", "Tolley" },
+                    { "Tucker", "Siemens" },
+                    { "JJ", "Small" },
+                    { "Nathan", "Shive" },
+                    { "Andrew", "Feely" },
+                    { "Elvis", "Presley" },
+                    { "Aran", "Clauson" },
+                    { "Brenda", "Apt" },
+                    { "Master", "Chief" },
+                    { "Malcolm", "Reynolds" },
+                    { "William", "Adama" }
                 };
-                context.Students.Add(Stud);
-            }
-            context.SaveChanges();
-        }
-        static void InsertDummySubjects(SehomeContext context)
-        {
-            String[,] dummySubjects = new String[10, 2];
-            dummySubjects[0, 0] = "Algebra1";
-            dummySubjects[0, 1] = "Johnson";
-            dummySubjects[1, 0] = "Algebra2";
-            dummySubjects[1, 1] = "Johnson";
-            dummySubjects[2, 0] = "American History";
-            dummySubjects[2, 1] = "Williams";
-            dummySubjects[3, 0] = "Computer Programming";
-            dummySubjects[3, 1] = "Smith";
-            dummySubjects[4, 0] = "Drama";
-            dummySubjects[4, 1] = "Jones";
-            dummySubjects[5, 0] = "Health";
-            dummySubjects[5, 1] = "Brown";
-            dummySubjects[6, 0] = "Typing";
-            dummySubjects[6, 1] = "Davis";
-            dummySubjects[7, 0] = "Sitting";
-            dummySubjects[7, 1] = "Miller";
-            dummySubjects[8, 0] = "Home Economics";
-            dummySubjects[8, 1] = "Wilson";
-            dummySubjects[9, 0] = "Woodworking";
-            dummySubjects[9, 1] = "Moore";
 
-            for (int i = 0; i < 10; i++)
-            {
-                var Sub = new Subject
+                // Create objects for each test student
+                for (int i = 0; i < testStudents.GetLength(0); i++)
                 {
-                    Name = dummySubjects[i, 0],
-                    TeacherName = dummySubjects[i, 1]
+                    var student = new Student
+                    {
+                        FirstName = testStudents[i, 0],
+                        LastName = testStudents[i, 1],
+                        Grade = "Senior"
+                    };
+                    context.Students.Add(student);
+                }
+
+                // Save test students
+                context.SaveChanges();
+
+                // Generate test subjects
+                String[,] testSubjects = new String[11, 2]
+                {
+                    { "Algebra 1", "Johnson" },
+                    { "Algebra 1", "Hearne" },
+                    { "Algebra 2", "Johnson" },
+                    { "American History", "Fizzano" },
+                    { "Computer Programming", "Clauson" },
+                    { "Drama", "Zhang" },
+                    { "Health", "Hutchinson" },
+                    { "Typing", "Clauson" },
+                    { "Underwater Basket Weaving", "Rrushi" },
+                    { "Home Economics", "Matthews" },
+                    { "Woodworking", "Meehan" }
                 };
-                context.Subjects.Add(Sub);
+
+                // Create objects for each test subject
+                for (int i = 0; i < testSubjects.GetLength(0); i++)
+                {
+                    var subject = new Subject
+                    {
+                        Name = testSubjects[i, 0],
+                        TeacherName = testSubjects[i, 1]
+                    };
+                    context.Subjects.Add(subject);
+                }
+
+                // Save test subjects
+                context.SaveChanges();
+
+                // Generate test registrations
+                var subjects = context.Subjects
+                               .Where(s => s.Name == "Underwater Basket Weaving" || s.Name == "Computer Programming");
+
+                foreach (var stu in context.Students)
+                {
+                    foreach(var sub in subjects)
+                    {
+                        var reg = new Registration
+                        {
+                            Student = stu,
+                            Subject = sub
+                        };
+
+                        context.Registrations.Add(reg);
+                    }
+                }
+
+                // Save test registrations
+                context.SaveChanges();
+
+                // Generate test visits
+                foreach (var stu in context.Students)
+                {
+                    foreach (var reg in stu.Registrations)
+                    {
+                        var vis = new Visit
+                        {
+                            TimeIn = DateTime.Now.AddMinutes(-10.0),
+                            TimeOut = DateTime.Now.AddMinutes(10.0),
+                            Student = stu,
+                            Subject = reg.Subject
+                        };
+
+                        context.Visits.Add(vis);
+                    }
+                }
+
+                // Save test visits
+                context.SaveChanges();
+
             }
-            context.SaveChanges();
         }
     }
-
 }
