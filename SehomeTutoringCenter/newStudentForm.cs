@@ -1,5 +1,6 @@
 ﻿/// This class handles the logic for the New Student form.
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -61,19 +62,21 @@ namespace SehomeTutoringCenter
                         if (c is ComboBox)
                         {
                             ComboBox temp = c as ComboBox;
-                            // Grab the class object matching the current class name
-                            var CurrentClass = context.Subjects
-                                .Where(s => s.Name == c.Text)
-                                .FirstOrDefault();
+                            if (temp.Text != "") {
+                                // Grab the class object matching the current class name
+                                var CurrentClass = context.Subjects
+                                    .Where(s => s.Name == c.Text)
+                                    .FirstOrDefault();
 
-                            // Create the registration
-                            var Reg = new Registration
-                            {
-                                Student = stud,
-                                Subject = CurrentClass
-                            };
-                            context.Registrations.Add(Reg);
-                            context.SaveChanges();
+                                // Create the registration
+                                var Reg = new Registration
+                                {
+                                    Student = stud,
+                                    Subject = CurrentClass
+                                };
+                                context.Registrations.Add(Reg);
+                                context.SaveChanges();
+                            }
                         }
                     }
 
@@ -82,7 +85,7 @@ namespace SehomeTutoringCenter
             }
             else
             {
-                MessageBox.Show("Please enter all Student Information and select your classes");
+                MessageBox.Show("Please enter all Student Information and classes that are all unique");
             }
         }
 
@@ -91,8 +94,10 @@ namespace SehomeTutoringCenter
         {
             bool IsValid = false;
             bool RadioChecked = false;
-            bool SelectedAllClasses = true;
-
+            bool SelectedAClass = false;
+            bool AllUnique = true;
+            HashSet<string> set = new HashSet<string>();
+;
             // Ensure the user has selected a grade
             foreach(RadioButton c in RadioBtnPanel.Controls)
             {
@@ -101,15 +106,22 @@ namespace SehomeTutoringCenter
                     RadioChecked = true;
                 }
             }
-            // Ensure the user has selected all classes
+            // Ensure the user has selected at least 1 class and that they are all unique
             foreach(Control c in ClassGroupBox.Controls)
             {
                 if (c is ComboBox)
                 {
                     ComboBox temp = c as ComboBox;
-                    if(temp.Text == "")
+                    if (set.Contains(temp.Text))
                     {
-                        SelectedAllClasses = false;
+                        AllUnique = false;
+                    } else
+                    {
+                        if (temp.Text != "")
+                        {
+                            SelectedAClass = true;
+                            set.Add(temp.Text);
+                        }
                     }
                 }
             }
@@ -117,7 +129,7 @@ namespace SehomeTutoringCenter
             // Ensure that everything has been properly entered
             if(!FirstNameTextBox.Text.Equals("") &&
                 !LastNameTextBox.Text.Equals("") &&
-                RadioChecked && SelectedAllClasses)
+                RadioChecked && SelectedAClass && AllUnique)
             {
                 IsValid = true;
             }

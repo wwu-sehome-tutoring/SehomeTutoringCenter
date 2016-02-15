@@ -47,6 +47,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.NewClassComboBox = new System.Windows.Forms.ComboBox();
+            this.NewClassButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
             this.CourseSelectBox.SuspendLayout();
             this.SuspendLayout();
@@ -176,6 +178,8 @@
             // CourseSelectBox
             // 
             this.CourseSelectBox.BackColor = System.Drawing.Color.White;
+            this.CourseSelectBox.Controls.Add(this.NewClassButton);
+            this.CourseSelectBox.Controls.Add(this.NewClassComboBox);
             this.CourseSelectBox.Controls.Add(this.WelcomeLabel);
             this.CourseSelectBox.Controls.Add(this.radioButton6);
             this.CourseSelectBox.Controls.Add(this.radioButton5);
@@ -185,7 +189,7 @@
             this.CourseSelectBox.Controls.Add(this.radioButton1);
             this.CourseSelectBox.Location = new System.Drawing.Point(733, 529);
             this.CourseSelectBox.Name = "CourseSelectBox";
-            this.CourseSelectBox.Size = new System.Drawing.Size(526, 303);
+            this.CourseSelectBox.Size = new System.Drawing.Size(526, 333);
             this.CourseSelectBox.TabIndex = 11;
             this.CourseSelectBox.TabStop = false;
             this.CourseSelectBox.Visible = false;
@@ -290,6 +294,29 @@
             this.CancelButton.Visible = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // NewClassComboBox
+            // 
+            this.NewClassComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewClassComboBox.FormattingEnabled = true;
+            this.NewClassComboBox.Location = new System.Drawing.Point(60, 284);
+            this.NewClassComboBox.Name = "NewClassComboBox";
+            this.NewClassComboBox.Size = new System.Drawing.Size(307, 28);
+            this.NewClassComboBox.TabIndex = 7;
+            this.NewClassComboBox.Visible = false;
+            this.NewClassComboBox.SelectedIndexChanged += new System.EventHandler(this.NewClassComboBox_SelectedIndexChanged);
+            // 
+            // NewClassButton
+            // 
+            this.NewClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewClassButton.Location = new System.Drawing.Point(373, 283);
+            this.NewClassButton.Name = "NewClassButton";
+            this.NewClassButton.Size = new System.Drawing.Size(75, 30);
+            this.NewClassButton.TabIndex = 13;
+            this.NewClassButton.Text = "Add";
+            this.NewClassButton.UseVisualStyleBackColor = true;
+            this.NewClassButton.Visible = false;
+            this.NewClassButton.Click += new System.EventHandler(this.NewClassButton_Click);
+            // 
             // studentLoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +365,8 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label WelcomeLabel;
+        private System.Windows.Forms.ComboBox NewClassComboBox;
+        private System.Windows.Forms.Button NewClassButton;
     }
 }
 

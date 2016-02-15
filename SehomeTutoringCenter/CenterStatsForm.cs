@@ -97,18 +97,19 @@ namespace SehomeTutoringCenter
         private void loginTab_Click(object sender, EventArgs e)
         {
             studentLoginForm s = new studentLoginForm();
-
             s.Show();
         }
 
         private void studentTab_Click(object sender, EventArgs e)
         {
-
+            studentStats studentStats = new studentStats();
+            studentStats.Show();
         }
 
         private void adminTab_Click(object sender, EventArgs e)
         {
-
+            adminForm admin = new adminForm();
+            admin.Show();
         }
 
         // Grab the name of the class when selected
