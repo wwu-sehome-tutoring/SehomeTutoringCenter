@@ -9,6 +9,8 @@ namespace SehomeTutoringCenter
 {
     public partial class newStudentForm : Form
     {
+        private SehomeContext _context = new SehomeContext();
+
         public newStudentForm(studentLoginForm temp)
         {
             InitializeComponent();
@@ -19,20 +21,17 @@ namespace SehomeTutoringCenter
         // subjects that are in the database.
         private void PopulateClassLists()
         {
-            using (var context = new SehomeContext())
-            {
                 foreach (Control c in ClassGroupBox.Controls)
                 {
                     if (c is ComboBox)
                     {
                         ComboBox temp = c as ComboBox;
-                        foreach (var v in context.Subjects)
+                        foreach (var v in _context.Subjects)
                         {
                             temp.Items.Add(v.Name);
                         }
                     }
                 }
-            }
         }
 
         // This giant function creates a student object and then add in the registrations
@@ -41,47 +40,44 @@ namespace SehomeTutoringCenter
         {
             if (ValidInput())
             {
-                using (var context = new SehomeContext())
+                // Grab the text of which radio button is selected
+                string CheckedButton = RadioBtnPanel.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+
+                // Create a new Student object and add it to the database
+                Student stud = new Student
                 {
-                    // Grab the text of which radio button is selected
-                    string CheckedButton = RadioBtnPanel.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+                    FirstName = FirstNameTextBox.Text,
+                    LastName = LastNameTextBox.Text,
+                    Grade = CheckedButton
+                };
+                _context.Students.Add(stud);
+                _context.SaveChanges();
 
-                    // Create a new Student object and add it to the database
-                    Student stud = new Student
+                // Create registrations for this student based off of the classes picked
+                foreach (Control c in ClassGroupBox.Controls)
+                {
+                    if (c is ComboBox)
                     {
-                        FirstName = FirstNameTextBox.Text,
-                        LastName = LastNameTextBox.Text,
-                        Grade = CheckedButton
-                    };
-                    context.Students.Add(stud);
-                    context.SaveChanges();
+                        ComboBox temp = c as ComboBox;
+                        if (temp.Text != "") {
+                            // Grab the class object matching the current class name
+                            var CurrentClass = _context.Subjects
+                                .Where(s => s.Name == c.Text)
+                                .FirstOrDefault();
 
-                    // Create registrations for this student based off of the classes picked
-                    foreach (Control c in ClassGroupBox.Controls)
-                    {
-                        if (c is ComboBox)
-                        {
-                            ComboBox temp = c as ComboBox;
-                            if (temp.Text != "") {
-                                // Grab the class object matching the current class name
-                                var CurrentClass = context.Subjects
-                                    .Where(s => s.Name == c.Text)
-                                    .FirstOrDefault();
-
-                                // Create the registration
-                                var Reg = new Registration
-                                {
-                                    Student = stud,
-                                    Subject = CurrentClass
-                                };
-                                context.Registrations.Add(Reg);
-                                context.SaveChanges();
-                            }
+                            // Create the registration
+                            var Reg = new Registration
+                            {
+                                Student = stud,
+                                Subject = CurrentClass
+                            };
+                            _context.Registrations.Add(Reg);
+                            _context.SaveChanges();
                         }
                     }
-
                 }
-                this.Close();
+
+            this.Close();
             }
             else
             {
