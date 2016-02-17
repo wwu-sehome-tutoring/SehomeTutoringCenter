@@ -14,6 +14,8 @@ namespace SehomeTutoringCenter
 {
     public partial class CenterStatsForm : Form
     {
+        private SehomeContext _context = new SehomeContext();
+
         string SelectedClass;
         string StartDate;
         string EndDate;
@@ -30,46 +32,44 @@ namespace SehomeTutoringCenter
         // of all subjects in the database
         private void PopulateSubjectNames()
         {
-            using (var context = new SehomeContext())
+            foreach (var s in _context.Subjects)
             {
-                foreach (var s in context.Subjects)
-                {
-                    subjectComboBox.Items.Add(s.Name);
-                }
-            }
+                subjectComboBox.Items.Add(s.Name);
+            }      
         }
 
         // The default view of this form contains information about how many students
         // per day went to the tutoring center for each day of the current semester
         private void DefaultData()
         {
-            centerStatsChart.Titles.Add("Students Per Day");
-            var VisitCounts = new Dictionary<String, int>();
-            int TotalStudents = 0;
-            double TotalTime = 0.0;
-
-            // Iterate through all visits and keep track of the count of each date
-            using (var context = new SehomeContext())
+            if (_context.Students.Count() > 0)
             {
-                // first grab the total number of students
-                TotalStudents = context.Students.Count();
+                centerStatsChart.Titles.Add("Students Per Day");
+                var VisitCounts = new Dictionary<String, int>();
+                int TotalStudents = 0;
+                double TotalTime = 0.0;
+
+                // Iterate through all visits and keep track of the count of each date
+                    // first grab the total number of students
+                TotalStudents = _context.Students.Count();
                 // then go grab all of the unique visit dates and their counts
-                foreach(var v in context.Visits)
+                foreach (var v in _context.Visits)
                 {
                     string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
-                    // Now calculate the time spent for this visit
+                                                                            // Now calculate the time spent for this visit
                     DateTime start = (DateTime)v.TimeIn;
                     DateTime end;
-                    end = (v.TimeOut == null? DateTime.Now: (DateTime)v.TimeOut);
+                    end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
 
                     TimeSpan time = end - start;
                     TotalTime += time.TotalHours;
 
                     // Add the date and count to the dictionary
-                    if(VisitCounts.ContainsKey(DateOnly))
+                    if (VisitCounts.ContainsKey(DateOnly))
                     {
                         VisitCounts[DateOnly]++;
-                    } else
+                    }
+                    else
                     {
                         VisitCounts.Add(DateOnly, 1);
                     }
@@ -80,7 +80,7 @@ namespace SehomeTutoringCenter
                 int[] points = VisitCounts.Values.ToArray();
 
                 // Create a series which will fill in the chart of dates and their counts
-                for(int i = 0; i < dates.Length; i++)
+                for (int i = 0; i < dates.Length; i++)
                 {
                     Series series = centerStatsChart.Series.Add(dates[i]);
                     series.Points.Add(points[i]);
@@ -91,6 +91,9 @@ namespace SehomeTutoringCenter
                 TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
                 StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
                 AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
+            } else
+            {
+                MessageBox.Show("No students in the system.  Can't properly display data.");
             }
         }
 
@@ -149,59 +152,57 @@ namespace SehomeTutoringCenter
                 int TotalStudents = 0;
                 double TotalTime = 0.0;
 
-                using (var context = new SehomeContext())
+
+                var selected = _context.Subjects
+                        .Where(s => s.Name == SelectedClass)
+                        .FirstOrDefault();
+
+                // Iterate through all visits that match the class name and date range that
+                // the user entered as input.
+                foreach (var v in _context.Visits)
                 {
-                    var selected = context.Subjects
-                            .Where(s => s.Name == SelectedClass)
-                            .FirstOrDefault();
-
-                    // Iterate through all visits that match the class name and date range that
-                    // the user entered as input.
-                    foreach (var v in context.Visits)
+                    if (v.Subject.Name.Equals(selected.Name))
                     {
-                        if (v.Subject.Name.Equals(selected.Name))
+                        string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
+                                                                                // Now calculate the time spent for this visit
+                        DateTime start = (DateTime)v.TimeIn;
+                        DateTime end;
+                        end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
+
+                        TimeSpan time = end - start;
+                        TotalTime += time.TotalHours;
+
+                        // Add the date and count to the dictionary
+                        if (VisitCounts.ContainsKey(DateOnly))
                         {
-                            string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
-                                                                                 // Now calculate the time spent for this visit
-                            DateTime start = (DateTime)v.TimeIn;
-                            DateTime end;
-                            end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
-
-                            TimeSpan time = end - start;
-                            TotalTime += time.TotalHours;
-
-                            // Add the date and count to the dictionary
-                            if (VisitCounts.ContainsKey(DateOnly))
-                            {
-                                VisitCounts[DateOnly]++;
-                                TotalStudents++;
-                            }
-                            else
-                            {
-                                VisitCounts.Add(DateOnly, 1);
-                                TotalStudents++;
-                            }
+                            VisitCounts[DateOnly]++;
+                            TotalStudents++;
+                        }
+                        else
+                        {
+                            VisitCounts.Add(DateOnly, 1);
+                            TotalStudents++;
                         }
                     }
-
-                    // Create data arrays to add to a Series later on
-                    string[] dates = VisitCounts.Keys.ToArray();
-                    int[] points = VisitCounts.Values.ToArray();
-
-                    // Create a series which will fill in the chart of dates and their counts
-                    for (int i = 0; i < dates.Length; i++)
-                    {
-                        Series series = centerStatsChart.Series.Add(dates[i]);
-                        series.Points.Add(points[i]);
-                    }
-
-                    // Update the table of center stats information
-                    TotalStudentsValue.Text = TotalStudents.ToString();
-                    TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
-                    StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
-                    AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
-
                 }
+
+                // Create data arrays to add to a Series later on
+                string[] dates = VisitCounts.Keys.ToArray();
+                int[] points = VisitCounts.Values.ToArray();
+
+                // Create a series which will fill in the chart of dates and their counts
+                for (int i = 0; i < dates.Length; i++)
+                {
+                    Series series = centerStatsChart.Series.Add(dates[i]);
+                    series.Points.Add(points[i]);
+                }
+
+                // Update the table of center stats information
+                TotalStudentsValue.Text = TotalStudents.ToString();
+                TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
+                StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
+                AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
+
             } else
             {
                 MessageBox.Show("Please select a class and both dates");
@@ -212,17 +213,20 @@ namespace SehomeTutoringCenter
         private void PrizeButton_Click(object sender, EventArgs e)
         {
             // Grab the list of student name
-            using (var context = new SehomeContext())
+            ArrayList names = new ArrayList();
+            foreach (var s in _context.Students)
             {
-                ArrayList names = new ArrayList();
-                foreach (var s in context.Students)
-                {
-                    string FullName = s.FirstName + " " + s.LastName;
-                    names.Add(FullName);
-                }
-                // Now select a random name from the list
+                string FullName = s.FirstName + " " + s.LastName;
+                names.Add(FullName);
+            }
+            // Now select a random name from the list
+            if (_context.Students.Count() > 1)
+            {
                 int r = rnd.Next(names.Count);
                 RandomNameTextbox.Text = (string)names[r];
+            } else
+            {
+                MessageBox.Show("No students in the system.  Can't properly display data.");
             }
         }
     }

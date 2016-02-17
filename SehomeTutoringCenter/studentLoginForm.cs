@@ -8,6 +8,8 @@ namespace SehomeTutoringCenter
 {
     public partial class studentLoginForm : Form
     {
+        private SehomeContext _context = new SehomeContext();
+
         // Some global variables - should probably do it better
         string SelectedStudentName;
         string SelectedNewClassName;
@@ -24,15 +26,13 @@ namespace SehomeTutoringCenter
         // to the new class combo box
         private void PopulateSomeData()
         {
-            var context = new SehomeContext();
-
-            foreach (var v in context.Students)
+            foreach (var v in _context.Students)
             {
                 var FullName = v.FirstName + " " + v.LastName;
                 studentNames.Items.Add(FullName);
             }
 
-            foreach (var s in context.Subjects)
+            foreach (var s in _context.Subjects)
             {
                 NewClassComboBox.Items.Add(s.Name);
             }
@@ -69,42 +69,40 @@ namespace SehomeTutoringCenter
 
                 // Now populate the check in area with all of the classes and teacher 
                 // names of the selected students
-                using (var context = new SehomeContext())
+
+                // grab the student object
+                string[] names = SelectedStudentName.Split(' ');
+                string TempFirst = names[0];
+                string TempLast = names[1];
+                Console.WriteLine(names[0] + " " + names[1]);
+
+                var StudentQuery = from s in _context.Students
+                                    where s.FirstName == TempFirst && s.LastName == TempLast
+                                    select s;
+
+                var student = StudentQuery.FirstOrDefault();
+
+                // Grab the names of the selected students classes
+                ArrayList classes = new ArrayList();
+                foreach (var r in _context.Subjects)
                 {
-                    // grab the student object
-                    string[] names = SelectedStudentName.Split(' ');
-                    string TempFirst = names[0];
-                    string TempLast = names[1];
-                    Console.WriteLine(names[0] + " " + names[1]);
-
-                    var StudentQuery = from s in context.Students
-                                       where s.FirstName == TempFirst && s.LastName == TempLast
-                                       select s;
-
-                    var student = StudentQuery.FirstOrDefault();
-
-                    // Grab the names of the selected students classes
-                    ArrayList classes = new ArrayList();
-
-                    foreach (var r in context.Subjects)
-                    {
-                        classes.Add(r.Name);
-                    }
-
-                    // Update the radio buttons to show class names
-                    int i = 0;
-                    foreach (Control c in CourseSelectBox.Controls)
-                    {
-                        if (c is RadioButton)
-                        {
-                            c.Text = classes[i].ToString();
-                            c.Visible = true;
-                            i++;
-                        }
-                    }
-                    // Change the welcome text to match the student name
-                    WelcomeLabel.Text = String.Format("Welcome {0}, what are you going to study today?", student.FirstName);
+                    classes.Add(r.Name);
                 }
+
+                // Update the radio buttons to show class names
+                int i = 0;
+                foreach (Control c in CourseSelectBox.Controls)
+                {
+                    if (c is RadioButton)
+                    {
+                        c.Text = classes[i].ToString();
+                        c.Visible = true;
+                        i++;
+                    }
+                }
+                // Change the welcome text to match the student name
+                WelcomeLabel.Text = String.Format("Welcome {0}, what are you going to study today?", student.FirstName);
+
             } else
             {
                 MessageBox.Show("Please select a name from the list of students");
@@ -121,89 +119,115 @@ namespace SehomeTutoringCenter
         // Create a new Registration for the currently selected student
         private void NewClassButton_Click(object sender, EventArgs e)
         {
-            using (var context = new SehomeContext())
+
+            // grab the student object
+            string[] names = SelectedStudentName.Split(' ');
+            string TempFirst = names[0];
+            string TempLast = names[1];
+
+            var StudentQuery = from s in _context.Students
+                                where s.FirstName == TempFirst && s.LastName == TempLast
+                                select s;
+
+            var student = StudentQuery.FirstOrDefault();
+
+            // grab the subject object
+            var CurrentClass = _context.Subjects
+                                .Where(s => s.Name == SelectedNewClassName)
+                                .FirstOrDefault();
+
+            // Check to see if the user is already registered for this class
+            bool IsRegistered = false;
+            foreach(var r in _context.Registrations)
             {
-                // grab the student object
-                string[] names = SelectedStudentName.Split(' ');
-                string TempFirst = names[0];
-                string TempLast = names[1];
+                if(r.StudentId == student.Id && r.SubjectId == CurrentClass.Id)
+                {
+                    IsRegistered = true;
+                    MessageBox.Show("You are already registered for this class...");
+                }
+            }
 
-                var StudentQuery = from s in context.Students
-                                   where s.FirstName == TempFirst && s.LastName == TempLast
-                                   select s;
-
-                var student = StudentQuery.FirstOrDefault();
-
-                // grab the subject object
-                var CurrentClass = context.Subjects
-                                    .Where(s => s.Name == SelectedNewClassName)
-                                    .FirstOrDefault();
-
-                // Create the registration
+            // Create the registration
+            if (!IsRegistered)
+            {
                 var Reg = new Registration
                 {
                     Student = student,
                     Subject = CurrentClass
                 };
-                context.Registrations.Add(Reg);
-                context.SaveChanges();
+                _context.Registrations.Add(Reg);
+                _context.SaveChanges();
             }
         }
 
         // Make sure that the user has selected a class and then create a visit object
         private void CheckInVisitButton_Click(object sender, EventArgs e)
         {
-            using (var context = new SehomeContext())
+            // Have they selected a class?
+            bool HasSelected = false;
+            string SelectedClassName = null;
+            foreach (Control c in CourseSelectBox.Controls)
             {
-                // Have they selected a class?
-                bool HasSelected = false;
-                string SelectedClassName = null;
-                foreach (Control c in CourseSelectBox.Controls)
+                if (c is RadioButton)
                 {
-                    if (c is RadioButton)
+                    RadioButton r = c as RadioButton;
+                    if (r.Checked)
                     {
-                        RadioButton r = c as RadioButton;
-                        if (r.Checked)
-                        {
-                            SelectedClassName = r.Text;
-                            HasSelected = true;
-                        }
+                        SelectedClassName = r.Text;
+                        HasSelected = true;
                     }
                 }
+            }
 
-                // Create the visit object if a class is selected
-                if (HasSelected)
+            // Create the visit object if a class is selected
+            if (HasSelected)
+            {
+                var SelectedClass = _context.Subjects
+                    .Where(s => s.Name == SelectedClassName)
+                    .FirstOrDefault();
+
+                // Grab the student object matching the selected name
+                string[] names = SelectedStudentName.Split(' ');
+                string TempFirst = names[0];
+                string TempLast = names[1];
+                var StudentQuery = from s in _context.Students
+                                    where s.FirstName == TempFirst && s.LastName == TempLast
+                                    select s;
+
+                var student = StudentQuery.First();
+                string FullName = student.FirstName + " " + student.LastName;
+
+                // Create the visit object
+                var vis = new Visit
                 {
-                    var SelectedClass = context.Subjects
-                        .Where(s => s.Name == SelectedClassName)
-                        .FirstOrDefault();
+                    TimeIn = DateTime.Now,
+                    Student = student,
+                    Subject = SelectedClass
+                };
 
-                    // Grab the student object matching the selected name
-                    string[] names = SelectedStudentName.Split(' ');
-                    string TempFirst = names[0];
-                    string TempLast = names[1];
-                    var StudentQuery = from s in context.Students
-                                       where s.FirstName == TempFirst && s.LastName == TempLast
-                                       select s;
+                _context.Visits.Add(vis);
+                _context.SaveChanges();
+                resetPositions();
 
-                    var student = StudentQuery.First();
+                // Finally, update the list of student names in the listbox to indiciate that
+                // the student has logged in for this session.
+                studentNames.Items.Clear();
+                foreach (var v in _context.Students)
+                {
+                    var CurrName = v.FirstName + " " + v.LastName;
 
-                    // Create the visit object
-                    var vis = new Visit
+                    if (CurrName.Equals(FullName))
                     {
-                        TimeIn = DateTime.Now,
-                        Student = student,
-                        Subject = SelectedClass
-                    };
-
-                    context.Visits.Add(vis);
-                    context.SaveChanges();
-                    resetPositions();
+                        studentNames.Items.Add(CurrName + " ✔");
+                    } else
+                    {
+                        studentNames.Items.Add(CurrName);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("You must select a class.");
-                }
+            }
+            else
+            {
+                MessageBox.Show("You must select a class.");
             }
         }
 
@@ -213,44 +237,41 @@ namespace SehomeTutoringCenter
             if (NameSelected)
             {
                 Console.WriteLine("clicked checkout");
-                using (var context = new SehomeContext())
+                // Grab the selected student and see if they are currently logged in
+                string[] names = SelectedStudentName.Split(' ');
+                string TempFirst = names[0];
+                string TempLast = names[1];
+                var StudentQuery = from s in _context.Students
+                                    where s.FirstName == TempFirst && s.LastName == TempLast
+                                    select s;
+
+                var student = StudentQuery.First();
+
+                string CurrentDate = DateTime.Now.ToString().Split(' ')[0];
+
+                // Find each visit for the current day
+                foreach (var v in _context.Visits)
                 {
-                    // Grab the selected student and see if they are currently logged in
-                    string[] names = SelectedStudentName.Split(' ');
-                    string TempFirst = names[0];
-                    string TempLast = names[1];
-                    var StudentQuery = from s in context.Students
-                                       where s.FirstName == TempFirst && s.LastName == TempLast
-                                       select s;
-
-                    var student = StudentQuery.First();
-
-                    string CurrentDate = DateTime.Now.ToString().Split(' ')[0];
-
-                    // Find each visit for the current day
-                    foreach (var v in context.Visits)
+                    Console.WriteLine("visit check");
+                    string date = v.TimeIn.ToString().Split(' ')[0];
+                    if (CurrentDate.Equals(date))
                     {
-                        Console.WriteLine("visit check");
-                        string date = v.TimeIn.ToString().Split(' ')[0];
-                        if (CurrentDate.Equals(date))
-                        {
-                            try {
-                                // See if the student is logged in for the day
-                                if (v.Student.FirstName.Equals(TempFirst) && v.Student.LastName.Equals(TempLast))
-                                {
-                                    v.TimeOut = DateTime.Now;
-                                    Console.WriteLine("checked out");
-                                }
-                            } catch(NullReferenceException)
+                        try {
+                            // See if the student is logged in for the day
+                            if (v.Student.FirstName.Equals(TempFirst) && v.Student.LastName.Equals(TempLast))
                             {
-                                MessageBox.Show("Visits have no student or subjects in them");
-                                break;
+                                v.TimeOut = DateTime.Now;
+                                Console.WriteLine("checked out");
                             }
+                        } catch(NullReferenceException)
+                        {
+                            MessageBox.Show("Visits have no student or subjects in them");
+                            break;
                         }
-
                     }
-                    context.SaveChanges();
+
                 }
+                _context.SaveChanges();
             } else
             {
                 MessageBox.Show("Please select a name from the list of students");
@@ -329,7 +350,5 @@ namespace SehomeTutoringCenter
                 }
             }
         }
-
-
     }
 }
