@@ -23,7 +23,6 @@ namespace SehomeTutoringCenter
         public CenterStatsForm()
         {
             InitializeComponent();
-            
             PopulateSubjectNames();
             DefaultData();
         }
@@ -45,18 +44,19 @@ namespace SehomeTutoringCenter
             if (_context.Students.Count() > 0)
             {
                 centerStatsChart.Titles.Add("Students Per Day");
+
+         
                 var VisitCounts = new Dictionary<String, int>();
                 int TotalStudents = 0;
                 double TotalTime = 0.0;
 
                 // Iterate through all visits and keep track of the count of each date
-                    // first grab the total number of students
                 TotalStudents = _context.Students.Count();
-                // then go grab all of the unique visit dates and their counts
+                // Then go grab all of the unique visit dates and their counts
                 foreach (var v in _context.Visits)
                 {
                     string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
-                                                                            // Now calculate the time spent for this visit
+                    // Now calculate the time spent for this visit
                     DateTime start = (DateTime)v.TimeIn;
                     DateTime end;
                     end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
@@ -137,7 +137,6 @@ namespace SehomeTutoringCenter
         private bool ValidInput()
         {
             bool IsValid = true;
-
 
             return IsValid;
         }

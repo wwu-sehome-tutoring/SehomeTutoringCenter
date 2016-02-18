@@ -211,6 +211,7 @@
             this.StudentList.Name = "StudentList";
             this.StudentList.Size = new System.Drawing.Size(173, 28);
             this.StudentList.TabIndex = 12;
+            this.StudentList.SelectedIndexChanged += new System.EventHandler(this.StudentList_SelectedIndexChanged);
             // 
             // StudentLabel
             // 

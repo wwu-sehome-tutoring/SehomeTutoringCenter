@@ -216,19 +216,20 @@ namespace SehomeTutoringCenter
 
                 // Finally, update the list of student names in the listbox to indiciate that
                 // the student has logged in for this session.
-                //studentNames.Items.Clear();
-                //foreach (var v in _context.Students)
-                //{
-                //    var CurrName = v.FirstName + " " + v.LastName;
+                studentNames.Items.Clear();
+                foreach (var v in _context.Students)
+                {
+                    var CurrName = v.FirstName + " " + v.LastName;
 
-                //    if (CurrName.Equals(FullName))
-                //    {
-                //        studentNames.Items.Add(CurrName + " ✔");
-                //    } else
-                //    {
-                //        studentNames.Items.Add(CurrName);
-                //    }
-                //}
+                    if (CurrName.Equals(FullName))
+                    {
+                        studentNames.Items.Add(CurrName + " ✔");
+                    }
+                    else
+                    {
+                        studentNames.Items.Add(CurrName);
+                    }
+                }
             }
             else
             {

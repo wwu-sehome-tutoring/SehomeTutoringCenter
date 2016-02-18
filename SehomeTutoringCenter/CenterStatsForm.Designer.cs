@@ -231,6 +231,10 @@
             // 
             // centerStatsChart
             // 
+            chartArea1.AxisX.Title = "Date";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Title = "Number of Students";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.Name = "ChartArea1";
             this.centerStatsChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
