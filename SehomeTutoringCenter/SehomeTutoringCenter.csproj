@@ -160,9 +160,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SehomeTutoringCenter.sqlite">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="SehomeTutoringCenter.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
