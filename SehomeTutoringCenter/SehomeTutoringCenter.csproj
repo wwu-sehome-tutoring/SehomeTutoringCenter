@@ -81,6 +81,7 @@
     <Compile Include="adminForm.Designer.cs">
       <DependentUpon>adminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DbHelper.cs" />
     <Compile Include="newStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
