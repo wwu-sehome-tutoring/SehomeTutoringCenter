@@ -9,6 +9,7 @@ namespace SehomeTutoringCenter
     public partial class studentLoginForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+        private DBHelper _dbh = new DBHelper();
 
         // Some global variables - should probably do it better
         string SelectedStudentName;
@@ -18,20 +19,25 @@ namespace SehomeTutoringCenter
         public studentLoginForm()
         {
             InitializeComponent();
-            PopulateSomeData();
+            PopulateStudentList();
+            PopulateClassList();
         }
 
         // At program start up, fill in the ListBox of the student names that
-        // are already in the database, if there are any.  And fill in the classes
-        // to the new class combo box
-        private void PopulateSomeData()
+        // are already in the database, if there are any.
+        private void PopulateStudentList()
         {
             foreach (var v in _context.Students)
             {
                 var FullName = v.FirstName + " " + v.LastName;
                 studentNames.Items.Add(FullName);
             }
+        }
 
+        // At program start up, fill in the ListBox in the check in area with the 
+        // list of classes.
+        private void PopulateClassList()
+        {
             foreach (var s in _context.Subjects)
             {
                 NewClassComboBox.Items.Add(s.Name);
@@ -67,14 +73,10 @@ namespace SehomeTutoringCenter
 
                 studentNames.Enabled = false;
 
-                // Now populate the check in area with all of the classes and teacher 
-                // names of the selected students
-
-                // grab the student object
+                // Grab the student object
                 string[] names = SelectedStudentName.Split(' ');
                 string TempFirst = names[0];
                 string TempLast = names[1];
-                Console.WriteLine(names[0] + " " + names[1]);
 
                 var StudentQuery = from s in _context.Students
                                     where s.FirstName == TempFirst && s.LastName == TempLast
@@ -84,9 +86,9 @@ namespace SehomeTutoringCenter
 
                 // Grab the names of the selected students classes
                 ArrayList classes = new ArrayList();
-                foreach (var r in _context.Subjects)
+                foreach (var s in _dbh.SubjectsFromStudent(_context, student))
                 {
-                    classes.Add(r.Name);
+                    classes.Add(s.Name);
                 }
 
                 // Update the radio buttons to show class names
@@ -95,9 +97,12 @@ namespace SehomeTutoringCenter
                 {
                     if (c is RadioButton)
                     {
-                        c.Text = classes[i].ToString();
-                        c.Visible = true;
-                        i++;
+                        if (i < classes.Count)
+                        {
+                            c.Text = classes[i].ToString();
+                            c.Visible = true;
+                            i++;
+                        }
                     }
                 }
                 // Change the welcome text to match the student name
@@ -219,7 +224,8 @@ namespace SehomeTutoringCenter
                     if (CurrName.Equals(FullName))
                     {
                         studentNames.Items.Add(CurrName + " ✔");
-                    } else
+                    }
+                    else
                     {
                         studentNames.Items.Add(CurrName);
                     }
@@ -250,9 +256,8 @@ namespace SehomeTutoringCenter
                 string CurrentDate = DateTime.Now.ToString().Split(' ')[0];
 
                 // Find each visit for the current day
-                foreach (var v in _context.Visits)
+                foreach (var v in _dbh.VisitsFromStudent(_context, student))
                 {
-                    Console.WriteLine("visit check");
                     string date = v.TimeIn.ToString().Split(' ')[0];
                     if (CurrentDate.Equals(date))
                     {
@@ -313,7 +318,7 @@ namespace SehomeTutoringCenter
 
             // Re-populate the listbox with the new students name
             studentNames.Items.Clear();
-            PopulateSomeData();
+            PopulateStudentList();
 
         }
 

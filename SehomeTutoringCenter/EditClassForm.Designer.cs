@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.AddGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ClassNameTB = new System.Windows.Forms.TextBox();
-            this.TeacherNameTB = new System.Windows.Forms.TextBox();
             this.AddClassButton = new System.Windows.Forms.Button();
+            this.TeacherNameTB = new System.Windows.Forms.TextBox();
+            this.ClassNameTB = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.RemoveClassGB = new System.Windows.Forms.GroupBox();
-            this.RemoveClassButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.ClassList = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.RemoveClassButton = new System.Windows.Forms.Button();
             this.AddGroupBox.SuspendLayout();
             this.RemoveClassGB.SuspendLayout();
             this.SuspendLayout();
@@ -57,38 +57,6 @@
             this.AddGroupBox.TabStop = false;
             this.AddGroupBox.Text = "Add Class";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Teacher";
-            // 
-            // ClassNameTB
-            // 
-            this.ClassNameTB.Location = new System.Drawing.Point(106, 48);
-            this.ClassNameTB.Name = "ClassNameTB";
-            this.ClassNameTB.Size = new System.Drawing.Size(226, 31);
-            this.ClassNameTB.TabIndex = 2;
-            // 
-            // TeacherNameTB
-            // 
-            this.TeacherNameTB.Location = new System.Drawing.Point(106, 101);
-            this.TeacherNameTB.Name = "TeacherNameTB";
-            this.TeacherNameTB.Size = new System.Drawing.Size(226, 31);
-            this.TeacherNameTB.TabIndex = 3;
-            // 
             // AddClassButton
             // 
             this.AddClassButton.BackColor = System.Drawing.Color.Green;
@@ -101,6 +69,38 @@
             this.AddClassButton.Text = "Add Class";
             this.AddClassButton.UseVisualStyleBackColor = false;
             this.AddClassButton.Click += new System.EventHandler(this.AddClassButton_Click);
+            // 
+            // TeacherNameTB
+            // 
+            this.TeacherNameTB.Location = new System.Drawing.Point(106, 101);
+            this.TeacherNameTB.Name = "TeacherNameTB";
+            this.TeacherNameTB.Size = new System.Drawing.Size(226, 31);
+            this.TeacherNameTB.TabIndex = 3;
+            // 
+            // ClassNameTB
+            // 
+            this.ClassNameTB.Location = new System.Drawing.Point(106, 48);
+            this.ClassNameTB.Name = "ClassNameTB";
+            this.ClassNameTB.Size = new System.Drawing.Size(226, 31);
+            this.ClassNameTB.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 101);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Teacher";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name";
             // 
             // RemoveClassGB
             // 
@@ -115,6 +115,23 @@
             this.RemoveClassGB.TabStop = false;
             this.RemoveClassGB.Text = "Remove Class";
             // 
+            // ClassList
+            // 
+            this.ClassList.FormattingEnabled = true;
+            this.ClassList.Location = new System.Drawing.Point(92, 48);
+            this.ClassList.Name = "ClassList";
+            this.ClassList.Size = new System.Drawing.Size(233, 33);
+            this.ClassList.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 25);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Name";
+            // 
             // RemoveClassButton
             // 
             this.RemoveClassButton.BackColor = System.Drawing.Color.Green;
@@ -127,27 +144,6 @@
             this.RemoveClassButton.Text = "Remove Class";
             this.RemoveClassButton.UseVisualStyleBackColor = false;
             this.RemoveClassButton.Click += new System.EventHandler(this.RemoveClassButton_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 25);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Name";
-            // 
-            // ClassList
-            // 
-            this.ClassList.FormattingEnabled = true;
-            this.ClassList.Items.AddRange(new object[] {
-            "Test",
-            "Test 2",
-            "Robot5"});
-            this.ClassList.Location = new System.Drawing.Point(92, 48);
-            this.ClassList.Name = "ClassList";
-            this.ClassList.Size = new System.Drawing.Size(233, 33);
-            this.ClassList.TabIndex = 8;
             // 
             // EditClassForm
             // 
