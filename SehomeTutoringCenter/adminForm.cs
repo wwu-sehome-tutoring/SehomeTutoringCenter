@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SehomeTutoringCenter
@@ -14,21 +9,17 @@ namespace SehomeTutoringCenter
     public partial class adminForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+
         public adminForm()
         {
             InitializeComponent();
+
+            // Grab the total number of students in the system
+            int TotalStudents = _context.Students.Count();
+            TotalStudentsBox.Text = TotalStudents.ToString();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addSubject_Click()
-        {
-
-        }
-
+        // This function will open up a dialogue to import a file
         private void ImportButton_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
@@ -86,8 +77,6 @@ namespace SehomeTutoringCenter
             MessageBox.Show("Class and Teacher CSV uploaded.");
         }
 
-        
-
         // Event handling for clicking on the add/remove class button
         private void EditClassButton_Click(object sender, EventArgs e)
         {
@@ -109,17 +98,20 @@ namespace SehomeTutoringCenter
 
         private void loginTab_Click(object sender, EventArgs e)
         {
-
+            studentLoginForm s = new studentLoginForm();
+            s.Show();
         }
 
         private void studentTab_Click(object sender, EventArgs e)
         {
-
+            studentStats studentStats = new studentStats();
+            studentStats.Show();
         }
 
         private void centerTab_Click(object sender, EventArgs e)
         {
-
+            CenterStatsForm s = new CenterStatsForm();
+            s.Show();
         }
     }
 }

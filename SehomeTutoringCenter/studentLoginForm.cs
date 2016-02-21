@@ -21,6 +21,7 @@ namespace SehomeTutoringCenter
             InitializeComponent();
             PopulateStudentList();
             PopulateClassList();
+
         }
 
         // At program start up, fill in the ListBox of the student names that
@@ -56,6 +57,11 @@ namespace SehomeTutoringCenter
         {
             if (NameSelected)
             {
+                if(SelectedStudentName.Contains("✔"))
+                {
+                    MessageBox.Show("Already logged in.");
+                    return;
+                }
                 // The chunk of code below will make the class select items pop up
                 // and also show the cancel button
                 CourseSelectBox.Location = new Point(734, 429);
@@ -73,45 +79,55 @@ namespace SehomeTutoringCenter
 
                 studentNames.Enabled = false;
 
-                // Grab the student object
-                string[] names = SelectedStudentName.Split(' ');
-                string TempFirst = names[0];
-                string TempLast = names[1];
-
-                var StudentQuery = from s in _context.Students
-                                    where s.FirstName == TempFirst && s.LastName == TempLast
-                                    select s;
-
-                var student = StudentQuery.FirstOrDefault();
-
-                // Grab the names of the selected students classes
-                ArrayList classes = new ArrayList();
-                foreach (var s in _dbh.SubjectsFromStudent(_context, student))
-                {
-                    classes.Add(s.Name);
-                }
-
-                // Update the radio buttons to show class names
-                int i = 0;
-                foreach (Control c in CourseSelectBox.Controls)
-                {
-                    if (c is RadioButton)
-                    {
-                        if (i < classes.Count)
-                        {
-                            c.Text = classes[i].ToString();
-                            c.Visible = true;
-                            i++;
-                        }
-                    }
-                }
-                // Change the welcome text to match the student name
-                WelcomeLabel.Text = String.Format("Welcome {0}, what are you going to study today?", student.FirstName);
+                // Update the class radio buttons
+                ShowStudentClasses();
 
             } else
             {
                 MessageBox.Show("Please select a name from the list of students");
             }
+        }
+
+        // Helper function to change the radio buttons to match which classes the selected student
+        // is registered for.
+        private void ShowStudentClasses()
+        {
+            // Grab the student object
+            string[] names = SelectedStudentName.Split(' ');
+            string TempFirst = names[0];
+            string TempLast = names[1];
+
+            var StudentQuery = from s in _context.Students
+                               where s.FirstName == TempFirst && s.LastName == TempLast
+                               select s;
+
+            var student = StudentQuery.FirstOrDefault();
+
+            // Grab the names of the selected students classes
+            ArrayList classes = new ArrayList();
+            foreach (var s in _dbh.SubjectsFromStudent(_context, student))
+            {
+                classes.Add(s.Name);
+            }
+
+            // Update the radio buttons to show class names
+            int i = 0, y = 0;
+            foreach (Control c in CourseSelectBox.Controls)
+            {
+                if (c is RadioButton)
+                {
+                    if (i >= (6 - classes.Count))
+                    {
+                        c.Text = classes[y].ToString();
+                        c.Visible = true;
+                        y++;
+                    }
+                    i++;
+                }
+            }
+
+            // Change the welcome text to match the student name
+            WelcomeLabel.Text = String.Format("Welcome {0}, what are you going to study today?", student.FirstName);
         }
 
         // When a new class is selected, set the global variable to be its text value
@@ -124,7 +140,6 @@ namespace SehomeTutoringCenter
         // Create a new Registration for the currently selected student
         private void NewClassButton_Click(object sender, EventArgs e)
         {
-
             // grab the student object
             string[] names = SelectedStudentName.Split(' ');
             string TempFirst = names[0];
@@ -135,6 +150,13 @@ namespace SehomeTutoringCenter
                                 select s;
 
             var student = StudentQuery.FirstOrDefault();
+
+            // Check if they have 6 classes already
+            if(_dbh.RegistrationsFromStudent(_context, student).Count() == 6)
+            {
+                MessageBox.Show("Already registered for the maximum number of classes.");
+                return;
+            }
 
             // grab the subject object
             var CurrentClass = _context.Subjects
@@ -163,6 +185,9 @@ namespace SehomeTutoringCenter
                 _context.Registrations.Add(Reg);
                 _context.SaveChanges();
             }
+
+            // Update the class radio buttons
+            ShowStudentClasses();
         }
 
         // Make sure that the user has selected a class and then create a visit object
@@ -216,24 +241,21 @@ namespace SehomeTutoringCenter
 
                 // Finally, update the list of student names in the listbox to indiciate that
                 // the student has logged in for this session.
-                studentNames.Items.Clear();
-                foreach (var v in _context.Students)
+                for(int i = 0; i < studentNames.Items.Count; i++)
                 {
-                    var CurrName = v.FirstName + " " + v.LastName;
-
-                    if (CurrName.Equals(FullName))
+                    if(studentNames.Items[i].Equals(FullName))
                     {
-                        studentNames.Items.Add(CurrName + " ✔");
-                    }
-                    else
-                    {
-                        studentNames.Items.Add(CurrName);
+                        studentNames.Items[i] = FullName + " ✔";
                     }
                 }
             }
             else
             {
-                MessageBox.Show("You must select a class.");
+                // Need to change this.
+                if (!CheckInVisitButton.Text.Contains("Students"))
+                {
+                    MessageBox.Show("You must select a class.");
+                }
             }
         }
 
@@ -241,7 +263,13 @@ namespace SehomeTutoringCenter
         private void checkOut_Click(object sender, EventArgs e)
         {
             if (NameSelected)
-            {
+            { 
+                if(!SelectedStudentName.Contains("✔"))
+                {
+                    MessageBox.Show("Not logged in.");
+                    return;
+                }
+
                 Console.WriteLine("clicked checkout");
                 // Grab the selected student and see if they are currently logged in
                 string[] names = SelectedStudentName.Split(' ');
@@ -254,6 +282,7 @@ namespace SehomeTutoringCenter
                 var student = StudentQuery.First();
 
                 string CurrentDate = DateTime.Now.ToString().Split(' ')[0];
+                string FullName = student.FirstName + " " + student.LastName;
 
                 // Find each visit for the current day
                 foreach (var v in _dbh.VisitsFromStudent(_context, student))
@@ -261,20 +290,22 @@ namespace SehomeTutoringCenter
                     string date = v.TimeIn.ToString().Split(' ')[0];
                     if (CurrentDate.Equals(date))
                     {
-                        try {
-                            // See if the student is logged in for the day
-                            if (v.Student.FirstName.Equals(TempFirst) && v.Student.LastName.Equals(TempLast))
-                            {
-                                v.TimeOut = DateTime.Now;
-                                Console.WriteLine("checked out");
-                            }
-                        } catch(NullReferenceException)
+                        // See if the student is logged in for the day
+                        if (v.Student.FirstName.Equals(TempFirst) && v.Student.LastName.Equals(TempLast))
                         {
-                            MessageBox.Show("Visits have no student or subjects in them");
-                            break;
-                        }
-                    }
+                            v.TimeOut = DateTime.Now;
+                            Console.WriteLine("checked out");
 
+                            // Get rid of the checkmark from the students name in the list
+                            for (int i = 0; i < studentNames.Items.Count; i++)
+                            {
+                                if (studentNames.Items[i].Equals(FullName + " ✔"))
+                                {
+                                    studentNames.Items[i] = FullName;
+                                }
+                            }
+                        } 
+                    }
                 }
                 _context.SaveChanges();
             } else
