@@ -15,6 +15,7 @@ namespace SehomeTutoringCenter
     public partial class CenterStatsForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+        private DBHelper _dbh = new DBHelper();
 
         string SelectedClass;
         string StartDate;
@@ -43,7 +44,7 @@ namespace SehomeTutoringCenter
         {
             if (_context.Students.Count() > 0)
             {
-                centerStatsChart.Titles.Add("Students Per Day");
+                //centerStatsChart.Titles.Add("Students Per Day");
 
          
                 var VisitCounts = new Dictionary<String, int>();
@@ -211,13 +212,21 @@ namespace SehomeTutoringCenter
         static Random rnd = new Random();
         private void PrizeButton_Click(object sender, EventArgs e)
         {
-            // Grab the list of student name
+            string current = DateTime.Now.ToString().Split(' ')[0];
             ArrayList names = new ArrayList();
-            foreach (var s in _context.Students)
+
+            // Go to each visit and if it's from today, grab the student and add
+            // their name to the list of current student names
+            foreach (var v in _context.Visits)
             {
-                string FullName = s.FirstName + " " + s.LastName;
-                names.Add(FullName);
+                if(v.TimeIn.ToString().Split(' ')[0].Equals(current))
+                {
+                    var s = _dbh.StudentFromVisit(_context, v);
+                    names.Add(s.FirstName + " " + s.LastName);
+                    
+                }
             }
+            
             // Now select a random name from the list
             if (_context.Students.Count() > 1)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SehomeTutoringCenter
@@ -6,6 +7,7 @@ namespace SehomeTutoringCenter
     public partial class EditClassForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+        private DBHelper _dbh = new DBHelper();
 
         public EditClassForm()
         {
@@ -63,7 +65,44 @@ namespace SehomeTutoringCenter
         // When a class gets selected, remove it from various places in the database
         private void RemoveClassButton_Click(object sender, EventArgs e)
         {
+            string ClassName = ClassList.SelectedItem.ToString();
 
+            var CurrentClass = _context.Subjects
+                                .Where(s => s.Name == ClassName)
+                                .FirstOrDefault();
+
+            // Remove all registrations matching the selected class
+            foreach (var r in _context.Registrations)
+            {
+                if (r.SubjectId == CurrentClass.Id)
+                {
+                    _context.Registrations.Remove(r);
+                    Console.WriteLine("removed registration for " + ClassName);
+                }
+            }
+
+            // Remove all visits that have a subject matching the selected class
+            foreach(var v in _context.Visits)
+            {
+                if(v.SubjectId == CurrentClass.Id)
+                {
+                    _context.Visits.Remove(v);
+                    Console.WriteLine("removed visits for " + ClassName);
+                }
+            }
+
+            // Remove the class for the subject table
+            foreach (var s in _context.Subjects)
+            {
+                if(s.Name.Equals(ClassName))
+                {
+                    _context.Subjects.Remove(s);
+                    Console.WriteLine("removed " + ClassName);
+                }
+            }
+
+            _context.SaveChanges();
+            
         }
     }
 }

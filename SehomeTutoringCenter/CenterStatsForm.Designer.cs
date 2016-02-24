@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.adminTab = new System.Windows.Forms.Button();
             this.studentTab = new System.Windows.Forms.Button();
             this.loginTab = new System.Windows.Forms.Button();
@@ -232,9 +233,9 @@
             // centerStatsChart
             // 
             chartArea1.AxisX.Title = "Date";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.AxisY.Title = "Number of Students";
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.Name = "ChartArea1";
             this.centerStatsChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -245,6 +246,10 @@
             this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
             this.centerStatsChart.TabIndex = 18;
             this.centerStatsChart.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Students Per Day";
+            title1.Text = "Students Per Day";
+            this.centerStatsChart.Titles.Add(title1);
             // 
             // CenterStatsTable
             // 

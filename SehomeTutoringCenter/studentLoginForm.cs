@@ -348,8 +348,8 @@ namespace SehomeTutoringCenter
             newStudent.ShowDialog();
 
             // Re-populate the listbox with the new students name
-            studentNames.Items.Clear();
-            PopulateStudentList();
+            //studentNames.Items.Clear();
+            //PopulateStudentList();
 
         }
 

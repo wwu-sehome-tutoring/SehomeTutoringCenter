@@ -51,6 +51,12 @@ namespace SehomeTutoringCenter
             return context.Subjects.Where(s => s.Id == registration.SubjectId).First();
         }
 
+        // RegistrationsFromSubjects returns a Registration matching the given subject
+        public Registration RegistrationsFromSubject(SehomeContext context, Subject sub)
+        {
+            return context.Registrations.Where(s => s.SubjectId == sub.Id).First();
+        }
+
         // Visit Methods -----------------------------------------------------------------------
 
         // StudentFromVisit returns a Student given a Visit and a SehomeContext.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -9,14 +10,35 @@ namespace SehomeTutoringCenter
     public partial class adminForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+        private DBHelper _dbh = new DBHelper();
 
         public adminForm()
         {
             InitializeComponent();
+            PopulateGridView();
 
             // Grab the total number of students in the system
             int TotalStudents = _context.Students.Count();
             TotalStudentsBox.Text = TotalStudents.ToString();
+        }
+
+        private void PopulateGridView()
+        {
+            string current = DateTime.Now.ToString().Split(' ')[0];
+            ArrayList names = new ArrayList();
+
+            foreach (var v in _context.Visits)
+            {
+                if (v.TimeIn.ToString().Split(' ')[0].Equals(current))
+                {
+                    var s = _dbh.StudentFromVisit(_context, v);
+                    dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            v.TimeIn, v.TimeOut, 0);
+
+                }
+            }
+
         }
 
         // This function will open up a dialogue to import a file

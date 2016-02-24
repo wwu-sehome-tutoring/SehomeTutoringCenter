@@ -156,7 +156,7 @@ CREATE TABLE visit(
 
                 foreach (var stu in context.Students)
                 {
-                    foreach(var sub in subjects)
+                    foreach (var sub in subjects)
                     {
                         var reg = new Registration
                         {
