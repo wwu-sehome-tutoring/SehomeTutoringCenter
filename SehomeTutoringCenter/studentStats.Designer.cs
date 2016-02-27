@@ -32,11 +32,6 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.studentGridView = new System.Windows.Forms.DataGridView();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sehomeLogo = new System.Windows.Forms.PictureBox();
             this.adminTab = new System.Windows.Forms.Button();
             this.centerTab = new System.Windows.Forms.Button();
@@ -53,6 +48,11 @@
             this.studentComboBox = new System.Windows.Forms.ComboBox();
             this.currentStudentGroupBox = new System.Windows.Forms.GroupBox();
             this.currentStudentText = new System.Windows.Forms.TextBox();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.studentGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentPieChart)).BeginInit();
@@ -75,36 +75,6 @@
             this.studentGridView.Name = "studentGridView";
             this.studentGridView.Size = new System.Drawing.Size(1310, 453);
             this.studentGridView.TabIndex = 20;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Date";
-            this.date.Name = "date";
-            this.date.Width = 200;
-            // 
-            // subject
-            // 
-            this.subject.HeaderText = "Subject";
-            this.subject.Name = "subject";
-            this.subject.Width = 200;
-            // 
-            // timeIn
-            // 
-            this.timeIn.HeaderText = "Time In";
-            this.timeIn.Name = "timeIn";
-            this.timeIn.Width = 200;
-            // 
-            // timeOut
-            // 
-            this.timeOut.HeaderText = "Time Out";
-            this.timeOut.Name = "timeOut";
-            this.timeOut.Width = 200;
-            // 
-            // totalTime
-            // 
-            this.totalTime.HeaderText = "Total Time";
-            this.totalTime.Name = "totalTime";
-            this.totalTime.Width = 200;
             // 
             // sehomeLogo
             // 
@@ -283,6 +253,36 @@
             this.currentStudentText.Size = new System.Drawing.Size(246, 35);
             this.currentStudentText.TabIndex = 0;
             // 
+            // date
+            // 
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.date.HeaderText = "Date";
+            this.date.Name = "date";
+            // 
+            // subject
+            // 
+            this.subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.subject.HeaderText = "Subject";
+            this.subject.Name = "subject";
+            // 
+            // timeIn
+            // 
+            this.timeIn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timeIn.HeaderText = "Time In";
+            this.timeIn.Name = "timeIn";
+            // 
+            // timeOut
+            // 
+            this.timeOut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timeOut.HeaderText = "Time Out";
+            this.timeOut.Name = "timeOut";
+            // 
+            // totalTime
+            // 
+            this.totalTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.totalTime.HeaderText = "Total Time";
+            this.totalTime.Name = "totalTime";
+            // 
             // studentStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,11 +320,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView studentGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subject;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeIn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeOut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalTime;
         private System.Windows.Forms.PictureBox sehomeLogo;
         private System.Windows.Forms.Button adminTab;
         private System.Windows.Forms.Button centerTab;
@@ -341,5 +336,10 @@
         private System.Windows.Forms.ComboBox studentComboBox;
         private System.Windows.Forms.GroupBox currentStudentGroupBox;
         private System.Windows.Forms.TextBox currentStudentText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeOut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalTime;
     }
 }
