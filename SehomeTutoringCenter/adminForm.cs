@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -113,8 +114,55 @@ namespace SehomeTutoringCenter
             f.ShowDialog();
         }
 
+        // For a new semester, just move the current database file to another location
+        // and then delete it from the current location
         private void NewSemesterButton_Click(object sender, EventArgs e)
         {
+            // Grab the current database
+            string CWD = Directory.GetCurrentDirectory();
+            string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
+            Console.WriteLine(SourcePath);
+
+            string DestDir = CWD + "\\DatabaseBackups";
+            string DestPath = DestDir + "\\SehomeTutoringCenter.sqlite";
+            Console.WriteLine(DestDir);
+            Console.WriteLine(DestPath);
+
+            // Move the current database to the backup directory
+            if(!System.IO.Directory.Exists(DestDir))
+            {
+                System.IO.Directory.CreateDirectory(DestDir);
+            }
+
+            System.IO.File.Copy(SourcePath, DestPath, true);
+
+            // Remove all entries in all of the tables in the database
+            try
+            {
+                foreach(var r in _context.Registrations)
+                {
+                    _context.Registrations.Remove(r);
+                }
+                foreach(var s in _context.Students)
+                {
+                    _context.Students.Remove(s);
+                }
+                foreach(var s in _context.Subjects)
+                {
+                    _context.Subjects.Remove(s);
+                }
+                foreach(var v in _context.Visits)
+                {
+                    _context.Visits.Remove(v);
+                }
+                _context.SaveChanges();
+                MessageBox.Show("Closing the program....");
+                Application.Exit();
+            } catch (System.IO.IOException ttt)
+            {
+                Console.WriteLine(ttt.Message);
+                return;
+            }
 
         }
 
