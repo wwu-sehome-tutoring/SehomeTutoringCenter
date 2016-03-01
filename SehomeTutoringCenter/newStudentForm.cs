@@ -10,11 +10,13 @@ namespace SehomeTutoringCenter
     public partial class newStudentForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+        private studentLoginForm temp1;
 
         public newStudentForm(studentLoginForm temp)
         {
             InitializeComponent();
             PopulateClassLists();
+            temp1 = temp;
         }
 
         // Populate each combox box of the class list groupbox to contain all of the
@@ -28,7 +30,7 @@ namespace SehomeTutoringCenter
                         ComboBox temp = c as ComboBox;
                         foreach (var v in _context.Subjects)
                         {
-                            temp.Items.Add(v.Name);
+                            temp.Items.Add(v.Name + "-" + v.TeacherName);
                         }
                     }
                 }
@@ -59,10 +61,11 @@ namespace SehomeTutoringCenter
                     if (c is ComboBox)
                     {
                         ComboBox temp = c as ComboBox;
-                        if (temp.Text != "") {
+                        string ClassName = temp.Text.Split('-')[0];
+                        if (ClassName != "") {
                             // Grab the class object matching the current class name
                             var CurrentClass = _context.Subjects
-                                .Where(s => s.Name == c.Text)
+                                .Where(s => s.Name == ClassName)
                                 .FirstOrDefault();
 
                             // Create the registration
@@ -77,7 +80,8 @@ namespace SehomeTutoringCenter
                     }
                 }
 
-            this.Close();
+                temp1.studentNames.Items.Add(stud.FirstName + " " + stud.LastName);
+                this.Close();
             }
             else
             {

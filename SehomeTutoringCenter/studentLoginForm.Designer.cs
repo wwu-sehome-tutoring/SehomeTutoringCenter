@@ -30,8 +30,6 @@
         {
             this.checkIn = new System.Windows.Forms.Button();
             this.checkOut = new System.Windows.Forms.Button();
-            this.sehomeLogo = new System.Windows.Forms.PictureBox();
-            this.loginBackdrop = new System.Windows.Forms.RichTextBox();
             this.CheckInVisitButton = new System.Windows.Forms.Button();
             this.studentsTab = new System.Windows.Forms.Button();
             this.centerTab = new System.Windows.Forms.Button();
@@ -39,6 +37,8 @@
             this.studentNames = new System.Windows.Forms.ListBox();
             this.newStudentBtn = new System.Windows.Forms.Button();
             this.CourseSelectBox = new System.Windows.Forms.GroupBox();
+            this.NewClassButton = new System.Windows.Forms.Button();
+            this.NewClassComboBox = new System.Windows.Forms.ComboBox();
             this.WelcomeLabel = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
@@ -47,10 +47,10 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.NewClassComboBox = new System.Windows.Forms.ComboBox();
-            this.NewClassButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
+            this.sehomeLogo = new System.Windows.Forms.PictureBox();
+            this.loginBackdrop = new System.Windows.Forms.RichTextBox();
             this.CourseSelectBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // checkIn
@@ -78,29 +78,6 @@
             this.checkOut.Text = "Check Out";
             this.checkOut.UseVisualStyleBackColor = false;
             this.checkOut.Click += new System.EventHandler(this.checkOut_Click);
-            // 
-            // sehomeLogo
-            // 
-            this.sehomeLogo.Image = global::SehomeTutoringCenter.Properties.Resources.Sehome_color129x200_97x150;
-            this.sehomeLogo.Location = new System.Drawing.Point(948, 57);
-            this.sehomeLogo.Name = "sehomeLogo";
-            this.sehomeLogo.Size = new System.Drawing.Size(97, 153);
-            this.sehomeLogo.TabIndex = 2;
-            this.sehomeLogo.TabStop = false;
-            // 
-            // loginBackdrop
-            // 
-            this.loginBackdrop.BackColor = System.Drawing.Color.Silver;
-            this.loginBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.loginBackdrop.CausesValidation = false;
-            this.loginBackdrop.Location = new System.Drawing.Point(715, 226);
-            this.loginBackdrop.MaxLength = 0;
-            this.loginBackdrop.Name = "loginBackdrop";
-            this.loginBackdrop.ReadOnly = true;
-            this.loginBackdrop.Size = new System.Drawing.Size(565, 209);
-            this.loginBackdrop.TabIndex = 3;
-            this.loginBackdrop.TabStop = false;
-            this.loginBackdrop.Text = "";
             // 
             // CheckInVisitButton
             // 
@@ -193,6 +170,29 @@
             this.CourseSelectBox.TabIndex = 11;
             this.CourseSelectBox.TabStop = false;
             this.CourseSelectBox.Visible = false;
+            // 
+            // NewClassButton
+            // 
+            this.NewClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewClassButton.Location = new System.Drawing.Point(373, 283);
+            this.NewClassButton.Name = "NewClassButton";
+            this.NewClassButton.Size = new System.Drawing.Size(75, 30);
+            this.NewClassButton.TabIndex = 13;
+            this.NewClassButton.Text = "Add";
+            this.NewClassButton.UseVisualStyleBackColor = true;
+            this.NewClassButton.Visible = false;
+            this.NewClassButton.Click += new System.EventHandler(this.NewClassButton_Click);
+            // 
+            // NewClassComboBox
+            // 
+            this.NewClassComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewClassComboBox.FormattingEnabled = true;
+            this.NewClassComboBox.Location = new System.Drawing.Point(60, 284);
+            this.NewClassComboBox.Name = "NewClassComboBox";
+            this.NewClassComboBox.Size = new System.Drawing.Size(307, 28);
+            this.NewClassComboBox.TabIndex = 7;
+            this.NewClassComboBox.Visible = false;
+            this.NewClassComboBox.SelectedIndexChanged += new System.EventHandler(this.NewClassComboBox_SelectedIndexChanged);
             // 
             // WelcomeLabel
             // 
@@ -294,28 +294,30 @@
             this.CancelButton.Visible = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // NewClassComboBox
+            // sehomeLogo
             // 
-            this.NewClassComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewClassComboBox.FormattingEnabled = true;
-            this.NewClassComboBox.Location = new System.Drawing.Point(60, 284);
-            this.NewClassComboBox.Name = "NewClassComboBox";
-            this.NewClassComboBox.Size = new System.Drawing.Size(307, 28);
-            this.NewClassComboBox.TabIndex = 7;
-            this.NewClassComboBox.Visible = false;
-            this.NewClassComboBox.SelectedIndexChanged += new System.EventHandler(this.NewClassComboBox_SelectedIndexChanged);
+            this.sehomeLogo.Image = global::SehomeTutoringCenter.Properties.Resources.logo;
+            this.sehomeLogo.Location = new System.Drawing.Point(922, 28);
+            this.sehomeLogo.Name = "sehomeLogo";
+            this.sehomeLogo.Size = new System.Drawing.Size(143, 197);
+            this.sehomeLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sehomeLogo.TabIndex = 2;
+            this.sehomeLogo.TabStop = false;
             // 
-            // NewClassButton
+            // loginBackdrop
             // 
-            this.NewClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewClassButton.Location = new System.Drawing.Point(373, 283);
-            this.NewClassButton.Name = "NewClassButton";
-            this.NewClassButton.Size = new System.Drawing.Size(75, 30);
-            this.NewClassButton.TabIndex = 13;
-            this.NewClassButton.Text = "Add";
-            this.NewClassButton.UseVisualStyleBackColor = true;
-            this.NewClassButton.Visible = false;
-            this.NewClassButton.Click += new System.EventHandler(this.NewClassButton_Click);
+            this.loginBackdrop.BackColor = System.Drawing.Color.Silver;
+            this.loginBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.loginBackdrop.CausesValidation = false;
+            this.loginBackdrop.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.loginBackdrop.Location = new System.Drawing.Point(715, 226);
+            this.loginBackdrop.MaxLength = 0;
+            this.loginBackdrop.Name = "loginBackdrop";
+            this.loginBackdrop.ReadOnly = true;
+            this.loginBackdrop.Size = new System.Drawing.Size(565, 209);
+            this.loginBackdrop.TabIndex = 3;
+            this.loginBackdrop.TabStop = false;
+            this.loginBackdrop.Text = "";
             // 
             // studentLoginForm
             // 
@@ -327,19 +329,19 @@
             this.Controls.Add(this.adminTab);
             this.Controls.Add(this.centerTab);
             this.Controls.Add(this.studentsTab);
-            this.Controls.Add(this.sehomeLogo);
             this.Controls.Add(this.checkOut);
             this.Controls.Add(this.checkIn);
-            this.Controls.Add(this.loginBackdrop);
             this.Controls.Add(this.newStudentBtn);
+            this.Controls.Add(this.loginBackdrop);
             this.Controls.Add(this.CheckInVisitButton);
+            this.Controls.Add(this.sehomeLogo);
             this.Controls.Add(this.CourseSelectBox);
             this.Name = "studentLoginForm";
             this.Text = "SLC Attendence System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).EndInit();
             this.CourseSelectBox.ResumeLayout(false);
             this.CourseSelectBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,7 +351,6 @@
         private System.Windows.Forms.Button checkIn;
         private System.Windows.Forms.Button checkOut;
         private System.Windows.Forms.PictureBox sehomeLogo;
-        private System.Windows.Forms.RichTextBox loginBackdrop;
         private System.Windows.Forms.Button CheckInVisitButton;
         private System.Windows.Forms.Button studentsTab;
         private System.Windows.Forms.Button centerTab;
@@ -367,6 +368,7 @@
         private System.Windows.Forms.Label WelcomeLabel;
         private System.Windows.Forms.ComboBox NewClassComboBox;
         private System.Windows.Forms.Button NewClassButton;
+        private System.Windows.Forms.RichTextBox loginBackdrop;
     }
 }
 

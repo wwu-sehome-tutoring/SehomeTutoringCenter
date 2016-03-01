@@ -43,9 +43,70 @@ namespace SehomeTutoringCenter
             }
         }
 
+        // After clicking this button, go to each part of the form and see if the user
+        // has selected any items to change.  If so, update that student objects various stuff
         private void UpdateStudentButton_Click(object sender, EventArgs e)
         {
+            // There's gotta be a better way to do this....
+            string SelectedName = (string)StudentList.SelectedItem;
+            string[] names = SelectedName.Split(' ');
+            string TempFirst = names[0];
+            string TempLast = names[1];
 
+            var StudentQuery = from s in _context.Students
+                               where s.FirstName == TempFirst && s.LastName == TempLast
+                               select s;
+
+            var student = StudentQuery.FirstOrDefault();
+
+            // Change their name if need be
+            if(FirstNameTextBox.Text != "" && LastNameTextBox.Text != "")
+            {
+                Console.WriteLine("changing data...");
+                student.FirstName = FirstNameTextBox.Text;
+                student.LastName = LastNameTextBox.Text;
+
+                _context.SaveChanges();
+            }
+
+            // Change their grade if need be
+            string CheckedButton = RadioBtnPanel.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+            student.Grade = CheckedButton;
+            _context.SaveChanges();
+
+            // NOTE - As of now, the easiest way to update their list of registered classes is to just
+            // remove the registrations they currently have and then add in each new class as if it's
+            // a brand new one, even if they haven't changed that specific class.
+            foreach(var r in _dbh.RegistrationsFromStudent(_context, student))
+            {
+                _context.Registrations.Remove(r);
+            }
+
+            foreach (Control c in ClassGroupBox.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox temp = c as ComboBox;
+                    if (temp.Text != "")
+                    {
+                        // Grab the class object matching the current class name
+                        var CurrentClass = _context.Subjects
+                            .Where(s => s.Name == c.Text)
+                            .FirstOrDefault();
+
+                        // Create the registration
+                        var Reg = new Registration
+                        {
+                            Student = student,
+                            Subject = CurrentClass
+                        };
+                        _context.Registrations.Add(Reg);
+                        _context.SaveChanges();
+                    }
+                }
+            }
+
+            this.Close();
         }
 
         // When a name gets selected from the list, fill in the various fields of
@@ -79,6 +140,7 @@ namespace SehomeTutoringCenter
             var cs = from controls in ClassGroupBox.Controls.OfType<ComboBox>().ToList()
                     select controls;
 
+            // Put the class names into the combo boxes
             int i = 0;
             foreach (var s in _dbh.SubjectsFromStudent(_context, student))
             {

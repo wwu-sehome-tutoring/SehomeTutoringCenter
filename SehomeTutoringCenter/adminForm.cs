@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections;
 using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SehomeTutoringCenter
@@ -14,21 +11,38 @@ namespace SehomeTutoringCenter
     public partial class adminForm : Form
     {
         private SehomeContext _context = new SehomeContext();
+        private DBHelper _dbh = new DBHelper();
+
         public adminForm()
         {
             InitializeComponent();
+            PopulateGridView();
+
+            // Grab the total number of students in the system
+            int TotalStudents = _context.Students.Count();
+            TotalStudentsBox.Text = TotalStudents.ToString();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void PopulateGridView()
         {
+            string current = DateTime.Now.ToString().Split(' ')[0];
+            ArrayList names = new ArrayList();
+
+            foreach (var v in _context.Visits)
+            {
+                if (v.TimeIn.ToString().Split(' ')[0].Equals(current))
+                {
+                    var s = _dbh.StudentFromVisit(_context, v);
+                    dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            v.TimeIn, v.TimeOut, 0);
+
+                }
+            }
 
         }
 
-        private void addSubject_Click()
-        {
-
-        }
-
+        // This function will open up a dialogue to import a file
         private void ImportButton_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
@@ -86,8 +100,6 @@ namespace SehomeTutoringCenter
             MessageBox.Show("Class and Teacher CSV uploaded.");
         }
 
-        
-
         // Event handling for clicking on the add/remove class button
         private void EditClassButton_Click(object sender, EventArgs e)
         {
@@ -102,24 +114,74 @@ namespace SehomeTutoringCenter
             f.ShowDialog();
         }
 
+        // For a new semester, just move the current database file to another location
+        // and then delete it from the current location
         private void NewSemesterButton_Click(object sender, EventArgs e)
         {
+            // Grab the current database
+            string CWD = Directory.GetCurrentDirectory();
+            string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
+            Console.WriteLine(SourcePath);
+
+            string DestDir = CWD + "\\DatabaseBackups";
+            string DestPath = DestDir + "\\SehomeTutoringCenter.sqlite";
+            Console.WriteLine(DestDir);
+            Console.WriteLine(DestPath);
+
+            // Move the current database to the backup directory
+            if(!System.IO.Directory.Exists(DestDir))
+            {
+                System.IO.Directory.CreateDirectory(DestDir);
+            }
+
+            System.IO.File.Copy(SourcePath, DestPath, true);
+
+            // Remove all entries in all of the tables in the database
+            try
+            {
+                foreach(var r in _context.Registrations)
+                {
+                    _context.Registrations.Remove(r);
+                }
+                foreach(var s in _context.Students)
+                {
+                    _context.Students.Remove(s);
+                }
+                foreach(var s in _context.Subjects)
+                {
+                    _context.Subjects.Remove(s);
+                }
+                foreach(var v in _context.Visits)
+                {
+                    _context.Visits.Remove(v);
+                }
+                _context.SaveChanges();
+                MessageBox.Show("Closing the program....");
+                Application.Exit();
+            } catch (System.IO.IOException ttt)
+            {
+                Console.WriteLine(ttt.Message);
+                return;
+            }
 
         }
 
         private void loginTab_Click(object sender, EventArgs e)
         {
-
+            studentLoginForm s = new studentLoginForm();
+            s.Show();
         }
 
         private void studentTab_Click(object sender, EventArgs e)
         {
-
+            studentStats studentStats = new studentStats();
+            studentStats.Show();
         }
 
         private void centerTab_Click(object sender, EventArgs e)
         {
-
+            CenterStatsForm s = new CenterStatsForm();
+            s.Show();
         }
     }
 }
