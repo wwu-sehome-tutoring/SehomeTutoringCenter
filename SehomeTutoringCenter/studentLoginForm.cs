@@ -210,7 +210,7 @@ namespace SehomeTutoringCenter
             }
 
             // Create the visit object if a class is selected
-            if (HasSelected)
+            if (HasSelected && CheckInVisitButton.Text.Contains("Check"))
             {
                 var SelectedClass = _context.Subjects
                     .Where(s => s.Name == SelectedClassName)
