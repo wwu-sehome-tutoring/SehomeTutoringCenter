@@ -59,166 +59,85 @@ namespace SehomeTutoringCenter
             {
                 series.Points.Clear();
             }
-            currentStudentText.Clear();
+            currentStudentText.Clear();                     
 
             //  Grabing values from the selecting tools on the left side of the page
-            string selectedStudentName = studentComboBox.Text.ToString();
-            //long studentID = -1;                            //This is the student ID from the DB
-            currentStudentText.Text = selectedStudentName;
-            DateTime startDate = startDatePicker.Value;
-            DateTime endDate = endDatePicker.Value;
-            DateTime? timeInNullable;                               //Question mark means value in Null able
+            string selectedStudentName = studentComboBox.Text.ToString();       //Grab first Last name from studentComboBox
+            DateTime startDate = startDatePicker.Value;                         //Selected start date
+            DateTime endDate = endDatePicker.Value;                             //Selected start date
+            DateTime? timeInNullable;                                           //Visit times from Db
             DateTime? timeOutNullable;
             DateTime timeIn;
             DateTime timeOut;
-            //string startDate1 = startDatePicker.Value.ToString("yyyy-MM-dd-0");
-            //string endDate1 = endDatePicker.Value.ToString("yyyy-MM-dd");
+            TimeSpan visitLength;                                               //This will be the difference between timeIn and timeOut
+            string visitDuration;                                               //This will be hh:mm:ss string formate of visitLength
+            int classCount = 0;                                                 //This is the number of classes an individual student is registered for
+            long[,] subs;                                                       //subs[0][*] = subject Id    and subs[1][*] = Number of vsits for that subject
+            string[] subsNames;                                                 //This is the corresponding names for subs[]
 
-
-            int classCount = 0;
-            //long[] visitPerSubject;
-            long[,] subs;     //subs[0][*] = subject Id    and subs[1][*] = Number of vsits
-            string[] subsNames;
-
+            //Add student name to text box
+            currentStudentText.Text = selectedStudentName;
+            //grabing student object
             string[] names = selectedStudentName.Split(' ');
+            string fname = names[0];
+            string lname = names[1];
+            
+            var StudentQuery =  from s in _context.Students
+                                where s.FirstName == fname && s.LastName == lname
+                                select s;
 
-
-            //New code using DBHelper, needs lots of cleaning
-
-            //var StudentQuery =  from s in context.Students
-            //                    where s.FirstName == names[0] && s.LastName == names[1]
-            //                    select s;
-
-            //var student = StudentQuery.FirstOrDefault();
-
-            foreach (var student in _context.Students)
+            var student = StudentQuery.FirstOrDefault();
+            //Grabing registered classes
+            var registrations = _dbh.RegistrationsFromStudent(_context, student);
+            classCount = registrations.Count();
+            subs = new long[2, classCount];
+            subsNames = new string[classCount];
+            int i = 0;
+            foreach (var r in registrations)
             {
-                if ((student.FirstName + " " + student.LastName) == selectedStudentName)
+                subs[0, i] = r.SubjectId;      //at this moment subs holds The id of the registered subject
+                var subject = _dbh.SubjectFromRegistration(_context, r);
+                subsNames[i] = (subject.Name + ": " + subject.TeacherName);
+                i++;
+            }
+            var visits = _dbh.VisitsFromStudent(_context, student);
+            foreach (var visit in visits)
+            {
+                timeInNullable = visit.TimeIn;
+                timeOutNullable = visit.TimeOut;
+
+                timeIn = (DateTime)timeInNullable;
+
+                if (startDate.Day <= timeIn.Day && timeIn.Day <= endDate.Day)
                 {
-                    var registrations = _dbh.RegistrationsFromStudent(_context, student);
-                    classCount = registrations.Count();
-                    subs = new long[2, classCount];
-                    subsNames = new string[classCount];
-                    int i = 0;
-                    foreach (var r in registrations)
-                    {
-                        subs[0, i] = r.SubjectId;      //at this moment subs holds The id of the registered subject
-                        var subject = _dbh.SubjectFromRegistration(_context, r);
-                        subsNames[i] = (subject.Name + ": " + subject.TeacherName);
-                        i++;
-                    }
-                    var visits = _dbh.VisitsFromStudent(_context, student);
-                    foreach (var visit in visits)
-                    {
-                        timeInNullable = visit.TimeIn;
-                        timeOutNullable = visit.TimeOut;
-
-                        timeIn = (DateTime)timeInNullable;
-                        //  right now Im counting visits with timeout values before ones with null
-                        if (timeOutNullable != null)
-                        {
-                            timeOut = (DateTime)timeOutNullable;
-                            if (startDate <= timeIn && timeIn <= endDate)
-                            {
-                                for (int c = 0; c < classCount; c++)
-                                {
-                                    if (visit.SubjectId == subs[0, c])
-                                    {
-                                        subs[1, c] = subs[1, c] + 1;
-                                        studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[c], timeIn.ToString("hh:mm:ss tt"), timeOut.ToString("hh:mm:ss tt"), timeOut.Subtract(timeIn));//.ToString("h m s tt")
-                                    }
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            if (startDate <= timeIn && timeIn <= endDate)
-                            {
-                                for (int c = 0; c < classCount; c++)
-                                {
-                                    if (visit.SubjectId == subs[0, c])
-                                    {
-                                        subs[1, c] = subs[1, c] + 1;
-                                        studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[c], timeIn.ToString("hh:mm:ss tt"), timeOutNullable);//.ToString("h m s tt")
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    //
-                    //  loading pie chart
-                    //
-
                     for (int c = 0; c < classCount; c++)
                     {
-                        //this.chart1.Series["Subjects"].Points.AddXY(subsNames[i], visitPerSubject[i]);
-                        this.studentPieChart.Series["Subjects"].Points.AddXY(subsNames[c], subs[1, c]);
-                        //Console.Write(i.ToString()+" "+ subs[i].ToString()+"\n");
+                        if (visit.SubjectId == subs[0, c])
+                        {
+                            if (timeOutNullable != null)
+                            {
+                                timeOut = (DateTime)timeOutNullable;
+                                subs[1, c] = subs[1, c] + 1;
+                                visitLength = timeOut.Subtract(timeIn);
+                                visitDuration = visitLength.ToString("hh")+":"+visitLength.ToString("mm")+":"+visitLength.ToString("ss");
+                                studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[c], timeIn.ToString("hh:mm:ss tt"), timeOut.ToString("hh:mm:ss tt"), visitDuration);//.ToString("h m s tt")
+                            }
+                            else
+                            {
+                                subs[1, c] = subs[1, c] + 1;
+                                studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[c], timeIn.ToString("hh:mm:ss tt"), timeOutNullable);
+                            }
+                        }
                     }
                 }
             }
-
-            //Ill go through and clean this up as soon as the student.registration NULL error is fixed
-            //My atempt at using student.Registraion.
-            /*
-            using (var context = new SehomeContext())
+            //
+            //  loading pie chart
+            //
+            for (int c = 0; c < classCount; c++)
             {
-                var student = new Student{
-                            FirstName = "fName",
-                            LastName = "lName",
-                            Grade = "Sinior"
-                        };
-
-                //find the student by first and last name
-                foreach (var s in context.Students)
-                {
-                    if ((s.FirstName + " " + s.LastName) == studentName)
-                    {
-                        studentID = s.Id;
-                        student = s;    //my student object
-                    }
-                }
-                // if I found the student get all the classes they are registered for
-
-                if(student != null)
-                {
-                    foreach(var r in student.Registrations)
-                    {
-                        classCount++;   //number of classes and individual student studies
-                    }
-                    visitPerSubject = new long[classCount];
-                    subsNames = new string[classCount];
-                   
-                    int i = 0;
-                    //Collect subject: teacher string for display
-                    foreach (var sub in context.Subjects)
-                    {
-                        subsNames[i] = (sub.Name + ": " + sub.TeacherName);
-                        i++;
-                    }
-                    foreach (var v in student.Visits)//(var v in student.Visits.Where(s => s.student_id = studentID)
-                    {
-                        if (v.StudentId == studentID)
-                        {
-                            long subject = v.SubjectId;
-                            visitPerSubject[subject - 1]++; //= subs[subject - 1] + 1;
-                            dataGridView1.Rows.Add(student, subsNames[unchecked((int)subject) - 1], timeIn, timeOut);
-                        }
-                    }
-                    
-                    ///   loading pie chart
-                    
-                    for (i = 0; i < classCount; i++)
-                    {
-                        this.chart1.Series["Subjects"].Points.AddXY(subsNames[i], visitPerSubject[i]);
-                        //Console.Write(i.ToString()+" "+ subs[i].ToString()+"\n");
-                    }
-                }
-                
-                
-            }*/
-
+                this.studentPieChart.Series["Subjects"].Points.AddXY(subsNames[c], subs[1, c]);
+            }
         }
 
         private void StartDatePicker_ValueChanged(object sender, EventArgs e)
