@@ -30,7 +30,7 @@ namespace SehomeTutoringCenter
                         ComboBox temp = c as ComboBox;
                         foreach (var v in _context.Subjects)
                         {
-                            temp.Items.Add(v.Name);
+                            temp.Items.Add(v.Name + "-" + v.TeacherName);
                         }
                     }
                 }
@@ -61,10 +61,11 @@ namespace SehomeTutoringCenter
                     if (c is ComboBox)
                     {
                         ComboBox temp = c as ComboBox;
-                        if (temp.Text != "") {
+                        string ClassName = temp.Text.Split('-')[0];
+                        if (ClassName != "") {
                             // Grab the class object matching the current class name
                             var CurrentClass = _context.Subjects
-                                .Where(s => s.Name == c.Text)
+                                .Where(s => s.Name == ClassName)
                                 .FirstOrDefault();
 
                             // Create the registration

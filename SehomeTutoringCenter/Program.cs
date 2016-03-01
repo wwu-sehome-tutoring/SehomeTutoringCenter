@@ -171,6 +171,7 @@ CREATE TABLE visit(
                 // Save test registrations
                 context.SaveChanges();
 
+
                 // Generate test visits
                 foreach (var stu in context.Students)
                 {
