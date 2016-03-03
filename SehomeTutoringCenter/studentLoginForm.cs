@@ -342,16 +342,16 @@ namespace SehomeTutoringCenter
         }
 
         // Event handling for the new student button
-        private void newStudentBtn_Click(object sender, EventArgs e)
-        {
-            newStudentForm newStudent = new newStudentForm(this);
-            newStudent.ShowDialog();
+        //private void newStudentBtn_Click(object sender, EventArgs e)
+        //{
+        //    newStudentForm newStudent = new newStudentForm(this);
+        //    newStudent.ShowDialog();
 
-            // Re-populate the listbox with the new students name
-            //studentNames.Items.Clear();
-            //PopulateStudentList();
+        //    // Re-populate the listbox with the new students name
+        //    //studentNames.Items.Clear();
+        //    //PopulateStudentList();
 
-        }
+        //}
 
         // Event handling for the cancel button
         private void CancelButton_Click(object sender, EventArgs e)
