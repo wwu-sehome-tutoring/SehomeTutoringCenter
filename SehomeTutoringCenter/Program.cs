@@ -30,11 +30,9 @@ namespace SehomeTutoringCenter
             {
                 System.Diagnostics.Debug.WriteLine("Database already exists");
             }
-            SQLiteConnection SehomeDB;
-            SehomeDB = new SQLiteConnection("Data Source=SehomeTutoringCenter.sqlite;");
 
             // Generate Test Data
-            GenerateTestData();
+            //GenerateTestData();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
