@@ -28,6 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.LoginTabPage = new System.Windows.Forms.TabPage();
             this.CourseSelectBox = new System.Windows.Forms.GroupBox();
@@ -51,10 +62,88 @@
             this.StudentTabPage = new System.Windows.Forms.TabPage();
             this.CenterTabPage = new System.Windows.Forms.TabPage();
             this.AdminTabPage = new System.Windows.Forms.TabPage();
+            this.GenerateButton = new System.Windows.Forms.Button();
+            this.endDateGroupBox = new System.Windows.Forms.GroupBox();
+            this.endDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.startDateGroupBox = new System.Windows.Forms.GroupBox();
+            this.startDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.studentGroupBox = new System.Windows.Forms.GroupBox();
+            this.studentComboBox = new System.Windows.Forms.ComboBox();
+            this.bottomBorderLine = new System.Windows.Forms.GroupBox();
+            this.rightBorderLine = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.studentPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.studentGridView = new System.Windows.Forms.DataGridView();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentStudentGroupBox = new System.Windows.Forms.GroupBox();
+            this.currentStudentText = new System.Windows.Forms.TextBox();
+            this.dailyPrizeGroupBox = new System.Windows.Forms.GroupBox();
+            this.RandomNameTextbox = new System.Windows.Forms.TextBox();
+            this.PrizeButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.subjectGroupBox = new System.Windows.Forms.GroupBox();
+            this.subjectComboBox = new System.Windows.Forms.ComboBox();
+            this.CenterStatsTable = new System.Windows.Forms.TableLayoutPanel();
+            this.AverageTimeValue = new System.Windows.Forms.Label();
+            this.StudentAverageValue = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AverageStudentsLabel = new System.Windows.Forms.Label();
+            this.TotalTimeLabel = new System.Windows.Forms.Label();
+            this.SummaryLabel = new System.Windows.Forms.Label();
+            this.TotalStudentsLabel = new System.Windows.Forms.Label();
+            this.TotalStudentsValue = new System.Windows.Forms.Label();
+            this.TotalTimeValue = new System.Windows.Forms.Label();
+            this.centerStatsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.TotalStudentsGB = new System.Windows.Forms.GroupBox();
+            this.TotalStudentsBox = new System.Windows.Forms.TextBox();
+            this.OptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.NewSemesterButton = new System.Windows.Forms.Button();
+            this.EditStudentButton = new System.Windows.Forms.Button();
+            this.EditClassButton = new System.Windows.Forms.Button();
+            this.ImportButton = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.student = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainTabs.SuspendLayout();
             this.LoginTabPage.SuspendLayout();
             this.CourseSelectBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).BeginInit();
+            this.StudentTabPage.SuspendLayout();
+            this.CenterTabPage.SuspendLayout();
+            this.AdminTabPage.SuspendLayout();
+            this.endDateGroupBox.SuspendLayout();
+            this.startDateGroupBox.SuspendLayout();
+            this.studentGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPieChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentGridView)).BeginInit();
+            this.currentStudentGroupBox.SuspendLayout();
+            this.dailyPrizeGroupBox.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.subjectGroupBox.SuspendLayout();
+            this.CenterStatsTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.centerStatsChart)).BeginInit();
+            this.TotalStudentsGB.SuspendLayout();
+            this.OptionsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTabs
@@ -74,6 +163,7 @@
             // 
             // LoginTabPage
             // 
+            this.LoginTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.LoginTabPage.Controls.Add(this.checkOut);
             this.LoginTabPage.Controls.Add(this.checkIn);
             this.LoginTabPage.Controls.Add(this.loginBackdrop);
@@ -89,7 +179,6 @@
             this.LoginTabPage.Size = new System.Drawing.Size(1869, 1007);
             this.LoginTabPage.TabIndex = 0;
             this.LoginTabPage.Text = "Login";
-            this.LoginTabPage.UseVisualStyleBackColor = true;
             // 
             // CourseSelectBox
             // 
@@ -320,31 +409,681 @@
             // 
             // StudentTabPage
             // 
+            this.StudentTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.StudentTabPage.Controls.Add(this.currentStudentGroupBox);
+            this.StudentTabPage.Controls.Add(this.studentPieChart);
+            this.StudentTabPage.Controls.Add(this.studentGridView);
+            this.StudentTabPage.Controls.Add(this.pictureBox1);
+            this.StudentTabPage.Controls.Add(this.GenerateButton);
+            this.StudentTabPage.Controls.Add(this.endDateGroupBox);
+            this.StudentTabPage.Controls.Add(this.startDateGroupBox);
+            this.StudentTabPage.Controls.Add(this.studentGroupBox);
+            this.StudentTabPage.Controls.Add(this.bottomBorderLine);
+            this.StudentTabPage.Controls.Add(this.rightBorderLine);
             this.StudentTabPage.Location = new System.Drawing.Point(4, 4);
             this.StudentTabPage.Name = "StudentTabPage";
             this.StudentTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.StudentTabPage.Size = new System.Drawing.Size(1869, 1007);
             this.StudentTabPage.TabIndex = 1;
             this.StudentTabPage.Text = "Student Stats";
-            this.StudentTabPage.UseVisualStyleBackColor = true;
             // 
             // CenterTabPage
             // 
+            this.CenterTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.CenterTabPage.Controls.Add(this.CenterStatsTable);
+            this.CenterTabPage.Controls.Add(this.centerStatsChart);
+            this.CenterTabPage.Controls.Add(this.dailyPrizeGroupBox);
+            this.CenterTabPage.Controls.Add(this.groupBox1);
+            this.CenterTabPage.Controls.Add(this.button1);
+            this.CenterTabPage.Controls.Add(this.groupBox2);
+            this.CenterTabPage.Controls.Add(this.groupBox3);
+            this.CenterTabPage.Controls.Add(this.subjectGroupBox);
             this.CenterTabPage.Location = new System.Drawing.Point(4, 4);
             this.CenterTabPage.Name = "CenterTabPage";
             this.CenterTabPage.Size = new System.Drawing.Size(1869, 1007);
             this.CenterTabPage.TabIndex = 2;
             this.CenterTabPage.Text = "Center Stats";
-            this.CenterTabPage.UseVisualStyleBackColor = true;
             // 
             // AdminTabPage
             // 
+            this.AdminTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.AdminTabPage.Controls.Add(this.label2);
+            this.AdminTabPage.Controls.Add(this.dataGridView1);
+            this.AdminTabPage.Controls.Add(this.TotalStudentsGB);
+            this.AdminTabPage.Controls.Add(this.OptionsGroupBox);
+            this.AdminTabPage.Controls.Add(this.pictureBox2);
+            this.AdminTabPage.Controls.Add(this.groupBox4);
+            this.AdminTabPage.Controls.Add(this.groupBox5);
             this.AdminTabPage.Location = new System.Drawing.Point(4, 4);
             this.AdminTabPage.Name = "AdminTabPage";
             this.AdminTabPage.Size = new System.Drawing.Size(1869, 1007);
             this.AdminTabPage.TabIndex = 3;
             this.AdminTabPage.Text = "Admin";
-            this.AdminTabPage.UseVisualStyleBackColor = true;
+            // 
+            // GenerateButton
+            // 
+            this.GenerateButton.BackColor = System.Drawing.Color.Green;
+            this.GenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenerateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.GenerateButton.Location = new System.Drawing.Point(70, 574);
+            this.GenerateButton.Name = "GenerateButton";
+            this.GenerateButton.Size = new System.Drawing.Size(172, 48);
+            this.GenerateButton.TabIndex = 36;
+            this.GenerateButton.Text = "Generate";
+            this.GenerateButton.UseVisualStyleBackColor = false;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
+            // 
+            // endDateGroupBox
+            // 
+            this.endDateGroupBox.Controls.Add(this.endDatePicker);
+            this.endDateGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDateGroupBox.Location = new System.Drawing.Point(27, 406);
+            this.endDateGroupBox.Name = "endDateGroupBox";
+            this.endDateGroupBox.Size = new System.Drawing.Size(258, 82);
+            this.endDateGroupBox.TabIndex = 35;
+            this.endDateGroupBox.TabStop = false;
+            this.endDateGroupBox.Text = "End Date";
+            // 
+            // endDatePicker
+            // 
+            this.endDatePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endDatePicker.Location = new System.Drawing.Point(15, 34);
+            this.endDatePicker.Name = "endDatePicker";
+            this.endDatePicker.Size = new System.Drawing.Size(226, 29);
+            this.endDatePicker.TabIndex = 0;
+            // 
+            // startDateGroupBox
+            // 
+            this.startDateGroupBox.Controls.Add(this.startDatePicker);
+            this.startDateGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDateGroupBox.Location = new System.Drawing.Point(27, 231);
+            this.startDateGroupBox.Name = "startDateGroupBox";
+            this.startDateGroupBox.Size = new System.Drawing.Size(258, 82);
+            this.startDateGroupBox.TabIndex = 34;
+            this.startDateGroupBox.TabStop = false;
+            this.startDateGroupBox.Text = "Start Date";
+            // 
+            // startDatePicker
+            // 
+            this.startDatePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startDatePicker.Location = new System.Drawing.Point(15, 34);
+            this.startDatePicker.Name = "startDatePicker";
+            this.startDatePicker.Size = new System.Drawing.Size(226, 29);
+            this.startDatePicker.TabIndex = 0;
+            // 
+            // studentGroupBox
+            // 
+            this.studentGroupBox.Controls.Add(this.studentComboBox);
+            this.studentGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentGroupBox.Location = new System.Drawing.Point(27, 45);
+            this.studentGroupBox.Name = "studentGroupBox";
+            this.studentGroupBox.Size = new System.Drawing.Size(258, 82);
+            this.studentGroupBox.TabIndex = 33;
+            this.studentGroupBox.TabStop = false;
+            this.studentGroupBox.Text = "Student";
+            // 
+            // studentComboBox
+            // 
+            this.studentComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentComboBox.FormattingEnabled = true;
+            this.studentComboBox.Location = new System.Drawing.Point(29, 34);
+            this.studentComboBox.Name = "studentComboBox";
+            this.studentComboBox.Size = new System.Drawing.Size(203, 32);
+            this.studentComboBox.TabIndex = 11;
+            // 
+            // bottomBorderLine
+            // 
+            this.bottomBorderLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.bottomBorderLine.Location = new System.Drawing.Point(27, 674);
+            this.bottomBorderLine.Name = "bottomBorderLine";
+            this.bottomBorderLine.Size = new System.Drawing.Size(275, 2);
+            this.bottomBorderLine.TabIndex = 32;
+            this.bottomBorderLine.TabStop = false;
+            // 
+            // rightBorderLine
+            // 
+            this.rightBorderLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.rightBorderLine.Location = new System.Drawing.Point(319, 13);
+            this.rightBorderLine.Name = "rightBorderLine";
+            this.rightBorderLine.Size = new System.Drawing.Size(2, 937);
+            this.rightBorderLine.TabIndex = 31;
+            this.rightBorderLine.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SehomeTutoringCenter.Properties.Resources.Sehome_color129x200_97x150;
+            this.pictureBox1.Location = new System.Drawing.Point(103, 755);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 150);
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            // 
+            // studentPieChart
+            // 
+            this.studentPieChart.BackColor = System.Drawing.Color.WhiteSmoke;
+            chartArea9.Name = "ChartArea1";
+            this.studentPieChart.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.studentPieChart.Legends.Add(legend9);
+            this.studentPieChart.Location = new System.Drawing.Point(435, 26);
+            this.studentPieChart.Name = "studentPieChart";
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series9.Legend = "Legend1";
+            series9.Name = "Subjects";
+            this.studentPieChart.Series.Add(series9);
+            this.studentPieChart.Size = new System.Drawing.Size(1307, 462);
+            this.studentPieChart.TabIndex = 39;
+            this.studentPieChart.Text = "chart1";
+            // 
+            // studentGridView
+            // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.studentGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.studentGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.date,
+            this.subject,
+            this.timeIn,
+            this.timeOut,
+            this.totalTime});
+            this.studentGridView.Location = new System.Drawing.Point(435, 501);
+            this.studentGridView.Name = "studentGridView";
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.studentGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.studentGridView.Size = new System.Drawing.Size(1310, 453);
+            this.studentGridView.TabIndex = 38;
+            // 
+            // date
+            // 
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.date.HeaderText = "Date";
+            this.date.Name = "date";
+            // 
+            // subject
+            // 
+            this.subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.subject.HeaderText = "Subject";
+            this.subject.Name = "subject";
+            // 
+            // timeIn
+            // 
+            this.timeIn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timeIn.HeaderText = "Time In";
+            this.timeIn.Name = "timeIn";
+            // 
+            // timeOut
+            // 
+            this.timeOut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timeOut.HeaderText = "Time Out";
+            this.timeOut.Name = "timeOut";
+            // 
+            // totalTime
+            // 
+            this.totalTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.totalTime.HeaderText = "Total Time";
+            this.totalTime.Name = "totalTime";
+            // 
+            // currentStudentGroupBox
+            // 
+            this.currentStudentGroupBox.Controls.Add(this.currentStudentText);
+            this.currentStudentGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentStudentGroupBox.Location = new System.Drawing.Point(454, 45);
+            this.currentStudentGroupBox.Name = "currentStudentGroupBox";
+            this.currentStudentGroupBox.Size = new System.Drawing.Size(258, 82);
+            this.currentStudentGroupBox.TabIndex = 40;
+            this.currentStudentGroupBox.TabStop = false;
+            this.currentStudentGroupBox.Text = "Current Student";
+            // 
+            // currentStudentText
+            // 
+            this.currentStudentText.Location = new System.Drawing.Point(6, 30);
+            this.currentStudentText.Name = "currentStudentText";
+            this.currentStudentText.Size = new System.Drawing.Size(246, 35);
+            this.currentStudentText.TabIndex = 0;
+            // 
+            // dailyPrizeGroupBox
+            // 
+            this.dailyPrizeGroupBox.Controls.Add(this.RandomNameTextbox);
+            this.dailyPrizeGroupBox.Controls.Add(this.PrizeButton);
+            this.dailyPrizeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dailyPrizeGroupBox.Location = new System.Drawing.Point(24, 729);
+            this.dailyPrizeGroupBox.Name = "dailyPrizeGroupBox";
+            this.dailyPrizeGroupBox.Size = new System.Drawing.Size(258, 189);
+            this.dailyPrizeGroupBox.TabIndex = 20;
+            this.dailyPrizeGroupBox.TabStop = false;
+            this.dailyPrizeGroupBox.Text = "Daily Prize";
+            // 
+            // RandomNameTextbox
+            // 
+            this.RandomNameTextbox.Location = new System.Drawing.Point(43, 128);
+            this.RandomNameTextbox.Name = "RandomNameTextbox";
+            this.RandomNameTextbox.Size = new System.Drawing.Size(172, 35);
+            this.RandomNameTextbox.TabIndex = 19;
+            // 
+            // PrizeButton
+            // 
+            this.PrizeButton.BackColor = System.Drawing.Color.Teal;
+            this.PrizeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.PrizeButton.Location = new System.Drawing.Point(43, 46);
+            this.PrizeButton.Name = "PrizeButton";
+            this.PrizeButton.Size = new System.Drawing.Size(172, 48);
+            this.PrizeButton.TabIndex = 18;
+            this.PrizeButton.Text = "Click Me!";
+            this.PrizeButton.UseVisualStyleBackColor = false;
+            this.PrizeButton.Click += new System.EventHandler(this.PrizeButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox1.Location = new System.Drawing.Point(316, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(2, 937);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Green;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.Location = new System.Drawing.Point(67, 556);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(172, 48);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Generate";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(24, 388);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(258, 82);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "End Date";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(29, 34);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dateTimePicker2);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(24, 210);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(258, 82);
+            this.groupBox3.TabIndex = 18;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Start Date";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(29, 34);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker2.TabIndex = 0;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            // 
+            // subjectGroupBox
+            // 
+            this.subjectGroupBox.Controls.Add(this.subjectComboBox);
+            this.subjectGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subjectGroupBox.Location = new System.Drawing.Point(24, 24);
+            this.subjectGroupBox.Name = "subjectGroupBox";
+            this.subjectGroupBox.Size = new System.Drawing.Size(258, 82);
+            this.subjectGroupBox.TabIndex = 17;
+            this.subjectGroupBox.TabStop = false;
+            this.subjectGroupBox.Text = "Subject";
+            // 
+            // subjectComboBox
+            // 
+            this.subjectComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subjectComboBox.FormattingEnabled = true;
+            this.subjectComboBox.Location = new System.Drawing.Point(29, 34);
+            this.subjectComboBox.Name = "subjectComboBox";
+            this.subjectComboBox.Size = new System.Drawing.Size(203, 32);
+            this.subjectComboBox.TabIndex = 11;
+            this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
+            // 
+            // CenterStatsTable
+            // 
+            this.CenterStatsTable.BackColor = System.Drawing.Color.White;
+            this.CenterStatsTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.CenterStatsTable.ColumnCount = 2;
+            this.CenterStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.CenterStatsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.CenterStatsTable.Controls.Add(this.AverageTimeValue, 1, 4);
+            this.CenterStatsTable.Controls.Add(this.StudentAverageValue, 1, 3);
+            this.CenterStatsTable.Controls.Add(this.label1, 0, 4);
+            this.CenterStatsTable.Controls.Add(this.AverageStudentsLabel, 0, 3);
+            this.CenterStatsTable.Controls.Add(this.TotalTimeLabel, 0, 2);
+            this.CenterStatsTable.Controls.Add(this.SummaryLabel, 0, 0);
+            this.CenterStatsTable.Controls.Add(this.TotalStudentsLabel, 0, 1);
+            this.CenterStatsTable.Controls.Add(this.TotalStudentsValue, 1, 1);
+            this.CenterStatsTable.Controls.Add(this.TotalTimeValue, 1, 2);
+            this.CenterStatsTable.Location = new System.Drawing.Point(736, 646);
+            this.CenterStatsTable.Name = "CenterStatsTable";
+            this.CenterStatsTable.RowCount = 5;
+            this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.CenterStatsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.CenterStatsTable.Size = new System.Drawing.Size(669, 286);
+            this.CenterStatsTable.TabIndex = 24;
+            // 
+            // AverageTimeValue
+            // 
+            this.AverageTimeValue.AutoSize = true;
+            this.AverageTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AverageTimeValue.Location = new System.Drawing.Point(504, 226);
+            this.AverageTimeValue.Name = "AverageTimeValue";
+            this.AverageTimeValue.Size = new System.Drawing.Size(137, 25);
+            this.AverageTimeValue.TabIndex = 20;
+            this.AverageTimeValue.Text = "time-average";
+            // 
+            // StudentAverageValue
+            // 
+            this.StudentAverageValue.AutoSize = true;
+            this.StudentAverageValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StudentAverageValue.Location = new System.Drawing.Point(504, 170);
+            this.StudentAverageValue.Name = "StudentAverageValue";
+            this.StudentAverageValue.Size = new System.Drawing.Size(156, 50);
+            this.StudentAverageValue.TabIndex = 20;
+            this.StudentAverageValue.Text = "student-average";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 226);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(343, 25);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Average Time per Student per Day";
+            // 
+            // AverageStudentsLabel
+            // 
+            this.AverageStudentsLabel.AutoSize = true;
+            this.AverageStudentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AverageStudentsLabel.Location = new System.Drawing.Point(5, 170);
+            this.AverageStudentsLabel.Name = "AverageStudentsLabel";
+            this.AverageStudentsLabel.Size = new System.Drawing.Size(264, 25);
+            this.AverageStudentsLabel.TabIndex = 20;
+            this.AverageStudentsLabel.Text = "Average Students per Day";
+            // 
+            // TotalTimeLabel
+            // 
+            this.TotalTimeLabel.AutoSize = true;
+            this.TotalTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTimeLabel.Location = new System.Drawing.Point(5, 114);
+            this.TotalTimeLabel.Name = "TotalTimeLabel";
+            this.TotalTimeLabel.Size = new System.Drawing.Size(175, 25);
+            this.TotalTimeLabel.TabIndex = 20;
+            this.TotalTimeLabel.Text = "Total Time Spent";
+            // 
+            // SummaryLabel
+            // 
+            this.SummaryLabel.AutoSize = true;
+            this.SummaryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SummaryLabel.Location = new System.Drawing.Point(5, 2);
+            this.SummaryLabel.Name = "SummaryLabel";
+            this.SummaryLabel.Size = new System.Drawing.Size(129, 31);
+            this.SummaryLabel.TabIndex = 0;
+            this.SummaryLabel.Text = "Summary";
+            // 
+            // TotalStudentsLabel
+            // 
+            this.TotalStudentsLabel.AutoSize = true;
+            this.TotalStudentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalStudentsLabel.Location = new System.Drawing.Point(5, 58);
+            this.TotalStudentsLabel.Name = "TotalStudentsLabel";
+            this.TotalStudentsLabel.Size = new System.Drawing.Size(151, 25);
+            this.TotalStudentsLabel.TabIndex = 1;
+            this.TotalStudentsLabel.Text = "Total Students";
+            // 
+            // TotalStudentsValue
+            // 
+            this.TotalStudentsValue.AutoSize = true;
+            this.TotalStudentsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalStudentsValue.Location = new System.Drawing.Point(504, 58);
+            this.TotalStudentsValue.Name = "TotalStudentsValue";
+            this.TotalStudentsValue.Size = new System.Drawing.Size(142, 25);
+            this.TotalStudentsValue.TabIndex = 20;
+            this.TotalStudentsValue.Text = "num-students";
+            // 
+            // TotalTimeValue
+            // 
+            this.TotalTimeValue.AutoSize = true;
+            this.TotalTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTimeValue.Location = new System.Drawing.Point(504, 114);
+            this.TotalTimeValue.Name = "TotalTimeValue";
+            this.TotalTimeValue.Size = new System.Drawing.Size(100, 25);
+            this.TotalTimeValue.TabIndex = 20;
+            this.TotalTimeValue.Text = "total-time";
+            // 
+            // centerStatsChart
+            // 
+            chartArea10.AxisX.Title = "Date";
+            chartArea10.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea10.AxisY.Title = "Number of Students";
+            chartArea10.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea10.Name = "ChartArea1";
+            this.centerStatsChart.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.centerStatsChart.Legends.Add(legend10);
+            this.centerStatsChart.Location = new System.Drawing.Point(510, 58);
+            this.centerStatsChart.Name = "centerStatsChart";
+            this.centerStatsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            series10.BorderWidth = 3;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.Legend = "Legend1";
+            series10.Name = "Students";
+            this.centerStatsChart.Series.Add(series10);
+            this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
+            this.centerStatsChart.TabIndex = 23;
+            this.centerStatsChart.Text = "chart1";
+            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title5.Name = "Students Per Day";
+            title5.Text = "Students Per Day";
+            this.centerStatsChart.Titles.Add(title5);
+            // 
+            // TotalStudentsGB
+            // 
+            this.TotalStudentsGB.Controls.Add(this.TotalStudentsBox);
+            this.TotalStudentsGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalStudentsGB.Location = new System.Drawing.Point(24, 479);
+            this.TotalStudentsGB.Name = "TotalStudentsGB";
+            this.TotalStudentsGB.Size = new System.Drawing.Size(258, 129);
+            this.TotalStudentsGB.TabIndex = 35;
+            this.TotalStudentsGB.TabStop = false;
+            this.TotalStudentsGB.Text = "Total Students";
+            // 
+            // TotalStudentsBox
+            // 
+            this.TotalStudentsBox.Location = new System.Drawing.Point(42, 58);
+            this.TotalStudentsBox.Name = "TotalStudentsBox";
+            this.TotalStudentsBox.Size = new System.Drawing.Size(172, 35);
+            this.TotalStudentsBox.TabIndex = 20;
+            // 
+            // OptionsGroupBox
+            // 
+            this.OptionsGroupBox.Controls.Add(this.NewSemesterButton);
+            this.OptionsGroupBox.Controls.Add(this.EditStudentButton);
+            this.OptionsGroupBox.Controls.Add(this.EditClassButton);
+            this.OptionsGroupBox.Controls.Add(this.ImportButton);
+            this.OptionsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsGroupBox.Location = new System.Drawing.Point(24, 26);
+            this.OptionsGroupBox.Name = "OptionsGroupBox";
+            this.OptionsGroupBox.Size = new System.Drawing.Size(258, 389);
+            this.OptionsGroupBox.TabIndex = 34;
+            this.OptionsGroupBox.TabStop = false;
+            this.OptionsGroupBox.Text = "Options";
+            // 
+            // NewSemesterButton
+            // 
+            this.NewSemesterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewSemesterButton.Location = new System.Drawing.Point(23, 287);
+            this.NewSemesterButton.Name = "NewSemesterButton";
+            this.NewSemesterButton.Size = new System.Drawing.Size(210, 48);
+            this.NewSemesterButton.TabIndex = 20;
+            this.NewSemesterButton.Text = "New Semester";
+            this.NewSemesterButton.UseVisualStyleBackColor = true;
+            this.NewSemesterButton.Click += new System.EventHandler(this.NewSemesterButton_Click);
+            // 
+            // EditStudentButton
+            // 
+            this.EditStudentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditStudentButton.Location = new System.Drawing.Point(23, 206);
+            this.EditStudentButton.Name = "EditStudentButton";
+            this.EditStudentButton.Size = new System.Drawing.Size(210, 48);
+            this.EditStudentButton.TabIndex = 19;
+            this.EditStudentButton.Text = "Edit Student Data";
+            this.EditStudentButton.UseVisualStyleBackColor = true;
+            this.EditStudentButton.Click += new System.EventHandler(this.EditStudentButton_Click);
+            // 
+            // EditClassButton
+            // 
+            this.EditClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditClassButton.Location = new System.Drawing.Point(23, 125);
+            this.EditClassButton.Name = "EditClassButton";
+            this.EditClassButton.Size = new System.Drawing.Size(210, 48);
+            this.EditClassButton.TabIndex = 18;
+            this.EditClassButton.Text = "Add/Remove Class";
+            this.EditClassButton.UseVisualStyleBackColor = true;
+            this.EditClassButton.Click += new System.EventHandler(this.EditClassButton_Click);
+            // 
+            // ImportButton
+            // 
+            this.ImportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImportButton.Location = new System.Drawing.Point(23, 44);
+            this.ImportButton.Name = "ImportButton";
+            this.ImportButton.Size = new System.Drawing.Size(210, 48);
+            this.ImportButton.TabIndex = 17;
+            this.ImportButton.Text = "Import Class Data";
+            this.ImportButton.UseVisualStyleBackColor = true;
+            this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SehomeTutoringCenter.Properties.Resources.Sehome_color129x200_97x150;
+            this.pictureBox2.Location = new System.Drawing.Point(101, 759);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 150);
+            this.pictureBox2.TabIndex = 33;
+            this.pictureBox2.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox4.Location = new System.Drawing.Point(24, 684);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(275, 2);
+            this.groupBox4.TabIndex = 32;
+            this.groupBox4.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox5.Location = new System.Drawing.Point(316, 23);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(2, 937);
+            this.groupBox5.TabIndex = 31;
+            this.groupBox5.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(356, 26);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(186, 29);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "Current Sudents";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.student,
+            this.Class,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridView1.Location = new System.Drawing.Point(356, 70);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridView1.RowTemplate.Height = 30;
+            this.dataGridView1.Size = new System.Drawing.Size(1462, 839);
+            this.dataGridView1.TabIndex = 36;
+            // 
+            // student
+            // 
+            this.student.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.student.HeaderText = "Student";
+            this.student.Name = "student";
+            // 
+            // Class
+            // 
+            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Class.HeaderText = "Class";
+            this.Class.Name = "Class";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Time In";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Time Out";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Total Time";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // MainForm
             // 
@@ -360,6 +1099,31 @@
             this.CourseSelectBox.ResumeLayout(false);
             this.CourseSelectBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sehomeLogo)).EndInit();
+            this.StudentTabPage.ResumeLayout(false);
+            this.CenterTabPage.ResumeLayout(false);
+            this.AdminTabPage.ResumeLayout(false);
+            this.AdminTabPage.PerformLayout();
+            this.endDateGroupBox.ResumeLayout(false);
+            this.startDateGroupBox.ResumeLayout(false);
+            this.studentGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentPieChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentGridView)).EndInit();
+            this.currentStudentGroupBox.ResumeLayout(false);
+            this.currentStudentGroupBox.PerformLayout();
+            this.dailyPrizeGroupBox.ResumeLayout(false);
+            this.dailyPrizeGroupBox.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.subjectGroupBox.ResumeLayout(false);
+            this.CenterStatsTable.ResumeLayout(false);
+            this.CenterStatsTable.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.centerStatsChart)).EndInit();
+            this.TotalStudentsGB.ResumeLayout(false);
+            this.TotalStudentsGB.PerformLayout();
+            this.OptionsGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -389,5 +1153,63 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button GenerateButton;
+        private System.Windows.Forms.GroupBox endDateGroupBox;
+        private System.Windows.Forms.DateTimePicker endDatePicker;
+        private System.Windows.Forms.GroupBox startDateGroupBox;
+        private System.Windows.Forms.DateTimePicker startDatePicker;
+        private System.Windows.Forms.GroupBox studentGroupBox;
+        private System.Windows.Forms.ComboBox studentComboBox;
+        private System.Windows.Forms.GroupBox bottomBorderLine;
+        private System.Windows.Forms.GroupBox rightBorderLine;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart studentPieChart;
+        private System.Windows.Forms.DataGridView studentGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeOut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalTime;
+        private System.Windows.Forms.GroupBox currentStudentGroupBox;
+        private System.Windows.Forms.TextBox currentStudentText;
+        private System.Windows.Forms.GroupBox dailyPrizeGroupBox;
+        private System.Windows.Forms.TextBox RandomNameTextbox;
+        private System.Windows.Forms.Button PrizeButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.GroupBox subjectGroupBox;
+        private System.Windows.Forms.ComboBox subjectComboBox;
+        private System.Windows.Forms.TableLayoutPanel CenterStatsTable;
+        private System.Windows.Forms.Label AverageTimeValue;
+        private System.Windows.Forms.Label StudentAverageValue;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label AverageStudentsLabel;
+        private System.Windows.Forms.Label TotalTimeLabel;
+        private System.Windows.Forms.Label SummaryLabel;
+        private System.Windows.Forms.Label TotalStudentsLabel;
+        private System.Windows.Forms.Label TotalStudentsValue;
+        private System.Windows.Forms.Label TotalTimeValue;
+        private System.Windows.Forms.DataVisualization.Charting.Chart centerStatsChart;
+        private System.Windows.Forms.GroupBox TotalStudentsGB;
+        private System.Windows.Forms.TextBox TotalStudentsBox;
+        private System.Windows.Forms.GroupBox OptionsGroupBox;
+        private System.Windows.Forms.Button NewSemesterButton;
+        private System.Windows.Forms.Button EditStudentButton;
+        private System.Windows.Forms.Button EditClassButton;
+        private System.Windows.Forms.Button ImportButton;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn student;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Class;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

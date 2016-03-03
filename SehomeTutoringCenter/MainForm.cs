@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,15 @@ namespace SehomeTutoringCenter
         private SehomeContext _context = new SehomeContext();
         private DBHelper _dbh = new DBHelper();
 
-        // Some global variables - should probably do it better
+        // Some global variables for the login page
         string SelectedStudentName;
         string SelectedNewClassName;
         bool NameSelected = false;
+
+        // Some global variables for the center stats page
+        string SelectedClass;
+        string StartDate;
+        string EndDate;
 
         public MainForm()
         {
@@ -28,6 +34,20 @@ namespace SehomeTutoringCenter
             // The student login page is the default tab, so call these functions to set up some stuff
             PopulateStudentList();
             PopulateClassList();
+
+            // Helper functions for the student stats page
+            PopulateStatsNames();
+
+            // Helper functions for the center stats page
+            PopulateSubjectNames();
+            DefaultData();
+
+            // Helper functions for the admin page
+            PopulateGridView();
+
+            // Grab the total number of students in the system
+            int TotalStudents = _context.Students.Count();
+            TotalStudentsBox.Text = TotalStudents.ToString();
         }
 
         #region Student Login Page
@@ -372,5 +392,458 @@ namespace SehomeTutoringCenter
         }
         #endregion
 
+        #region Student Stats Page
+        // Helper function to fill in the combobox in the student stats page
+        private void PopulateStatsNames()
+        {
+            foreach (var s in _context.Students)
+            {
+                this.studentComboBox.Items.Add(s.FirstName + " " + s.LastName);
+            }
+        }
+
+        private void GenerateButton_Click(object sender, EventArgs e)
+        {
+            /*Notes:
+            *   
+            *
+            *To-do:
+            *   I think I have an error where I dont display visits with Null time out.
+            *   
+            */
+
+            //First I clear old values from my pie chart, dataGridView and my currentStudent text.
+            studentGridView.Rows.Clear();                   //clear previous values from the datagridview
+            foreach (var series in studentPieChart.Series)  //clear the pie chart
+            {
+                series.Points.Clear();
+            }
+            currentStudentText.Clear();
+
+            //  Grabing values from the selecting tools on the left side of the page
+            string selectedStudentName = studentComboBox.Text.ToString();       //Grab first Last name from studentComboBox
+            DateTime startDate = startDatePicker.Value;                         //Selected start date
+            DateTime endDate = endDatePicker.Value;                             //Selected start date
+            DateTime? timeInNullable;                                           //Visit times from Db
+            DateTime? timeOutNullable;
+            DateTime timeIn;
+            DateTime timeOut;
+            TimeSpan visitLength;                                               //This will be the difference between timeIn and timeOut
+            string visitDuration;                                               //This will be hh:mm:ss string formate of visitLength
+            int classCount = 0;                                                 //This is the number of classes an individual student is registered for
+            long[,] subs;                                                       //subs[0][*] = subject Id    and subs[1][*] = Number of vsits for that subject
+            string[] subsNames;                                                 //This is the corresponding names for subs[]
+
+            //Add student name to text box
+            currentStudentText.Text = selectedStudentName;
+            //grabing student object
+            string[] names = selectedStudentName.Split(' ');
+            string fname = names[0];
+            string lname = names[1];
+
+            var StudentQuery = from s in _context.Students
+                               where s.FirstName == fname && s.LastName == lname
+                               select s;
+
+            var student = StudentQuery.FirstOrDefault();
+            //Grabing registered classes
+            var registrations = _dbh.RegistrationsFromStudent(_context, student);
+            classCount = registrations.Count();
+            subs = new long[2, classCount];
+            subsNames = new string[classCount];
+            int i = 0;
+            foreach (var r in registrations)
+            {
+                subs[0, i] = r.SubjectId;      //at this moment subs holds The id of the registered subject
+                var subject = _dbh.SubjectFromRegistration(_context, r);
+                subsNames[i] = (subject.Name + ": " + subject.TeacherName);
+                i++;
+            }
+            var visits = _dbh.VisitsFromStudent(_context, student);
+            foreach (var visit in visits)
+            {
+                timeInNullable = visit.TimeIn;
+                timeOutNullable = visit.TimeOut;
+
+                timeIn = (DateTime)timeInNullable;
+
+                if (startDate.Day <= timeIn.Day && timeIn.Day <= endDate.Day)
+                {
+                    for (int c = 0; c < classCount; c++)
+                    {
+                        if (visit.SubjectId == subs[0, c])
+                        {
+                            if (timeOutNullable != null)
+                            {
+                                timeOut = (DateTime)timeOutNullable;
+                                subs[1, c] = subs[1, c] + 1;
+                                visitLength = timeOut.Subtract(timeIn);
+                                visitDuration = visitLength.ToString("hh") + ":" + visitLength.ToString("mm") + ":" + visitLength.ToString("ss");
+                                studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[c], timeIn.ToString("hh:mm:ss tt"), timeOut.ToString("hh:mm:ss tt"), visitDuration);//.ToString("h m s tt")
+                            }
+                            else
+                            {
+                                subs[1, c] = subs[1, c] + 1;
+                                studentGridView.Rows.Add(timeIn.Date.ToString("MMM dd yyyy"), subsNames[c], timeIn.ToString("hh:mm:ss tt"), timeOutNullable);
+                            }
+                        }
+                    }
+                }
+            }
+            //
+            //  loading pie chart
+            //
+            for (int c = 0; c < classCount; c++)
+            {
+                this.studentPieChart.Series["Subjects"].Points.AddXY(subsNames[c], subs[1, c]);
+            }
+        }
+
+        #endregion
+
+        #region Center Stats Page
+
+        // After the form is created, fill in the subject combobox with the names
+        // of all subjects in the database
+        private void PopulateSubjectNames()
+        {
+            foreach (var s in _context.Subjects)
+            {
+                subjectComboBox.Items.Add(s.Name);
+            }
+        }
+
+        // The default view of this form contains information about how many students
+        // per day went to the tutoring center for each day of the current semester
+        private void DefaultData()
+        {
+            if (_context.Students.Count() > 0)
+            {
+                //centerStatsChart.Titles.Add("Students Per Day");
+
+                var VisitCounts = new Dictionary<String, int>();
+                int TotalStudents = 0;
+                double TotalTime = 0.0;
+
+                // Iterate through all visits and keep track of the count of each date
+                TotalStudents = _context.Students.Count();
+                // Then go grab all of the unique visit dates and their counts
+                foreach (var v in _context.Visits)
+                {
+                    string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
+                    // Now calculate the time spent for this visit
+                    DateTime start = (DateTime)v.TimeIn;
+                    DateTime end;
+                    end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
+
+                    TimeSpan time = end - start;
+                    TotalTime += time.TotalHours;
+
+                    // Add the date and count to the dictionary
+                    if (VisitCounts.ContainsKey(DateOnly))
+                    {
+                        VisitCounts[DateOnly]++;
+                    }
+                    else
+                    {
+                        VisitCounts.Add(DateOnly, 1);
+                    }
+                }
+
+                // Create data arrays to add to a Series later on
+                string[] dates = VisitCounts.Keys.ToArray();
+                int[] points = VisitCounts.Values.ToArray();
+
+                centerStatsChart.Series[0].IsValueShownAsLabel = true;
+                centerStatsChart.Series[0].Points.DataBindXY(dates, "Date", points, "Number of Students");
+
+                // Update the table of center stats information
+                TotalStudentsValue.Text = TotalStudents.ToString();
+                TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
+                StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
+                AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
+            }
+            else
+            {
+                MessageBox.Show("No students in the system.  Can't properly display data.");
+            }
+        }
+
+        // Grab the name of the class when selected
+        private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedClass = (string)subjectComboBox.SelectedItem;
+        }
+
+        // Grab the start date value when selected
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            StartDate = dateTimePicker2.Value.ToString();
+        }
+
+        // Grab the end date value when selected
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            EndDate = dateTimePicker1.Value.ToString();
+        }
+
+        // Helper function to check if a class has been selected and if two dates have been selected
+        private bool ValidInput()
+        {
+            bool IsValid = true;
+
+            return IsValid;
+        }
+
+        // Update the chart and table based off of what the user enters as input
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ValidInput())
+            {
+                var VisitCounts = new Dictionary<String, int>();
+                int TotalStudents = 0;
+                double TotalTime = 0.0;
+
+
+                var selected = _context.Subjects
+                        .Where(s => s.Name == SelectedClass)
+                        .FirstOrDefault();
+
+                // Iterate through all visits that match the class name and date range that
+                // the user entered as input.
+                foreach (var v in _context.Visits)
+                {
+                    if (v.Subject.Name.Equals(selected.Name))
+                    {
+                        string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
+
+                        if (dateTimePicker2.Value <= v.TimeIn && v.TimeIn <= dateTimePicker1.Value)
+                        {
+                            // Now calculate the time spent for this visit
+                            DateTime start = (DateTime)v.TimeIn;
+                            DateTime end;
+                            end = (v.TimeOut == null ? DateTime.Now : (DateTime)v.TimeOut);
+
+                            TimeSpan time = end - start;
+                            TotalTime += time.TotalHours;
+
+                            // Add the date and count to the dictionary
+                            if (VisitCounts.ContainsKey(DateOnly))
+                            {
+                                VisitCounts[DateOnly]++;
+                                TotalStudents++;
+                            }
+                            else
+                            {
+                                VisitCounts.Add(DateOnly, 1);
+                                TotalStudents++;
+                            }
+                        }
+                    }
+                }
+
+                if (VisitCounts.Count > 0)
+                {
+                    // Create data arrays to add to a Series later on
+                    string[] dates = VisitCounts.Keys.ToArray();
+                    int[] points = VisitCounts.Values.ToArray();
+
+                    centerStatsChart.Series[0].IsValueShownAsLabel = true;
+                    centerStatsChart.Series[0].Points.DataBindXY(dates, "Date", points, "Number of Students");
+
+                    // Update the table of center stats information
+                    TotalStudentsValue.Text = TotalStudents.ToString();
+                    TotalTimeValue.Text = Math.Round(TotalTime, 2).ToString() + " hours";
+                    StudentAverageValue.Text = (TotalStudents / VisitCounts.Count).ToString();
+                    AverageTimeValue.Text = Math.Round((TotalTime / TotalStudents), 2).ToString() + " hours";
+                }
+                else
+                {
+                    MessageBox.Show("No visits for this class.  Cannot show data");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a class and both dates");
+            }
+        }
+
+        // Select a random student that has a current visit object in the system
+        static Random rnd = new Random();
+        private void PrizeButton_Click(object sender, EventArgs e)
+        {
+            string current = DateTime.Now.ToString().Split(' ')[0];
+            ArrayList names = new ArrayList();
+
+            // Go to each visit and if it's from today, grab the student and add
+            // their name to the list of current student names
+            foreach (var v in _context.Visits)
+            {
+                if (v.TimeIn.ToString().Split(' ')[0].Equals(current))
+                {
+                    var s = _dbh.StudentFromVisit(_context, v);
+                    names.Add(s.FirstName + " " + s.LastName);
+
+                }
+            }
+
+            // Now select a random name from the list
+            if (names.Count > 0)
+            {
+                int r = rnd.Next(names.Count);
+                RandomNameTextbox.Text = (string)names[r];
+            }
+            else
+            {
+                MessageBox.Show("No students for today.  Can't properly display data.");
+            }
+        }
+
+        #endregion
+
+        #region Admin Page
+        // Fill in the table on the admin page
+        private void PopulateGridView()
+        {
+            string current = DateTime.Now.ToString().Split(' ')[0];
+            ArrayList names = new ArrayList();
+
+            foreach (var v in _context.Visits)
+            {
+                if (v.TimeIn.ToString().Split(' ')[0].Equals(current))
+                {
+                    var s = _dbh.StudentFromVisit(_context, v);
+                    dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            v.TimeIn, v.TimeOut, 0);
+
+                }
+            }
+
+        }
+
+        private void ImportButton_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            StreamReader readStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.InitialDirectory = "c://";
+            openFileDialog1.Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 0;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        using (myStream)
+                        {
+                            readStream = new StreamReader(myStream);
+                            System.Diagnostics.Debug.WriteLine(readStream.Peek());
+                            readStreamToDB(readStream);
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file. Error: " + ex.Message);
+                }
+            }
+        }
+
+        //Read the stream selected in the FileDialog and add to database
+        private void readStreamToDB(StreamReader readStream)
+        {
+            while (!readStream.EndOfStream)
+            {
+                var line = readStream.ReadLine();
+                var tokens = line.Split(',');
+
+                var Sub = new Subject
+                {
+                    Name = tokens[0],
+                    TeacherName = tokens[1]
+                };
+                //http://stackoverflow.com/questions/9287454/check-the-existence-of-a-record-before-inserting-a-new-record
+                var existingSubject = _context.Subjects.Where(s => s.Name == Sub.Name).FirstOrDefault();
+                //var existingSubject = _context.Subjects.Where(s => s.TeacherName == Sub.TeacherName && s.Name == Sub.Name);
+                if (existingSubject == null)//_context.Subjects.Select(s => s.Name).Where(Name => Name == Sub.Name).Take(1) == null)
+                {
+                    _context.Subjects.Add(Sub);
+                }
+            }
+            _context.SaveChanges();
+            MessageBox.Show("Class and Teacher CSV uploaded.");
+        }
+
+        // Event handling for clicking on the add/remove class button
+        private void EditClassButton_Click(object sender, EventArgs e)
+        {
+            EditClassForm f = new EditClassForm();
+            f.ShowDialog();
+        }
+
+        // Event handling for clicking on the edit student button
+        private void EditStudentButton_Click(object sender, EventArgs e)
+        {
+            EditStudentForm f = new EditStudentForm();
+            f.ShowDialog();
+        }
+
+        private void NewSemesterButton_Click(object sender, EventArgs e)
+        {
+            // Grab the current database
+            string CWD = Directory.GetCurrentDirectory();
+            string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
+            Console.WriteLine(SourcePath);
+
+            string DestDir = CWD + "\\DatabaseBackups";
+            string DestPath = DestDir + "\\SehomeTutoringCenter.sqlite";
+            Console.WriteLine(DestDir);
+            Console.WriteLine(DestPath);
+
+            // Move the current database to the backup directory
+            if (!System.IO.Directory.Exists(DestDir))
+            {
+                System.IO.Directory.CreateDirectory(DestDir);
+            }
+
+            System.IO.File.Copy(SourcePath, DestPath, true);
+
+            // Remove all entries in all of the tables in the database
+            try
+            {
+                foreach (var r in _context.Registrations)
+                {
+                    _context.Registrations.Remove(r);
+                }
+                foreach (var s in _context.Students)
+                {
+                    _context.Students.Remove(s);
+                }
+                foreach (var s in _context.Subjects)
+                {
+                    _context.Subjects.Remove(s);
+                }
+                foreach (var v in _context.Visits)
+                {
+                    _context.Visits.Remove(v);
+                }
+                _context.SaveChanges();
+                MessageBox.Show("Closing the program....");
+                Application.Exit();
+            }
+            catch (System.IO.IOException ttt)
+            {
+                Console.WriteLine(ttt.Message);
+                return;
+            }
+        }
+
+        #endregion
     }
 }
