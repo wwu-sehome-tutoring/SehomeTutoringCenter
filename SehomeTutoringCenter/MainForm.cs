@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SehomeTutoringCenter
@@ -17,16 +14,6 @@ namespace SehomeTutoringCenter
         private SehomeContext _context = new SehomeContext();
         private DBHelper _dbh = new DBHelper();
 
-        // Some global variables for the login page
-        string SelectedStudentName;
-        string SelectedNewClassName;
-        bool NameSelected = false;
-
-        // Some global variables for the center stats page
-        string SelectedClass;
-        string StartDate;
-        string EndDate;
-
         public MainForm()
         {
             InitializeComponent();
@@ -35,14 +22,14 @@ namespace SehomeTutoringCenter
             PopulateStudentList();
             PopulateClassList();
 
-            // Helper functions for the student stats page
+            // Student stats page
             PopulateStatsNames();
 
-            // Helper functions for the center stats page
+            // Center Stats page
             PopulateSubjectNames();
             DefaultData();
 
-            // Helper functions for the admin page
+            // Admin page
             PopulateGridView();
 
             // Grab the total number of students in the system
@@ -58,7 +45,7 @@ namespace SehomeTutoringCenter
             foreach (var v in _context.Students)
             {
                 var FullName = v.FirstName + " " + v.LastName;
-                studentNames.Items.Add(FullName);
+                StudentNamesLogin.Items.Add(FullName);
             }
         }
 
@@ -72,26 +59,19 @@ namespace SehomeTutoringCenter
             }
         }
 
-        // When a name from the studentNames ListBox is selected, do this.
-        private void studentNames_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedStudentName = (string)studentNames.SelectedItem;
-            NameSelected = true;
-        }
-
         // Event handling for clicking the new student button
-        private void newStudentBtn_Click(object sender, EventArgs e)
+        private void NewStudentButton_Click(object sender, EventArgs e)
         {
             newStudentForm newStudent = new newStudentForm(this);
             newStudent.ShowDialog();
         }
 
         // Event handling for the Check In button
-        private void checkIn_Click(object sender, EventArgs e)
+        private void CheckInButton_Click(object sender, EventArgs e)
         {
-            if (NameSelected)
+            if (!StudentNamesLogin.Text.ToString().Equals(""))
             {
-                if (SelectedStudentName.Contains("✔"))
+                if (StudentNamesLogin.Text.ToString().Contains("✔"))
                 {
                     MessageBox.Show("Already logged in.");
                     return;
@@ -111,7 +91,7 @@ namespace SehomeTutoringCenter
                 NewClassButton.Visible = true;
                 NewClassComboBox.Visible = true;
 
-                studentNames.Enabled = false;
+                StudentNamesLogin.Enabled = false;
 
                 // Update the class radio buttons
                 ShowStudentClasses();
@@ -124,11 +104,11 @@ namespace SehomeTutoringCenter
         }
         
         // Event handling for the checkout button
-        private void checkOut_Click(object sender, EventArgs e)
+        private void CheckOutButton_Click(object sender, EventArgs e)
         {
-            if (NameSelected)
+            if (!StudentNamesLogin.Text.ToString().Equals(""))
             {
-                if (!SelectedStudentName.Contains("✔"))
+                if (!StudentNamesLogin.Text.ToString().Contains("✔"))
                 {
                     MessageBox.Show("Not logged in.");
                     return;
@@ -136,7 +116,7 @@ namespace SehomeTutoringCenter
 
                 Console.WriteLine("clicked checkout");
                 // Grab the selected student and see if they are currently logged in
-                string[] names = SelectedStudentName.Split(' ');
+                string[] names = StudentNamesLogin.Text.ToString().Split(' ');
                 string TempFirst = names[0];
                 string TempLast = names[1];
                 var StudentQuery = from s in _context.Students
@@ -161,11 +141,11 @@ namespace SehomeTutoringCenter
                             Console.WriteLine("checked out");
 
                             // Get rid of the checkmark from the students name in the list
-                            for (int i = 0; i < studentNames.Items.Count; i++)
+                            for (int i = 0; i < StudentNamesLogin.Items.Count; i++)
                             {
-                                if (studentNames.Items[i].Equals(FullName + " ✔"))
+                                if (StudentNamesLogin.Items[i].Equals(FullName + " ✔"))
                                 {
-                                    studentNames.Items[i] = FullName;
+                                    StudentNamesLogin.Items[i] = FullName;
                                 }
                             }
                         }
@@ -206,7 +186,7 @@ namespace SehomeTutoringCenter
                     .FirstOrDefault();
 
                 // Grab the student object matching the selected name
-                string[] names = SelectedStudentName.Split(' ');
+                string[] names = StudentNamesLogin.Text.ToString().Split(' ');
                 string TempFirst = names[0];
                 string TempLast = names[1];
                 var StudentQuery = from s in _context.Students
@@ -226,15 +206,15 @@ namespace SehomeTutoringCenter
 
                 _context.Visits.Add(vis);
                 _context.SaveChanges();
-                resetPositions();
+                ResetPositions();
 
                 // Finally, update the list of student names in the listbox to indiciate that
                 // the student has logged in for this session.
-                for (int i = 0; i < studentNames.Items.Count; i++)
+                for (int i = 0; i < StudentNamesLogin.Items.Count; i++)
                 {
-                    if (studentNames.Items[i].Equals(FullName))
+                    if (StudentNamesLogin.Items[i].Equals(FullName))
                     {
-                        studentNames.Items[i] = FullName + " ✔";
+                        StudentNamesLogin.Items[i] = FullName + " ✔";
                     }
                 }
             }
@@ -251,14 +231,7 @@ namespace SehomeTutoringCenter
         // Event handling for clicking the cancel button
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            resetPositions();
-        }
-
-        // Event handling for selecting a class from the add new class area
-        private void NewClassComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedNewClassName = (string)NewClassComboBox.SelectedItem;
-            Console.WriteLine(SelectedNewClassName);
+            ResetPositions();
         }
 
         // Event handling for clicking the new class button.  This will add a new registration
@@ -266,7 +239,7 @@ namespace SehomeTutoringCenter
         private void NewClassButton_Click(object sender, EventArgs e)
         {
             // grab the student object
-            string[] names = SelectedStudentName.Split(' ');
+            string[] names = StudentNamesLogin.Text.ToString().Split(' ');
             string TempFirst = names[0];
             string TempLast = names[1];
 
@@ -285,7 +258,7 @@ namespace SehomeTutoringCenter
 
             // grab the subject object
             var CurrentClass = _context.Subjects
-                                .Where(s => s.Name == SelectedNewClassName)
+                                .Where(s => s.Name == NewClassComboBox.Text.ToString())
                                 .FirstOrDefault();
 
             // Check to see if the user is already registered for this class
@@ -320,7 +293,7 @@ namespace SehomeTutoringCenter
         private void ShowStudentClasses()
         {
             // Grab the student object
-            string[] names = SelectedStudentName.Split(' ');
+            string[] names = StudentNamesLogin.Text.ToString().Split(' ');
             string TempFirst = names[0];
             string TempLast = names[1];
 
@@ -357,14 +330,8 @@ namespace SehomeTutoringCenter
             WelcomeLabel.Text = String.Format("Welcome {0}, what are you going to study today?", student.FirstName);
         }
 
-        // Event handling for when a course gets selected from the login page
-        private void courseListComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CheckInVisitButton.Enabled = true;
-        }
-
         // Function to reset the positions of some of the UI elements
-        private void resetPositions()
+        private void ResetPositions()
         {
             CheckInVisitButton.Location = new Point(751, 439);
             CheckInVisitButton.Text = "Students Subjects";
@@ -374,13 +341,11 @@ namespace SehomeTutoringCenter
 
             CancelButton.Visible = false;
 
-            studentNames.Enabled = true;
-            studentNames.ClearSelected();
+            StudentNamesLogin.Enabled = true;
+            StudentNamesLogin.ClearSelected();
 
             NewClassButton.Visible = true;
             NewClassComboBox.Visible = true;
-
-            NameSelected = false;
 
             foreach (Control c in CourseSelectBox.Controls)
             {
@@ -509,7 +474,7 @@ namespace SehomeTutoringCenter
         {
             foreach (var s in _context.Subjects)
             {
-                subjectComboBox.Items.Add(s.Name);
+                SubjectComboBox.Items.Add(s.Name);
             }
         }
 
@@ -569,24 +534,6 @@ namespace SehomeTutoringCenter
             }
         }
 
-        // Grab the name of the class when selected
-        private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedClass = (string)subjectComboBox.SelectedItem;
-        }
-
-        // Grab the start date value when selected
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            StartDate = dateTimePicker2.Value.ToString();
-        }
-
-        // Grab the end date value when selected
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            EndDate = dateTimePicker1.Value.ToString();
-        }
-
         // Helper function to check if a class has been selected and if two dates have been selected
         private bool ValidInput()
         {
@@ -596,7 +543,7 @@ namespace SehomeTutoringCenter
         }
 
         // Update the chart and table based off of what the user enters as input
-        private void button1_Click(object sender, EventArgs e)
+        private void CenterGenerateButton_Click(object sender, EventArgs e)
         {
             if (ValidInput())
             {
@@ -606,7 +553,7 @@ namespace SehomeTutoringCenter
 
 
                 var selected = _context.Subjects
-                        .Where(s => s.Name == SelectedClass)
+                        .Where(s => s.Name == SubjectComboBox.Text.ToString())
                         .FirstOrDefault();
 
                 // Iterate through all visits that match the class name and date range that
@@ -617,7 +564,7 @@ namespace SehomeTutoringCenter
                     {
                         string DateOnly = v.TimeIn.ToString().Split(' ')[0]; // grab the date 1/30/16, etc.
 
-                        if (dateTimePicker2.Value <= v.TimeIn && v.TimeIn <= dateTimePicker1.Value)
+                        if (StartDateTimePicker.Value <= v.TimeIn && v.TimeIn <= EndDateTimePicker.Value)
                         {
                             // Now calculate the time spent for this visit
                             DateTime start = (DateTime)v.TimeIn;

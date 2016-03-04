@@ -80,7 +80,7 @@ namespace SehomeTutoringCenter
                     }
                 }
 
-                temp1.studentNames.Items.Add(stud.FirstName + " " + stud.LastName);
+                temp1.StudentNamesLogin.Items.Add(stud.FirstName + " " + stud.LastName);
                 this.Close();
             }
             else
