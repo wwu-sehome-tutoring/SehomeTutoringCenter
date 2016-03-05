@@ -216,6 +216,7 @@
             this.comboBox6.Location = new System.Drawing.Point(83, 273);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(309, 28);
+            this.comboBox6.Sorted = true;
             this.comboBox6.TabIndex = 11;
             // 
             // label6
@@ -233,6 +234,7 @@
             this.comboBox5.Location = new System.Drawing.Point(83, 221);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(309, 28);
+            this.comboBox5.Sorted = true;
             this.comboBox5.TabIndex = 9;
             // 
             // label5
@@ -250,6 +252,7 @@
             this.comboBox4.Location = new System.Drawing.Point(83, 171);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(309, 28);
+            this.comboBox4.Sorted = true;
             this.comboBox4.TabIndex = 7;
             // 
             // label4
@@ -267,6 +270,7 @@
             this.comboBox3.Location = new System.Drawing.Point(83, 124);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(309, 28);
+            this.comboBox3.Sorted = true;
             this.comboBox3.TabIndex = 5;
             // 
             // label3
@@ -284,6 +288,7 @@
             this.comboBox2.Location = new System.Drawing.Point(83, 77);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(309, 28);
+            this.comboBox2.Sorted = true;
             this.comboBox2.TabIndex = 3;
             // 
             // label2
@@ -301,6 +306,7 @@
             this.comboBox1.Location = new System.Drawing.Point(83, 30);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(309, 28);
+            this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 1;
             // 
             // label1

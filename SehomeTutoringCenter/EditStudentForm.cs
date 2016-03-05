@@ -37,7 +37,7 @@ namespace SehomeTutoringCenter
                     ComboBox temp = c as ComboBox;
                     foreach (var v in _context.Subjects)
                     {
-                        temp.Items.Add(v.Name);
+                        temp.Items.Add(v.Name + "-" + v.TeacherName);
                     }
                 }
             }
@@ -139,6 +139,16 @@ namespace SehomeTutoringCenter
 
             var cs = from controls in ClassGroupBox.Controls.OfType<ComboBox>().ToList()
                     select controls;
+
+            // Reset the combobox in case another students data is still there
+            foreach (Control c in ClassGroupBox.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox temp = c as ComboBox;
+                    temp.Text = "";
+                }
+            }
 
             // Put the class names into the combo boxes
             int i = 0;

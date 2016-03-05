@@ -17,6 +17,7 @@ namespace SehomeTutoringCenter
         public MainForm()
         {
             InitializeComponent();
+            MainTabs.SelectedIndexChanged += new EventHandler(MainTabs_SelectedIndexChanged);
 
             // The student login page is the default tab, so call these functions to set up some stuff
             PopulateStudentList();
@@ -30,12 +31,21 @@ namespace SehomeTutoringCenter
             DefaultData();
 
             // Admin page
-            PopulateGridView();
-
-            // Grab the total number of students in the system
-            int TotalStudents = _context.Students.Count();
-            TotalStudentsBox.Text = TotalStudents.ToString();
+            //PopulateGridView();
         }
+
+        private void MainTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(MainTabs.SelectedTab == AdminTabPage)
+            {
+                dataGridView1.Rows.Clear();
+                PopulateGridView();
+                // Grab the total number of students in the system
+                int TotalStudents = _context.Students.Count();
+                TotalStudentsBox.Text = TotalStudents.ToString();
+            }
+        }
+
 
         #region Student Login Page
         // At program start up, fill in the ListBox of the student names that
@@ -670,6 +680,7 @@ namespace SehomeTutoringCenter
 
         }
 
+        // Set up the file select dialogue I think...
         private void ImportButton_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
@@ -792,5 +803,7 @@ namespace SehomeTutoringCenter
         }
 
         #endregion
+
+
     }
 }

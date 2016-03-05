@@ -110,7 +110,7 @@
             this.RemoveClassGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RemoveClassGB.Location = new System.Drawing.Point(389, 12);
             this.RemoveClassGB.Name = "RemoveClassGB";
-            this.RemoveClassGB.Size = new System.Drawing.Size(352, 160);
+            this.RemoveClassGB.Size = new System.Drawing.Size(467, 160);
             this.RemoveClassGB.TabIndex = 6;
             this.RemoveClassGB.TabStop = false;
             this.RemoveClassGB.Text = "Remove Class";
@@ -120,7 +120,8 @@
             this.ClassList.FormattingEnabled = true;
             this.ClassList.Location = new System.Drawing.Point(92, 48);
             this.ClassList.Name = "ClassList";
-            this.ClassList.Size = new System.Drawing.Size(233, 33);
+            this.ClassList.Size = new System.Drawing.Size(347, 33);
+            this.ClassList.Sorted = true;
             this.ClassList.TabIndex = 8;
             // 
             // label3
@@ -137,7 +138,7 @@
             this.RemoveClassButton.BackColor = System.Drawing.Color.Green;
             this.RemoveClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RemoveClassButton.ForeColor = System.Drawing.Color.White;
-            this.RemoveClassButton.Location = new System.Drawing.Point(117, 101);
+            this.RemoveClassButton.Location = new System.Drawing.Point(186, 101);
             this.RemoveClassButton.Name = "RemoveClassButton";
             this.RemoveClassButton.Size = new System.Drawing.Size(124, 37);
             this.RemoveClassButton.TabIndex = 5;
@@ -149,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 289);
+            this.ClientSize = new System.Drawing.Size(868, 289);
             this.Controls.Add(this.RemoveClassGB);
             this.Controls.Add(this.AddGroupBox);
             this.Name = "EditClassForm";

@@ -20,7 +20,7 @@ namespace SehomeTutoringCenter
         {
             foreach(var v in _context.Subjects)
             {
-                ClassList.Items.Add(v.Name);
+                ClassList.Items.Add(v.Name + "-" + v.TeacherName);
             }
         }
 
