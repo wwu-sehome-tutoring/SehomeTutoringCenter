@@ -10,9 +10,9 @@ namespace SehomeTutoringCenter
     public partial class newStudentForm : Form
     {
         private SehomeContext _context = new SehomeContext();
-        private studentLoginForm temp1;
+        private MainForm temp1;
 
-        public newStudentForm(studentLoginForm temp)
+        public newStudentForm(MainForm temp)
         {
             InitializeComponent();
             PopulateClassLists();
@@ -80,7 +80,7 @@ namespace SehomeTutoringCenter
                     }
                 }
 
-                temp1.studentNames.Items.Add(stud.FirstName + " " + stud.LastName);
+                temp1.StudentNamesLogin.Items.Add(stud.FirstName + " " + stud.LastName);
                 this.Close();
             }
             else

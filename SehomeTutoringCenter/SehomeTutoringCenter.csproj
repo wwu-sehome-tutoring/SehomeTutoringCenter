@@ -69,18 +69,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CenterStatsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CenterStatsForm.Designer.cs">
-      <DependentUpon>CenterStatsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="adminForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="adminForm.Designer.cs">
-      <DependentUpon>adminForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditClassForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +82,12 @@
       <DependentUpon>EditStudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DbHelper.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="newStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,39 +97,21 @@
     <Compile Include="Registration.cs" />
     <Compile Include="SehomeContext.cs" />
     <Compile Include="Student.cs" />
-    <Compile Include="studentLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="studentLoginForm.Designer.cs">
-      <DependentUpon>studentLoginForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CenterStatsForm.resx">
-      <DependentUpon>CenterStatsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="studentStats.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="studentStats.Designer.cs">
-      <DependentUpon>studentStats.cs</DependentUpon>
-    </Compile>
     <Compile Include="Subject.cs" />
     <Compile Include="Visit.cs" />
-    <EmbeddedResource Include="adminForm.resx">
-      <DependentUpon>adminForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditClassForm.resx">
       <DependentUpon>EditClassForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditStudentForm.resx">
       <DependentUpon>EditStudentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="newStudentForm.resx">
       <DependentUpon>newStudentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="studentLoginForm.resx">
-      <DependentUpon>studentLoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -147,9 +123,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="studentStats.resx">
-      <DependentUpon>studentStats.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

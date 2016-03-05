@@ -32,11 +32,11 @@ namespace SehomeTutoringCenter
             }
 
             // Generate Test Data
-            //GenerateTestData();
+            GenerateTestData();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new studentLoginForm());
+            Application.Run(new MainForm());
         }
 
         static void CreateDB()
