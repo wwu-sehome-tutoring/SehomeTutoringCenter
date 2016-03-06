@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.LoginTabPage = new System.Windows.Forms.TabPage();
             this.CheckOutButton = new System.Windows.Forms.Button();
@@ -78,6 +79,7 @@
             this.bottomBorderLine = new System.Windows.Forms.GroupBox();
             this.rightBorderLine = new System.Windows.Forms.GroupBox();
             this.CenterTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.CenterStatsTable = new System.Windows.Forms.TableLayoutPanel();
             this.AverageTimeValue = new System.Windows.Forms.Label();
             this.StudentAverageValue = new System.Windows.Forms.Label();
@@ -158,6 +160,7 @@
             this.MainTabs.SelectedIndex = 0;
             this.MainTabs.Size = new System.Drawing.Size(1917, 1015);
             this.MainTabs.TabIndex = 0;
+            this.MainTabs.SelectedIndexChanged += new System.EventHandler(this.MainTabs_SelectedIndexChanged);
             // 
             // LoginTabPage
             // 
@@ -297,7 +300,7 @@
             // NewClassButton
             // 
             this.NewClassButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewClassButton.Location = new System.Drawing.Point(373, 283);
+            this.NewClassButton.Location = new System.Drawing.Point(395, 283);
             this.NewClassButton.Name = "NewClassButton";
             this.NewClassButton.Size = new System.Drawing.Size(75, 30);
             this.NewClassButton.TabIndex = 13;
@@ -310,9 +313,9 @@
             // 
             this.NewClassComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewClassComboBox.FormattingEnabled = true;
-            this.NewClassComboBox.Location = new System.Drawing.Point(60, 284);
+            this.NewClassComboBox.Location = new System.Drawing.Point(49, 284);
             this.NewClassComboBox.Name = "NewClassComboBox";
-            this.NewClassComboBox.Size = new System.Drawing.Size(307, 28);
+            this.NewClassComboBox.Size = new System.Drawing.Size(340, 28);
             this.NewClassComboBox.Sorted = true;
             this.NewClassComboBox.TabIndex = 7;
             this.NewClassComboBox.Visible = false;
@@ -331,7 +334,7 @@
             // 
             this.radioButton6.AutoSize = true;
             this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton6.Location = new System.Drawing.Point(305, 219);
+            this.radioButton6.Location = new System.Drawing.Point(282, 219);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(133, 28);
             this.radioButton6.TabIndex = 5;
@@ -344,7 +347,7 @@
             // 
             this.radioButton5.AutoSize = true;
             this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton5.Location = new System.Drawing.Point(305, 158);
+            this.radioButton5.Location = new System.Drawing.Point(282, 158);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(133, 28);
             this.radioButton5.TabIndex = 4;
@@ -357,7 +360,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton4.Location = new System.Drawing.Point(305, 94);
+            this.radioButton4.Location = new System.Drawing.Point(282, 94);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(133, 28);
             this.radioButton4.TabIndex = 3;
@@ -370,7 +373,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.Location = new System.Drawing.Point(60, 219);
+            this.radioButton3.Location = new System.Drawing.Point(31, 219);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(133, 28);
             this.radioButton3.TabIndex = 2;
@@ -383,7 +386,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(60, 158);
+            this.radioButton2.Location = new System.Drawing.Point(31, 158);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(133, 28);
             this.radioButton2.TabIndex = 1;
@@ -396,7 +399,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(60, 94);
+            this.radioButton1.Location = new System.Drawing.Point(31, 94);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(133, 28);
             this.radioButton1.TabIndex = 0;
@@ -446,17 +449,17 @@
             // studentPieChart
             // 
             this.studentPieChart.BackColor = System.Drawing.Color.WhiteSmoke;
-            chartArea8.Name = "ChartArea1";
-            this.studentPieChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.studentPieChart.Legends.Add(legend8);
+            chartArea1.Name = "ChartArea1";
+            this.studentPieChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.studentPieChart.Legends.Add(legend1);
             this.studentPieChart.Location = new System.Drawing.Point(435, 26);
             this.studentPieChart.Name = "studentPieChart";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series8.Legend = "Legend1";
-            series8.Name = "Subjects";
-            this.studentPieChart.Series.Add(series8);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Subjects";
+            this.studentPieChart.Series.Add(series1);
             this.studentPieChart.Size = new System.Drawing.Size(1307, 462);
             this.studentPieChart.TabIndex = 39;
             this.studentPieChart.Text = "chart1";
@@ -472,6 +475,8 @@
             this.totalTime});
             this.studentGridView.Location = new System.Drawing.Point(435, 501);
             this.studentGridView.Name = "studentGridView";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.studentGridView.Size = new System.Drawing.Size(1310, 453);
             this.studentGridView.TabIndex = 38;
             // 
@@ -590,7 +595,7 @@
             // bottomBorderLine
             // 
             this.bottomBorderLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bottomBorderLine.Location = new System.Drawing.Point(27, 674);
+            this.bottomBorderLine.Location = new System.Drawing.Point(27, 693);
             this.bottomBorderLine.Name = "bottomBorderLine";
             this.bottomBorderLine.Size = new System.Drawing.Size(275, 2);
             this.bottomBorderLine.TabIndex = 32;
@@ -608,6 +613,7 @@
             // CenterTabPage
             // 
             this.CenterTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.CenterTabPage.Controls.Add(this.groupBox6);
             this.CenterTabPage.Controls.Add(this.CenterStatsTable);
             this.CenterTabPage.Controls.Add(this.centerStatsChart);
             this.CenterTabPage.Controls.Add(this.dailyPrizeGroupBox);
@@ -621,6 +627,15 @@
             this.CenterTabPage.Size = new System.Drawing.Size(1869, 1007);
             this.CenterTabPage.TabIndex = 2;
             this.CenterTabPage.Text = "Center Stats";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.groupBox6.Location = new System.Drawing.Point(24, 693);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(275, 2);
+            this.groupBox6.TabIndex = 33;
+            this.groupBox6.TabStop = false;
             // 
             // CenterStatsTable
             // 
@@ -742,37 +757,37 @@
             // 
             // centerStatsChart
             // 
-            chartArea7.AxisX.Title = "Date";
-            chartArea7.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea7.AxisY.Title = "Number of Students";
-            chartArea7.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea7.Name = "ChartArea1";
-            this.centerStatsChart.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.centerStatsChart.Legends.Add(legend7);
+            chartArea2.AxisX.Title = "Date";
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisY.Title = "Number of Students";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.Name = "ChartArea1";
+            this.centerStatsChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.centerStatsChart.Legends.Add(legend2);
             this.centerStatsChart.Location = new System.Drawing.Point(510, 58);
             this.centerStatsChart.Name = "centerStatsChart";
             this.centerStatsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series7.BorderWidth = 3;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend1";
-            series7.Name = "Students";
-            this.centerStatsChart.Series.Add(series7);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Students";
+            this.centerStatsChart.Series.Add(series2);
             this.centerStatsChart.Size = new System.Drawing.Size(1130, 560);
             this.centerStatsChart.TabIndex = 23;
             this.centerStatsChart.Text = "chart1";
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.Name = "Students Per Day";
-            title4.Text = "Students Per Day";
-            this.centerStatsChart.Titles.Add(title4);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Students Per Day";
+            title1.Text = "Students Per Day";
+            this.centerStatsChart.Titles.Add(title1);
             // 
             // dailyPrizeGroupBox
             // 
             this.dailyPrizeGroupBox.Controls.Add(this.RandomNameTextbox);
             this.dailyPrizeGroupBox.Controls.Add(this.PrizeButton);
             this.dailyPrizeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dailyPrizeGroupBox.Location = new System.Drawing.Point(24, 729);
+            this.dailyPrizeGroupBox.Location = new System.Drawing.Point(24, 746);
             this.dailyPrizeGroupBox.Name = "dailyPrizeGroupBox";
             this.dailyPrizeGroupBox.Size = new System.Drawing.Size(258, 189);
             this.dailyPrizeGroupBox.TabIndex = 20;
@@ -813,7 +828,7 @@
             this.CenterGenerateButton.BackColor = System.Drawing.Color.Green;
             this.CenterGenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CenterGenerateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.CenterGenerateButton.Location = new System.Drawing.Point(67, 556);
+            this.CenterGenerateButton.Location = new System.Drawing.Point(67, 577);
             this.CenterGenerateButton.Name = "CenterGenerateButton";
             this.CenterGenerateButton.Size = new System.Drawing.Size(172, 48);
             this.CenterGenerateButton.TabIndex = 21;
@@ -825,7 +840,7 @@
             // 
             this.groupBox2.Controls.Add(this.EndDateTimePicker);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(24, 388);
+            this.groupBox2.Location = new System.Drawing.Point(24, 409);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(258, 82);
             this.groupBox2.TabIndex = 19;
@@ -836,16 +851,16 @@
             // 
             this.EndDateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EndDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EndDateTimePicker.Location = new System.Drawing.Point(29, 34);
+            this.EndDateTimePicker.Location = new System.Drawing.Point(17, 34);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
-            this.EndDateTimePicker.Size = new System.Drawing.Size(200, 29);
+            this.EndDateTimePicker.Size = new System.Drawing.Size(226, 29);
             this.EndDateTimePicker.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.StartDateTimePicker);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(24, 210);
+            this.groupBox3.Location = new System.Drawing.Point(24, 226);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(258, 82);
             this.groupBox3.TabIndex = 18;
@@ -855,16 +870,16 @@
             // StartDateTimePicker
             // 
             this.StartDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartDateTimePicker.Location = new System.Drawing.Point(29, 34);
+            this.StartDateTimePicker.Location = new System.Drawing.Point(17, 34);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
-            this.StartDateTimePicker.Size = new System.Drawing.Size(200, 29);
+            this.StartDateTimePicker.Size = new System.Drawing.Size(226, 29);
             this.StartDateTimePicker.TabIndex = 0;
             // 
             // subjectGroupBox
             // 
             this.subjectGroupBox.Controls.Add(this.SubjectComboBox);
             this.subjectGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subjectGroupBox.Location = new System.Drawing.Point(24, 24);
+            this.subjectGroupBox.Location = new System.Drawing.Point(24, 45);
             this.subjectGroupBox.Name = "subjectGroupBox";
             this.subjectGroupBox.Size = new System.Drawing.Size(258, 82);
             this.subjectGroupBox.TabIndex = 17;
@@ -900,11 +915,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(356, 26);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(186, 29);
+            this.label2.Size = new System.Drawing.Size(226, 33);
             this.label2.TabIndex = 37;
             this.label2.Text = "Current Sudents";
             // 
@@ -919,16 +934,16 @@
             this.dataGridViewTextBoxColumn3});
             this.dataGridView1.Location = new System.Drawing.Point(356, 70);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.Size = new System.Drawing.Size(1462, 839);
             this.dataGridView1.TabIndex = 36;
@@ -1192,5 +1207,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }

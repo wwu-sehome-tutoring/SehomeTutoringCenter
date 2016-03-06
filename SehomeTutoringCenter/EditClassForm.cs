@@ -36,6 +36,8 @@ namespace SehomeTutoringCenter
                 };
                 _context.Subjects.Add(subject);
                 _context.SaveChanges();
+
+                MessageBox.Show("The new class has been added.");
             }
         }
 
@@ -65,7 +67,7 @@ namespace SehomeTutoringCenter
         // When a class gets selected, remove it from various places in the database
         private void RemoveClassButton_Click(object sender, EventArgs e)
         {
-            string ClassName = ClassList.SelectedItem.ToString();
+            string ClassName = ClassList.SelectedItem.ToString().Split('-')[0];
 
             var CurrentClass = _context.Subjects
                                 .Where(s => s.Name == ClassName)
@@ -102,6 +104,7 @@ namespace SehomeTutoringCenter
             }
 
             _context.SaveChanges();
+            MessageBox.Show("The class has been removed.");
             
         }
     }

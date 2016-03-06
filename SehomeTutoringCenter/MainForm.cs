@@ -17,7 +17,6 @@ namespace SehomeTutoringCenter
         public MainForm()
         {
             InitializeComponent();
-            MainTabs.SelectedIndexChanged += new EventHandler(MainTabs_SelectedIndexChanged);
 
             // The student login page is the default tab, so call these functions to set up some stuff
             PopulateStudentList();
@@ -44,6 +43,11 @@ namespace SehomeTutoringCenter
                 int TotalStudents = _context.Students.Count();
                 TotalStudentsBox.Text = TotalStudents.ToString();
             }
+            else if(MainTabs.SelectedTab == LoginTabPage)
+            {
+                NewClassComboBox.Items.Clear();
+                PopulateClassList();
+            }
         }
 
 
@@ -65,7 +69,7 @@ namespace SehomeTutoringCenter
         {
             foreach (var s in _context.Subjects)
             {
-                NewClassComboBox.Items.Add(s.Name);
+                NewClassComboBox.Items.Add(s.Name + "-" + s.TeacherName);
             }
         }
 
@@ -260,15 +264,16 @@ namespace SehomeTutoringCenter
             var student = StudentQuery.FirstOrDefault();
 
             // Check if they have 6 classes already
-            if (_dbh.RegistrationsFromStudent(_context, student).Count() == 6)
+            if (_dbh.RegistrationsFromStudent(_context, student).Count() > 5)
             {
                 MessageBox.Show("Already registered for the maximum number of classes.");
                 return;
             }
 
             // grab the subject object
+            string ClassOnly = NewClassComboBox.Text.ToString().Split('-')[0];
             var CurrentClass = _context.Subjects
-                                .Where(s => s.Name == NewClassComboBox.Text.ToString())
+                                .Where(s => s.Name == ClassOnly)
                                 .FirstOrDefault();
 
             // Check to see if the user is already registered for this class
