@@ -22,9 +22,6 @@ namespace SehomeTutoringCenter
             PopulateStudentList();
             PopulateClassList();
 
-            // Student stats page
-            PopulateStatsNames();
-
             // Center Stats page
             PopulateSubjectNames();
             DefaultData();
@@ -47,6 +44,11 @@ namespace SehomeTutoringCenter
             {
                 NewClassComboBox.Items.Clear();
                 PopulateClassList();
+            } 
+            else if(MainTabs.SelectedTab == StudentTabPage)
+            {
+                studentComboBox.Items.Clear();
+                PopulateStatsNames();
             }
         }
 
@@ -284,6 +286,7 @@ namespace SehomeTutoringCenter
                 {
                     IsRegistered = true;
                     MessageBox.Show("You are already registered for this class...");
+                    return;
                 }
             }
 
@@ -376,6 +379,7 @@ namespace SehomeTutoringCenter
         // Helper function to fill in the combobox in the student stats page
         private void PopulateStatsNames()
         {
+            Console.WriteLine("printing...");
             foreach (var s in _context.Students)
             {
                 this.studentComboBox.Items.Add(s.FirstName + " " + s.LastName);
@@ -676,10 +680,25 @@ namespace SehomeTutoringCenter
                 if (v.TimeIn.ToString().Split(' ')[0].Equals(current))
                 {
                     var s = _dbh.StudentFromVisit(_context, v);
-                    dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
-                                            _dbh.SubjectFromVisit(_context, v).Name,
-                                            v.TimeIn, v.TimeOut, 0);
 
+                    DateTime start = (DateTime)v.TimeIn;
+                    DateTime end;
+                    TimeSpan time;
+                    if (v.TimeOut == null)
+                    {
+                        dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            start.ToString().Split(' ')[1], '-', '-');
+                    }
+                    else
+                    {
+                        end = (DateTime)v.TimeOut;
+                        time = end - start;
+
+                        dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            start.ToString().Split(' ')[1], end.ToString().Split(' ')[1], time);
+                    }
                 }
             }
 
@@ -759,6 +778,7 @@ namespace SehomeTutoringCenter
 
         private void NewSemesterButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("WARNING:  This will delete the current database and create a clean copy of the program.");
             // Grab the current database
             string CWD = Directory.GetCurrentDirectory();
             string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
@@ -797,7 +817,7 @@ namespace SehomeTutoringCenter
                     _context.Visits.Remove(v);
                 }
                 _context.SaveChanges();
-                MessageBox.Show("Closing the program....");
+                MessageBox.Show("Restarting the program to implement the changes.");
                 Application.Exit();
             }
             catch (System.IO.IOException ttt)
