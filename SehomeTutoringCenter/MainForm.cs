@@ -22,20 +22,36 @@ namespace SehomeTutoringCenter
             PopulateStudentList();
             PopulateClassList();
 
-            // Student stats page
-            PopulateStatsNames();
-
             // Center Stats page
             PopulateSubjectNames();
             DefaultData();
 
             // Admin page
-            PopulateGridView();
-
-            // Grab the total number of students in the system
-            int TotalStudents = _context.Students.Count();
-            TotalStudentsBox.Text = TotalStudents.ToString();
+            //PopulateGridView();
         }
+
+        private void MainTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(MainTabs.SelectedTab == AdminTabPage)
+            {
+                dataGridView1.Rows.Clear();
+                PopulateGridView();
+                // Grab the total number of students in the system
+                int TotalStudents = _context.Students.Count();
+                TotalStudentsBox.Text = TotalStudents.ToString();
+            }
+            else if(MainTabs.SelectedTab == LoginTabPage)
+            {
+                NewClassComboBox.Items.Clear();
+                PopulateClassList();
+            } 
+            else if(MainTabs.SelectedTab == StudentTabPage)
+            {
+                studentComboBox.Items.Clear();
+                PopulateStatsNames();
+            }
+        }
+
 
         #region Student Login Page
         // At program start up, fill in the ListBox of the student names that
@@ -55,7 +71,7 @@ namespace SehomeTutoringCenter
         {
             foreach (var s in _context.Subjects)
             {
-                NewClassComboBox.Items.Add(s.Name);
+                NewClassComboBox.Items.Add(s.Name + "-" + s.TeacherName);
             }
         }
 
@@ -250,15 +266,16 @@ namespace SehomeTutoringCenter
             var student = StudentQuery.FirstOrDefault();
 
             // Check if they have 6 classes already
-            if (_dbh.RegistrationsFromStudent(_context, student).Count() == 6)
+            if (_dbh.RegistrationsFromStudent(_context, student).Count() > 5)
             {
                 MessageBox.Show("Already registered for the maximum number of classes.");
                 return;
             }
 
             // grab the subject object
+            string ClassOnly = NewClassComboBox.Text.ToString().Split('-')[0];
             var CurrentClass = _context.Subjects
-                                .Where(s => s.Name == NewClassComboBox.Text.ToString())
+                                .Where(s => s.Name == ClassOnly)
                                 .FirstOrDefault();
 
             // Check to see if the user is already registered for this class
@@ -269,6 +286,7 @@ namespace SehomeTutoringCenter
                 {
                     IsRegistered = true;
                     MessageBox.Show("You are already registered for this class...");
+                    return;
                 }
             }
 
@@ -361,6 +379,7 @@ namespace SehomeTutoringCenter
         // Helper function to fill in the combobox in the student stats page
         private void PopulateStatsNames()
         {
+            Console.WriteLine("printing...");
             foreach (var s in _context.Students)
             {
                 this.studentComboBox.Items.Add(s.FirstName + " " + s.LastName);
@@ -661,15 +680,31 @@ namespace SehomeTutoringCenter
                 if (v.TimeIn.ToString().Split(' ')[0].Equals(current))
                 {
                     var s = _dbh.StudentFromVisit(_context, v);
-                    dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
-                                            _dbh.SubjectFromVisit(_context, v).Name,
-                                            v.TimeIn, v.TimeOut, 0);
 
+                    DateTime start = (DateTime)v.TimeIn;
+                    DateTime end;
+                    TimeSpan time;
+                    if (v.TimeOut == null)
+                    {
+                        dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            start.ToString().Split(' ')[1], '-', '-');
+                    }
+                    else
+                    {
+                        end = (DateTime)v.TimeOut;
+                        time = end - start;
+
+                        dataGridView1.Rows.Add(s.FirstName + " " + s.LastName,
+                                            _dbh.SubjectFromVisit(_context, v).Name,
+                                            start.ToString().Split(' ')[1], end.ToString().Split(' ')[1], time);
+                    }
                 }
             }
 
         }
 
+        // Set up the file select dialogue I think...
         private void ImportButton_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
@@ -743,6 +778,7 @@ namespace SehomeTutoringCenter
 
         private void NewSemesterButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("WARNING:  This will delete the current database and create a clean copy of the program.");
             // Grab the current database
             string CWD = Directory.GetCurrentDirectory();
             string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
@@ -781,7 +817,7 @@ namespace SehomeTutoringCenter
                     _context.Visits.Remove(v);
                 }
                 _context.SaveChanges();
-                MessageBox.Show("Closing the program....");
+                MessageBox.Show("Restarting the program to implement the changes.");
                 Application.Exit();
             }
             catch (System.IO.IOException ttt)
@@ -792,5 +828,7 @@ namespace SehomeTutoringCenter
         }
 
         #endregion
+
+
     }
 }
