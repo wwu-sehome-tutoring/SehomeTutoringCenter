@@ -37,6 +37,19 @@ namespace SehomeTutoringCenter
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+
+            // Make sure all students are checked out before closing the application.
+            using (var context = new SehomeContext())
+            {
+                foreach (var v in context.Visits)
+                {
+                    if (v.TimeOut == null)
+                    {
+                        v.TimeOut = DateTime.Now;
+                    }
+                }
+                context.SaveChanges();
+            }
         }
 
         static void CreateDB()
