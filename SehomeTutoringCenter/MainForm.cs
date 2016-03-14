@@ -785,53 +785,57 @@ namespace SehomeTutoringCenter
 
         private void NewSemesterButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WARNING:  This will delete the current database and create a clean copy of the program.");
-            // Grab the current database
-            string CWD = Directory.GetCurrentDirectory();
-            string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
-            Console.WriteLine(SourcePath);
-
-            string DestDir = CWD + "\\DatabaseBackups";
-            string DestPath = DestDir + "\\SehomeTutoringCenter.sqlite";
-            Console.WriteLine(DestDir);
-            Console.WriteLine(DestPath);
-
-            // Move the current database to the backup directory
-            if (!System.IO.Directory.Exists(DestDir))
+            var result = MessageBox.Show("WARNING:  This will delete the current database and create a clean copy of the program.","",MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
             {
-                System.IO.Directory.CreateDirectory(DestDir);
-            }
+                // Grab the current database
+                string CWD = Directory.GetCurrentDirectory();
+                string SourcePath = CWD + "\\SehomeTutoringCenter.sqlite";
+                Console.WriteLine(SourcePath);
 
-            System.IO.File.Copy(SourcePath, DestPath, true);
+                string DestDir = CWD + "\\DatabaseBackups";
+                string DestPath = DestDir + "\\SehomeTutoringCenter.sqlite";
+                Console.WriteLine(DestDir);
+                Console.WriteLine(DestPath);
 
-            // Remove all entries in all of the tables in the database
-            try
-            {
-                foreach (var r in _context.Registrations)
+                // Move the current database to the backup directory
+                if (!System.IO.Directory.Exists(DestDir))
                 {
-                    _context.Registrations.Remove(r);
+                    System.IO.Directory.CreateDirectory(DestDir);
                 }
-                foreach (var s in _context.Students)
+
+                System.IO.File.Copy(SourcePath, DestPath, true);
+
+                // Remove all entries in all of the tables in the database
+                try
                 {
-                    _context.Students.Remove(s);
+                    foreach (var r in _context.Registrations)
+                    {
+                        _context.Registrations.Remove(r);
+                    }
+                    foreach (var s in _context.Students)
+                    {
+                        _context.Students.Remove(s);
+                    }
+                    foreach (var s in _context.Subjects)
+                    {
+                        _context.Subjects.Remove(s);
+                    }
+                    foreach (var v in _context.Visits)
+                    {
+                        _context.Visits.Remove(v);
+                    }
+                    _context.SaveChanges();
+                    MessageBox.Show("Restarting the program to implement the changes.");
+                    Application.Exit();
                 }
-                foreach (var s in _context.Subjects)
+                catch (System.IO.IOException ttt)
                 {
-                    _context.Subjects.Remove(s);
+                    Console.WriteLine(ttt.Message);
+                    return;
                 }
-                foreach (var v in _context.Visits)
-                {
-                    _context.Visits.Remove(v);
-                }
-                _context.SaveChanges();
-                MessageBox.Show("Restarting the program to implement the changes.");
-                Application.Exit();
             }
-            catch (System.IO.IOException ttt)
-            {
-                Console.WriteLine(ttt.Message);
-                return;
-            }
+            return;            
         }
 
         #endregion
