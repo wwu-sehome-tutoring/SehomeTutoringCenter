@@ -743,7 +743,10 @@ namespace SehomeTutoringCenter
             while (!readStream.EndOfStream)
             {
                 var line = readStream.ReadLine();
-                var tokens = line.Split(',');
+                var tokens = line.Split(new char[] { ',' }, 2);
+                tokens[1] = tokens[1].Replace("\"", "");
+
+                Console.WriteLine(tokens);
 
                 var Sub = new Subject
                 {
