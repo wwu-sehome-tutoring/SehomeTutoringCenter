@@ -517,10 +517,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SehomeTutoringCenter.Properties.Resources.Sehome_color129x200_97x150;
-            this.pictureBox1.Location = new System.Drawing.Point(103, 755);
+            this.pictureBox1.Image = global::SehomeTutoringCenter.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(89, 753);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(143, 197);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 37;
             this.pictureBox1.TabStop = false;
             // 
