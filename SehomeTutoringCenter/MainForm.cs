@@ -153,8 +153,12 @@ namespace SehomeTutoringCenter
                         // See if the student is logged in for the day
                         if (v.Student.FirstName.Equals(TempFirst) && v.Student.LastName.Equals(TempLast))
                         {
-                            v.TimeOut = DateTime.Now;
-                            Console.WriteLine("checked out");
+                            if(v.TimeOut == null)
+                            {
+                                v.TimeOut = DateTime.Now;
+                                Console.WriteLine("checked out");
+                            }
+                            
 
                             // Get rid of the checkmark from the students name in the list
                             for (int i = 0; i < StudentNamesLogin.Items.Count; i++)
