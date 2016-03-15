@@ -485,6 +485,14 @@ namespace SehomeTutoringCenter
             {
                 this.studentPieChart.Series["Subjects"].Points.AddXY(subsNames[c], subs[1, c]);
             }
+            foreach  (var dp in studentPieChart.Series["Subjects"].Points)
+            {
+                if(dp.YValues[0]== 0)
+                {
+                    //dp.IsValueShownAsLabel = false;
+                    dp.IsEmpty = true;
+                }
+            }
         }
 
         #endregion
